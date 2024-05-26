@@ -7,5 +7,6 @@ module cr.ac.una.triviador {
     opens cr.ac.una.triviador to javafx.fxml;
     exports cr.ac.una.triviador;
     requires MaterialFX;
+    requires java.base;
     
 }

@@ -1,0 +1,11 @@
+
+.jfx-panelfondo{
+    -fx-background-color:#099176;
+}
+
+.jfx-contenedor-principal{
+     -fx-background-color:#98f9e6;
+    -fx-background-radius:4.0;
+    -fx-effect:dropshadow(gaussian,rgba(0.0,0.0,0.0,0.15),10.0,0.7,0.0,1.5);
+    -fx-padding:25 15 15 15;
+}
