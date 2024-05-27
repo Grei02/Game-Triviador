@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.triviador.Controller.PlayerRegistrationController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.triviador.Controller.PlayerRegistrationController">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -22,8 +21,8 @@
             </Label>
             <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="15.0" VBox.vgrow="ALWAYS">
                <children>
-                  <MFXTextField floatingText="Apodo Del Jugador" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <MFXButton prefHeight="34.0" prefWidth="104.0" text="+ Agregar" HBox.hgrow="ALWAYS" />
+                  <MFXTextField fx:id="txtName" floatingText="Apodo Del Jugador" maxWidth="1.7976931348623157E308" onAction="#onActionTxtName" HBox.hgrow="ALWAYS" />
+                  <MFXButton fx:id="btnAdd" onAction="#onActionBtnAdd" prefHeight="34.0" prefWidth="104.0" text="+ Agregar" HBox.hgrow="ALWAYS" />
                </children>
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -31,7 +30,7 @@
             </HBox>
             <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="214.0" prefWidth="580.0" VBox.vgrow="ALWAYS">
                <children>
-                  <MFXLegacyTableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                  <MFXLegacyTableView fx:id="tabRegistered" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                      <columns>
                         <TableColumn prefWidth="579.0" text="REGISTRO DE JUGADORES" />
                      </columns>
@@ -40,10 +39,10 @@
             </HBox>
             <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="19.0" prefWidth="580.0" spacing="20.0" VBox.vgrow="ALWAYS">
                <children>
-                  <MFXButton text="Cambiar Apodo" />
-                  <MFXButton text="Guardar" />
-                  <MFXButton text="Cancelar" />
-                  <MFXButton text="Eliminar Jugador" />
+                  <MFXButton fx:id="btnChangeName" onAction="#onActionBtnChangeName" text="Cambiar Apodo" />
+                  <MFXButton fx:id="btnSave" onAction="#onActionBtnSave" text="Guardar" />
+                  <MFXButton fx:id="btnCancel" onAction="#onActionBtnCancel" text="Cancelar" />
+                  <MFXButton fx:id="btnEliminate" onAction="#onActionBtnEliminate" text="Eliminar Jugador" />
                </children>
             </HBox>
          </children>
