@@ -9,3 +9,68 @@
     -fx-effect:dropshadow(gaussian,rgba(0.0,0.0,0.0,0.15),10.0,0.7,0.0,1.5);
     -fx-padding:25 15 15 15;
 }
+.mfx-text-field1 {
+  -mfx-main: #dbe7e4; /* Color principal para el enfoque */
+  -fx-background-color: black; /* Fondo negro para alto contraste */
+  -fx-background-radius: 8; /* Bordes más redondeados */
+  -fx-border-color: #32CD32; /* Borde verde lima brillante */
+  -fx-border-radius: 8; /* Bordes redondeados */
+  -fx-border-width: 2; /* Borde más grueso */
+  -fx-padding: 10; /* Más espacio interior */
+  -fx-font-family: "Open Sans", sans-serif; /* Fuente moderna y limpia */
+  -fx-font-size: 14px; /* Tamaño de la fuente */
+  -fx-text-fill: white; /* Texto blanco para contraste */
+}
+
+.mfx-text-field1:focus-within {
+  -fx-background-insets: 2;
+  -fx-border-color: #00FF00; /* Verde brillante para el borde al enfocar */
+  -fx-border-width: 2; /* Mantiene el ancho del borde */
+  -fx-border-insets: 0.1;
+}
+
+.mfx-text-field1.floating-text {
+  -fx-font-family: "Open Sans", sans-serif; /* Fuente moderna y limpia */
+  -fx-font-weight: bold; /* Texto en negrita */
+  -fx-text-fill: #00FF00; /* Texto verde brillante para destacar */
+}
+
+.mfx-text-field1:floating .floating-text {
+  -fx-background-color: black; /* Fondo negro para alto contraste */
+  -fx-text-fill: #00FF00; /* Texto verde brillante */
+}
+
+.mfx-combo-box {
+  -mfx-track-color: rgb(50, 50, 50); /* Un gris oscuro para un look más robusto */
+  -mfx-thumb-color: rgb(255, 223, 0); /* Un color amarillo brillante para el thumb */
+  -mfx-thumb-hover-color: rgb(255, 255, 102); /* Un amarillo más claro al pasar el cursor */
+  -mfx-gap: 0;
+  -fx-padding: 6 10 6 10; /* Espacio interior para mayor comodidad */
+  -fx-background-color: black; /* Fondo negro para contraste y estilo */
+  -fx-border-color: #32CD32; /* Borde verde lima brillante para complementar el verde esmeralda */
+  -fx-border-radius: 10; /* Bordes redondeados para un look moderno */
+  -fx-border-width: 2; /* Borde más grueso */
+  -fx-font-family: "Open Sans", sans-serif; /* Fuente moderna y limpia */
+  -fx-font-size: 14px; /* Tamaño de la fuente */
+  -fx-text-fill: white; /* Color del texto blanco para contraste */
+}
+
+.mfx-combo-box .caret .mfx-ripple-generator {
+  -mfx-ripple-color: rgba(50, 205, 50, 0.5); /* Ripple verde lima */
+  -mfx-ripple-radius: 20; /* Ripple más grande */
+}
+
+.mfx-combo-box:focus-within .caret .mfx-font-icon {
+  -mfx-color: #32CD32; /* Verde lima brillante cuando está enfocado */
+}
+
+.mfx-combo-box .combo-popup .virtual-flow {
+  -fx-background-radius: 10; /* Bordes redondeados para el popup */
+  -fx-border-color: #32CD32; /* Borde del popup verde lima brillante */
+  -fx-border-radius: 10; /* Radio del borde del popup */
+  -fx-background-color: black; /* Fondo negro para el popup */
+}
+
+.mfx-combo-box:disabled .caret .mfx-font-icon {
+  -mfx-color: #555555; /* Color del caret cuando está deshabilitado */
+}
