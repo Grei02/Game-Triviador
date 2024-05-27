@@ -7,16 +7,16 @@ package cr.ac.una.triviador.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
 
 /**
  *
@@ -25,14 +25,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TRIV_PLAYERS_GAME", catalog = "", schema = "TRI")
 @NamedQueries({
-    @NamedQuery(name = "TrivPlayersGame.findAll", query = "SELECT t FROM TrivPlayersGame t"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgId", query = "SELECT t FROM TrivPlayersGame t WHERE t.pxgId = :pxgId"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgNameworker", query = "SELECT t FROM TrivPlayersGame t WHERE t.pxgNameworker = :pxgNameworker"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgPosboard", query = "SELECT t FROM TrivPlayersGame t WHERE t.pxgPosboard = :pxgPosboard"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgCounterconsecutivequestion", query = "SELECT t FROM TrivPlayersGame t WHERE t.pxgCounterconsecutivequestion = :pxgCounterconsecutivequestion"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgNumberturn", query = "SELECT t FROM TrivPlayersGame t WHERE t.pxgNumberturn = :pxgNumberturn"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgIsCurrent", query = "SELECT t FROM TrivPlayersGame t WHERE t.pxgIsCurrent = :pxgIsCurrent"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgVersion", query = "SELECT t FROM TrivPlayersGame t WHERE t.pxgVersion = :pxgVersion")})
+    /*@NamedQuery(name = "TrivPlayersGame.findAll", query = "SELECT t FROM TrivPlayersGame t"),
+    @NamedQuery(name = "TrivPlayersGame.findByPxgId", query = "SELECT t FROM TrivPlayersGame t WHERE t.id = :id"),
+    @NamedQuery(name = "TrivPlayersGame.findByPxgNameworker", query = "SELECT t FROM TrivPlayersGame t WHERE t.nameworker = :nameworker"),
+    @NamedQuery(name = "TrivPlayersGame.findByPxgPosboard", query = "SELECT t FROM TrivPlayersGame t WHERE t.posboard = :posboard"),
+    @NamedQuery(name = "TrivPlayersGame.findByPxgCounterconsecutivequestion", query = "SELECT t FROM TrivPlayersGame t WHERE t.counterconsecutivequestion = :counterconsecutivequestion"),
+    @NamedQuery(name = "TrivPlayersGame.findByPxgNumberturn", query = "SELECT t FROM TrivPlayersGame t WHERE t.numberturn = :numberturn"),
+    @NamedQuery(name = "TrivPlayersGame.findByPxgIsCurrent", query = "SELECT t FROM TrivPlayersGame t WHERE t.isCurrent = :isCurrent"),
+    @NamedQuery(name = "TrivPlayersGame.findByPxgVersion", query = "SELECT t FROM TrivPlayersGame t WHERE t.version = :version")*/})
 public class TrivPlayersGame implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,119 +40,119 @@ public class TrivPlayersGame implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "PXG_ID")
-    private BigDecimal pxgId;
+    private Long id;
     @Column(name = "PXG_NAMEWORKER")
-    private String pxgNameworker;
+    private String nameworker;
     @Basic(optional = false)
     @Column(name = "PXG_POSBOARD")
-    private BigInteger pxgPosboard;
+    private Long posboard;
     @Column(name = "PXG_COUNTERCONSECUTIVEQUESTION")
-    private BigInteger pxgCounterconsecutivequestion;
+    private Long counterconsecutivequestion;
     @Column(name = "PXG_NUMBERTURN")
-    private BigInteger pxgNumberturn;
+    private Long numberturn;
     @Basic(optional = false)
     @Column(name = "PXG_IS_CURRENT")
-    private String pxgIsCurrent;
+    private String isCurrent;
     @Basic(optional = false)
     @Column(name = "PXG_VERSION")
-    private BigInteger pxgVersion;
+    private Long version;
     @JoinColumn(name = "PXG_GAM_ID", referencedColumnName = "GAM_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivGame pxgGamId;
+    private TrivGame gamId;
     @JoinColumn(name = "PXG_PLA_ID", referencedColumnName = "PLA_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivPlayers pxgPlaId;
+    private TrivPlayers plaId;
 
     public TrivPlayersGame() {
     }
 
-    public TrivPlayersGame(BigDecimal pxgId) {
-        this.pxgId = pxgId;
+    public TrivPlayersGame(Long id) {
+        this.id = id;
     }
 
-    public TrivPlayersGame(BigDecimal pxgId, BigInteger pxgPosboard, String pxgIsCurrent, BigInteger pxgVersion) {
-        this.pxgId = pxgId;
-        this.pxgPosboard = pxgPosboard;
-        this.pxgIsCurrent = pxgIsCurrent;
-        this.pxgVersion = pxgVersion;
+//    public void update (TrivPlayersGameDto playersGameDto) {
+//        this.id = playersGameDto;
+//        this.posboard = posboard;
+//        this.isCurrent = isCurrent;
+//        this.version = version;
+//    }
+
+    public Long getId() {
+        return id;
     }
 
-    public BigDecimal getPxgId() {
-        return pxgId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setPxgId(BigDecimal pxgId) {
-        this.pxgId = pxgId;
+    public String getNameworker() {
+        return nameworker;
     }
 
-    public String getPxgNameworker() {
-        return pxgNameworker;
+    public void setNameworker(String nameworker) {
+        this.nameworker = nameworker;
     }
 
-    public void setPxgNameworker(String pxgNameworker) {
-        this.pxgNameworker = pxgNameworker;
+    public Long getPosboard() {
+        return posboard;
     }
 
-    public BigInteger getPxgPosboard() {
-        return pxgPosboard;
+    public void setPosboard(Long posboard) {
+        this.posboard = posboard;
     }
 
-    public void setPxgPosboard(BigInteger pxgPosboard) {
-        this.pxgPosboard = pxgPosboard;
+    public Long getCounterconsecutivequestion() {
+        return counterconsecutivequestion;
     }
 
-    public BigInteger getPxgCounterconsecutivequestion() {
-        return pxgCounterconsecutivequestion;
+    public void setCounterconsecutivequestion(Long counterconsecutivequestion) {
+        this.counterconsecutivequestion = counterconsecutivequestion;
     }
 
-    public void setPxgCounterconsecutivequestion(BigInteger pxgCounterconsecutivequestion) {
-        this.pxgCounterconsecutivequestion = pxgCounterconsecutivequestion;
+    public Long getNumberturn() {
+        return numberturn;
     }
 
-    public BigInteger getPxgNumberturn() {
-        return pxgNumberturn;
+    public void setNumberturn(Long numberturn) {
+        this.numberturn = numberturn;
     }
 
-    public void setPxgNumberturn(BigInteger pxgNumberturn) {
-        this.pxgNumberturn = pxgNumberturn;
+    public String getIsCurrent() {
+        return isCurrent;
     }
 
-    public String getPxgIsCurrent() {
-        return pxgIsCurrent;
+    public void setIsCurrent(String isCurrent) {
+        this.isCurrent = isCurrent;
     }
 
-    public void setPxgIsCurrent(String pxgIsCurrent) {
-        this.pxgIsCurrent = pxgIsCurrent;
+    public Long getVersion() {
+        return version;
     }
 
-    public BigInteger getPxgVersion() {
-        return pxgVersion;
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
-    public void setPxgVersion(BigInteger pxgVersion) {
-        this.pxgVersion = pxgVersion;
+    public TrivGame getGamId() {
+        return gamId;
     }
 
-    public TrivGame getPxgGamId() {
-        return pxgGamId;
+    public void setGamId(TrivGame gamId) {
+        this.gamId = gamId;
     }
 
-    public void setPxgGamId(TrivGame pxgGamId) {
-        this.pxgGamId = pxgGamId;
+    public TrivPlayers getPlaId() {
+        return plaId;
     }
 
-    public TrivPlayers getPxgPlaId() {
-        return pxgPlaId;
-    }
-
-    public void setPxgPlaId(TrivPlayers pxgPlaId) {
-        this.pxgPlaId = pxgPlaId;
+    public void setPlaId(TrivPlayers plaId) {
+        this.plaId = plaId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (pxgId != null ? pxgId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -163,7 +163,7 @@ public class TrivPlayersGame implements Serializable {
             return false;
         }
         TrivPlayersGame other = (TrivPlayersGame) object;
-        if ((this.pxgId == null && other.pxgId != null) || (this.pxgId != null && !this.pxgId.equals(other.pxgId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -171,7 +171,7 @@ public class TrivPlayersGame implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.triviador.model.TrivPlayersGame[ pxgId=" + pxgId + " ]";
+        return "cr.ac.una.triviador.model.TrivPlayersGame[ id=" + id + " ]";
     }
     
 }

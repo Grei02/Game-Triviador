@@ -5,21 +5,23 @@
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 /**
  *
@@ -27,89 +29,95 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TRIV_QUESTIONS", catalog = "", schema = "TRI")
-@NamedQueries({
-    @NamedQuery(name = "TrivQuestions.findAll", query = "SELECT t FROM TrivQuestions t"),
-    @NamedQuery(name = "TrivQuestions.findByQueId", query = "SELECT t FROM TrivQuestions t WHERE t.queId = :queId"),
-    @NamedQuery(name = "TrivQuestions.findByQueQuestions", query = "SELECT t FROM TrivQuestions t WHERE t.queQuestions = :queQuestions"),
-    @NamedQuery(name = "TrivQuestions.findByQueIsEnabled", query = "SELECT t FROM TrivQuestions t WHERE t.queIsEnabled = :queIsEnabled"),
-    @NamedQuery(name = "TrivQuestions.findByQueVersion", query = "SELECT t FROM TrivQuestions t WHERE t.queVersion = :queVersion")})
+@NamedQueries({ /* @NamedQuery(name = "TrivQuestions.findAll", query = "SELECT t FROM TrivQuestions t"),
+    @NamedQuery(name = "TrivQuestions.findByQueId", query = "SELECT t FROM TrivQuestions t WHERE t.id = :id"),
+    @NamedQuery(name = "TrivQuestions.findByQueQuestions", query = "SELECT t FROM TrivQuestions t WHERE t.questions = :questions"),
+    @NamedQuery(name = "TrivQuestions.findByQueIsEnabled", query = "SELECT t FROM TrivQuestions t WHERE t.isEnabled = :isEnabled"),
+    @NamedQuery(name = "TrivQuestions.findByQueVersion", query = "SELECT t FROM TrivQuestions t WHERE t.queVersion = :queVersion")*/})
 public class TrivQuestions implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "TRI_QUESTIONS_QUE_ID_GENERATOR", sequenceName = "tri.TRIV_QUESTIONS_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRI_QUESTIONS_QUE_ID_GENERATOR")
     @Basic(optional = false)
     @Column(name = "QUE_ID")
-    private BigDecimal queId;
+    private Long id;
     @Basic(optional = false)
     @Column(name = "QUE_QUESTIONS")
-    private String queQuestions;
+    private String questions;
     @Basic(optional = false)
     @Column(name = "QUE_IS_ENABLED")
-    private String queIsEnabled;
-    @Basic(optional = false)
+    private String isEnabled;
+    @Version
     @Column(name = "QUE_VERSION")
-    private BigInteger queVersion;
+    private Long version;
     @ManyToMany(mappedBy = "trivQuestionsList", fetch = FetchType.LAZY)
-    private List<TrivGame> trivGameList;
+    private List<TrivGame> gameList;
     @JoinColumn(name = "CAT_ID", referencedColumnName = "CAT_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private TrivCategories catId;
     @OneToMany(mappedBy = "queId", fetch = FetchType.LAZY)
-    private List<TrivAnswers> trivAnswersList;
+    private List<TrivAnswers> answersList;
 
     public TrivQuestions() {
     }
 
-    public TrivQuestions(BigDecimal queId) {
-        this.queId = queId;
+    public TrivQuestions(Long id) {
+        this.id = id;
+    }
+    
+    public void TrivQuestions (TrivQuestionsDto questionsDto) {
+        this.id = questionsDto.getId();
+        update(questionsDto);
+    }
+    
+    public void update(TrivQuestionsDto questionsDto) {
+        this.id = questionsDto.getId();
+        this.questions = questionsDto.getQuestions();
+        this.isEnabled = questionsDto.getIsEnabled();
+        this.version = questionsDto.getVersion();
     }
 
-    public TrivQuestions(BigDecimal queId, String queQuestions, String queIsEnabled, BigInteger queVersion) {
-        this.queId = queId;
-        this.queQuestions = queQuestions;
-        this.queIsEnabled = queIsEnabled;
-        this.queVersion = queVersion;
+    public Long getId() {
+        return id;
     }
 
-    public BigDecimal getQueId() {
-        return queId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setQueId(BigDecimal queId) {
-        this.queId = queId;
+    public String getQuestions() {
+        return questions;
     }
 
-    public String getQueQuestions() {
-        return queQuestions;
+    public void setQuestions(String questions) {
+        this.questions = questions;
     }
 
-    public void setQueQuestions(String queQuestions) {
-        this.queQuestions = queQuestions;
+    public String getIsEnabled() {
+        return isEnabled;
     }
 
-    public String getQueIsEnabled() {
-        return queIsEnabled;
+    public void setIsEnabled(String isEnabled) {
+        this.isEnabled = isEnabled;
     }
 
-    public void setQueIsEnabled(String queIsEnabled) {
-        this.queIsEnabled = queIsEnabled;
+    public Long getVersion() {
+        return version;
     }
 
-    public BigInteger getQueVersion() {
-        return queVersion;
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
-    public void setQueVersion(BigInteger queVersion) {
-        this.queVersion = queVersion;
+    public List<TrivGame> getGameList() {
+        return gameList;
     }
 
-    public List<TrivGame> getTrivGameList() {
-        return trivGameList;
-    }
-
-    public void setTrivGameList(List<TrivGame> trivGameList) {
-        this.trivGameList = trivGameList;
+    public void setGameList(List<TrivGame> gameList) {
+        this.gameList = gameList;
     }
 
     public TrivCategories getCatId() {
@@ -120,18 +128,18 @@ public class TrivQuestions implements Serializable {
         this.catId = catId;
     }
 
-    public List<TrivAnswers> getTrivAnswersList() {
-        return trivAnswersList;
+    public List<TrivAnswers> getAnswersList() {
+        return answersList;
     }
 
-    public void setTrivAnswersList(List<TrivAnswers> trivAnswersList) {
-        this.trivAnswersList = trivAnswersList;
+    public void setAnswersList(List<TrivAnswers> answersList) {
+        this.answersList = answersList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (queId != null ? queId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -142,7 +150,7 @@ public class TrivQuestions implements Serializable {
             return false;
         }
         TrivQuestions other = (TrivQuestions) object;
-        if ((this.queId == null && other.queId != null) || (this.queId != null && !this.queId.equals(other.queId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -150,7 +158,7 @@ public class TrivQuestions implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.triviador.model.TrivQuestions[ queId=" + queId + " ]";
+        return "cr.ac.una.triviador.model.TrivQuestions[ id=" + id + " ]";
     }
-    
+
 }

@@ -29,17 +29,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TRIV_GAME", catalog = "", schema = "TRI")
 @NamedQueries({
-    @NamedQuery(name = "TrivGame.findAll", query = "SELECT t FROM TrivGame t"),
-    @NamedQuery(name = "TrivGame.findByGamId", query = "SELECT t FROM TrivGame t WHERE t.gamId = :gamId"),
-    @NamedQuery(name = "TrivGame.findByGamName", query = "SELECT t FROM TrivGame t WHERE t.gamName = :gamName"),
-    @NamedQuery(name = "TrivGame.findByGamTime", query = "SELECT t FROM TrivGame t WHERE t.gamTime = :gamTime"),
-    @NamedQuery(name = "TrivGame.findByGamIsTime", query = "SELECT t FROM TrivGame t WHERE t.gamIsTime = :gamIsTime"),
-    @NamedQuery(name = "TrivGame.findByGamDifficulty", query = "SELECT t FROM TrivGame t WHERE t.gamDifficulty = :gamDifficulty"),
-    @NamedQuery(name = "TrivGame.findByGamNumberplayer", query = "SELECT t FROM TrivGame t WHERE t.gamNumberplayer = :gamNumberplayer"),
-    @NamedQuery(name = "TrivGame.findByGamIsDuel", query = "SELECT t FROM TrivGame t WHERE t.gamIsDuel = :gamIsDuel"),
-    @NamedQuery(name = "TrivGame.findByGamTurn", query = "SELECT t FROM TrivGame t WHERE t.gamTurn = :gamTurn"),
-    @NamedQuery(name = "TrivGame.findByGamCounterround", query = "SELECT t FROM TrivGame t WHERE t.gamCounterround = :gamCounterround"),
-    @NamedQuery(name = "TrivGame.findByGamVersion", query = "SELECT t FROM TrivGame t WHERE t.gamVersion = :gamVersion")})
+   /* @NamedQuery(name = "TrivGame.findAll", query = "SELECT t FROM TrivGame t"),
+    @NamedQuery(name = "TrivGame.findByGamId", query = "SELECT t FROM TrivGame t WHERE t.id = :id"),
+    @NamedQuery(name = "TrivGame.findByGamName", query = "SELECT t FROM TrivGame t WHERE t.name = :name"),
+    @NamedQuery(name = "TrivGame.findByGamTime", query = "SELECT t FROM TrivGame t WHERE t.time = :time"),
+    @NamedQuery(name = "TrivGame.findByGamIsTime", query = "SELECT t FROM TrivGame t WHERE t.isTime = :isTime"),
+    @NamedQuery(name = "TrivGame.findByGamDifficulty", query = "SELECT t FROM TrivGame t WHERE t.difficulty = :difficulty"),
+    @NamedQuery(name = "TrivGame.findByGamNumberplayer", query = "SELECT t FROM TrivGame t WHERE t.numberplayer = :numberplayer"),
+    @NamedQuery(name = "TrivGame.findByGamIsDuel", query = "SELECT t FROM TrivGame t WHERE t.isDuel = :isDuel"),
+    @NamedQuery(name = "TrivGame.findByGamTurn", query = "SELECT t FROM TrivGame t WHERE t.turn = :turn"),
+    @NamedQuery(name = "TrivGame.findByGamCounterround", query = "SELECT t FROM TrivGame t WHERE t.counterround = :counterround"),
+    @NamedQuery(name = "TrivGame.findByGamVersion", query = "SELECT t FROM TrivGame t WHERE t.version = :version")*/})
 public class TrivGame implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,189 +47,188 @@ public class TrivGame implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "GAM_ID")
-    private BigDecimal gamId;
+    private Long id;
     @Basic(optional = false)
     @Column(name = "GAM_NAME")
-    private String gamName;
+    private String name;
     @Column(name = "GAM_TIME")
-    private BigInteger gamTime;
+    private Long time;
     @Basic(optional = false)
     @Column(name = "GAM_IS_TIME")
-    private String gamIsTime;
+    private String isTime;
     @Basic(optional = false)
     @Column(name = "GAM_DIFFICULTY")
-    private String gamDifficulty;
+    private String difficulty;
     @Basic(optional = false)
     @Column(name = "GAM_NUMBERPLAYER")
-    private BigInteger gamNumberplayer;
+    private Long numberplayer;
     @Basic(optional = false)
     @Column(name = "GAM_IS_DUEL")
-    private String gamIsDuel;
+    private String isDuel;
     @Basic(optional = false)
     @Column(name = "GAM_TURN")
-    private BigInteger gamTurn;
+    private Long turn;
     @Column(name = "GAM_COUNTERROUND")
-    private BigInteger gamCounterround;
+    private Long counterround;
     @Basic(optional = false)
     @Column(name = "GAM_VERSION")
-    private BigInteger gamVersion;
+    private Long version;
     @JoinTable(name = "TRIV_GAME_QUESTIONS", joinColumns = {
         @JoinColumn(name = "GXQ_GAM_ID", referencedColumnName = "GAM_ID")}, inverseJoinColumns = {
         @JoinColumn(name = "GXQ_QUE_ID", referencedColumnName = "QUE_ID")})
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<TrivQuestions> trivQuestionsList;
+    private List<TrivQuestions> questionsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxcxgGamId", fetch = FetchType.LAZY)
-    private List<TrivPlayersCategoriesGame> trivPlayersCategoriesGameList;
+    private List<TrivPlayersCategoriesGame> playersCategoriesGameList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxgGamId", fetch = FetchType.LAZY)
-    private List<TrivPlayersGame> trivPlayersGameList;
+    private List<TrivPlayersGame> playersGameList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxwxgGamId", fetch = FetchType.LAZY)
-    private List<TrivPlayersWildcardGame> trivPlayersWildcardGameList;
+    private List<TrivPlayersWildcardGame> playersWildcardGameList;
 
     public TrivGame() {
     }
 
-    public TrivGame(BigDecimal gamId) {
-        this.gamId = gamId;
+    public TrivGame(Long id) {
+        this.id = id;
     }
 
-    public TrivGame(BigDecimal gamId, String gamName, String gamIsTime, String gamDifficulty, BigInteger gamNumberplayer, String gamIsDuel, BigInteger gamTurn, BigInteger gamVersion) {
-        this.gamId = gamId;
-        this.gamName = gamName;
-        this.gamIsTime = gamIsTime;
-        this.gamDifficulty = gamDifficulty;
-        this.gamNumberplayer = gamNumberplayer;
-        this.gamIsDuel = gamIsDuel;
-        this.gamTurn = gamTurn;
-        this.gamVersion = gamVersion;
+    public TrivGame(Long id, String name, String isTime, String difficulty, Long numberplayer, String isDuel, Long turn, Long version) {
+        this.id = id;
+        this.name = name;
+        this.isTime = isTime;
+        this.difficulty = difficulty;
+        this.numberplayer = numberplayer;
+        this.isDuel = isDuel;
+        this.turn = turn;
+        this.version = version;
     }
 
-    public BigDecimal getGamId() {
-        return gamId;
+    public Long getId() {
+        return id;
     }
 
-    public void setGamId(BigDecimal gamId) {
-        this.gamId = gamId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getGamName() {
-        return gamName;
+    public String getName() {
+        return name;
     }
 
-    public void setGamName(String gamName) {
-        this.gamName = gamName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public BigInteger getGamTime() {
-        return gamTime;
+    public Long getTime() {
+        return time;
     }
 
-    public void setGamTime(BigInteger gamTime) {
-        this.gamTime = gamTime;
+    public void setTime(Long time) {
+        this.time = time;
     }
 
-    public String getGamIsTime() {
-        return gamIsTime;
+    public String getIsTime() {
+        return isTime;
     }
 
-    public void setGamIsTime(String gamIsTime) {
-        this.gamIsTime = gamIsTime;
+    public void setIsTime(String isTime) {
+        this.isTime = isTime;
     }
 
-    public String getGamDifficulty() {
-        return gamDifficulty;
+    public String getDifficulty() {
+        return difficulty;
     }
 
-    public void setGamDifficulty(String gamDifficulty) {
-        this.gamDifficulty = gamDifficulty;
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
     }
 
-    public BigInteger getGamNumberplayer() {
-        return gamNumberplayer;
+    public Long getNumberplayer() {
+        return numberplayer;
     }
 
-    public void setGamNumberplayer(BigInteger gamNumberplayer) {
-        this.gamNumberplayer = gamNumberplayer;
+    public void setNumberplayer(Long numberplayer) {
+        this.numberplayer = numberplayer;
     }
 
-    public String getGamIsDuel() {
-        return gamIsDuel;
+    public String getIsDuel() {
+        return isDuel;
     }
 
-    public void setGamIsDuel(String gamIsDuel) {
-        this.gamIsDuel = gamIsDuel;
+    public void setIsDuel(String isDuel) {
+        this.isDuel = isDuel;
     }
 
-    public BigInteger getGamTurn() {
-        return gamTurn;
+    public Long getTurn() {
+        return turn;
     }
 
-    public void setGamTurn(BigInteger gamTurn) {
-        this.gamTurn = gamTurn;
+    public void setTurn(Long turn) {
+        this.turn = turn;
     }
 
-    public BigInteger getGamCounterround() {
-        return gamCounterround;
+    public Long getCounterround() {
+        return counterround;
     }
 
-    public void setGamCounterround(BigInteger gamCounterround) {
-        this.gamCounterround = gamCounterround;
+    public void setCounterround(Long counterround) {
+        this.counterround = counterround;
     }
 
-    public BigInteger getGamVersion() {
-        return gamVersion;
+    public Long getVersion() {
+        return version;
     }
 
-    public void setGamVersion(BigInteger gamVersion) {
-        this.gamVersion = gamVersion;
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
-    public List<TrivQuestions> getTrivQuestionsList() {
-        return trivQuestionsList;
+    public List<TrivQuestions> getQuestionsList() {
+        return questionsList;
     }
 
-    public void setTrivQuestionsList(List<TrivQuestions> trivQuestionsList) {
-        this.trivQuestionsList = trivQuestionsList;
+    public void setQuestionsList(List<TrivQuestions> questionsList) {
+        this.questionsList = questionsList;
     }
 
-    public List<TrivPlayersCategoriesGame> getTrivPlayersCategoriesGameList() {
-        return trivPlayersCategoriesGameList;
+    public List<TrivPlayersCategoriesGame> getPlayersCategoriesGameList() {
+        return playersCategoriesGameList;
     }
 
-    public void setTrivPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> trivPlayersCategoriesGameList) {
-        this.trivPlayersCategoriesGameList = trivPlayersCategoriesGameList;
+    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> playersCategoriesGameList) {
+        this.playersCategoriesGameList = playersCategoriesGameList;
     }
 
-    public List<TrivPlayersGame> getTrivPlayersGameList() {
-        return trivPlayersGameList;
+    public List<TrivPlayersGame> getPlayersGameList() {
+        return playersGameList;
     }
 
-    public void setTrivPlayersGameList(List<TrivPlayersGame> trivPlayersGameList) {
-        this.trivPlayersGameList = trivPlayersGameList;
+    public void setPlayersGameList(List<TrivPlayersGame> playersGameList) {
+        this.playersGameList = playersGameList;
     }
 
-    public List<TrivPlayersWildcardGame> getTrivPlayersWildcardGameList() {
-        return trivPlayersWildcardGameList;
+    public List<TrivPlayersWildcardGame> getPlayersWildcardGameList() {
+        return playersWildcardGameList;
     }
 
-    public void setTrivPlayersWildcardGameList(List<TrivPlayersWildcardGame> trivPlayersWildcardGameList) {
-        this.trivPlayersWildcardGameList = trivPlayersWildcardGameList;
+    public void setPlayersWildcardGameList(List<TrivPlayersWildcardGame> playersWildcardGameList) {
+        this.playersWildcardGameList = playersWildcardGameList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (gamId != null ? gamId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof TrivGame)) {
             return false;
         }
         TrivGame other = (TrivGame) object;
-        if ((this.gamId == null && other.gamId != null) || (this.gamId != null && !this.gamId.equals(other.gamId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -237,7 +236,7 @@ public class TrivGame implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.triviador.model.TrivGame[ gamId=" + gamId + " ]";
+        return "cr.ac.una.triviador.model.TrivGame[ gamId=" + id + " ]";
     }
     
 }

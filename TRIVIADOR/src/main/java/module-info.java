@@ -8,5 +8,6 @@ module cr.ac.una.triviador {
     exports cr.ac.una.triviador;
     requires MaterialFX;
     requires java.base;
+    requires jakarta.persistence;
     
 }
