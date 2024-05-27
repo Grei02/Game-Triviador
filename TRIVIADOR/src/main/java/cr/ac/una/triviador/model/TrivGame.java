@@ -236,7 +236,7 @@ public class TrivGame implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.triviador.model.TrivGame[ gamId=" + id + " ]";
+        return "cr.ac.una.triviador.model.TrivGame[ id=" + id + " ]";
     }
     
 }
