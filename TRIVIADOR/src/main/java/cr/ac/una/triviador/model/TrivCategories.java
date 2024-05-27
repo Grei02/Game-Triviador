@@ -7,7 +7,7 @@ package cr.ac.una.triviador.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,7 +24,7 @@ import javax.persistence.Table;
  * @author Sofia Bejarano Mora
  */
 @Entity
-@Table(name = "TRIV_CATEGORIES")
+@Table(name = "TRIV_CATEGORIES", catalog = "", schema = "TRI")
 @NamedQueries({
     @NamedQuery(name = "TrivCategories.findAll", query = "SELECT t FROM TrivCategories t"),
     @NamedQuery(name = "TrivCategories.findByCatId", query = "SELECT t FROM TrivCategories t WHERE t.catId = :catId"),
@@ -37,22 +37,22 @@ public class TrivCategories implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "CAT_ID", nullable = false, precision = 0, scale = -127)
+    @Column(name = "CAT_ID")
     private BigDecimal catId;
     @Basic(optional = false)
-    @Column(name = "CAT_NAME", nullable = false, length = 20)
+    @Column(name = "CAT_NAME")
     private String catName;
-    @Column(name = "CAT_NAMEIMAGE", length = 30)
+    @Column(name = "CAT_NAMEIMAGE")
     private String catNameimage;
     @Basic(optional = false)
-    @Column(name = "CAT_VERSION", nullable = false)
+    @Column(name = "CAT_VERSION")
     private BigInteger catVersion;
     @OneToMany(mappedBy = "catId", fetch = FetchType.LAZY)
-    private Collection<TrivQuestions> trivQuestionsCollection;
+    private List<TrivQuestions> trivQuestionsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxcxgCatId", fetch = FetchType.LAZY)
-    private Collection<TrivPlayersCategoriesGame> trivPlayersCategoriesGameCollection;
+    private List<TrivPlayersCategoriesGame> trivPlayersCategoriesGameList;
     @OneToMany(mappedBy = "qcatCatId", fetch = FetchType.LAZY)
-    private Collection<TrivQuestionsCategories> trivQuestionsCategoriesCollection;
+    private List<TrivQuestionsCategories> trivQuestionsCategoriesList;
 
     public TrivCategories() {
     }
@@ -99,28 +99,28 @@ public class TrivCategories implements Serializable {
         this.catVersion = catVersion;
     }
 
-    public Collection<TrivQuestions> getTrivQuestionsCollection() {
-        return trivQuestionsCollection;
+    public List<TrivQuestions> getTrivQuestionsList() {
+        return trivQuestionsList;
     }
 
-    public void setTrivQuestionsCollection(Collection<TrivQuestions> trivQuestionsCollection) {
-        this.trivQuestionsCollection = trivQuestionsCollection;
+    public void setTrivQuestionsList(List<TrivQuestions> trivQuestionsList) {
+        this.trivQuestionsList = trivQuestionsList;
     }
 
-    public Collection<TrivPlayersCategoriesGame> getTrivPlayersCategoriesGameCollection() {
-        return trivPlayersCategoriesGameCollection;
+    public List<TrivPlayersCategoriesGame> getTrivPlayersCategoriesGameList() {
+        return trivPlayersCategoriesGameList;
     }
 
-    public void setTrivPlayersCategoriesGameCollection(Collection<TrivPlayersCategoriesGame> trivPlayersCategoriesGameCollection) {
-        this.trivPlayersCategoriesGameCollection = trivPlayersCategoriesGameCollection;
+    public void setTrivPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> trivPlayersCategoriesGameList) {
+        this.trivPlayersCategoriesGameList = trivPlayersCategoriesGameList;
     }
 
-    public Collection<TrivQuestionsCategories> getTrivQuestionsCategoriesCollection() {
-        return trivQuestionsCategoriesCollection;
+    public List<TrivQuestionsCategories> getTrivQuestionsCategoriesList() {
+        return trivQuestionsCategoriesList;
     }
 
-    public void setTrivQuestionsCategoriesCollection(Collection<TrivQuestionsCategories> trivQuestionsCategoriesCollection) {
-        this.trivQuestionsCategoriesCollection = trivQuestionsCategoriesCollection;
+    public void setTrivQuestionsCategoriesList(List<TrivQuestionsCategories> trivQuestionsCategoriesList) {
+        this.trivQuestionsCategoriesList = trivQuestionsCategoriesList;
     }
 
     @Override

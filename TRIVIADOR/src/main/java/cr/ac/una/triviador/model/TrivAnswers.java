@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @author Sofia Bejarano Mora
  */
 @Entity
-@Table(name = "TRIV_ANSWERS")
+@Table(name = "TRIV_ANSWERS", catalog = "", schema = "TRI")
 @NamedQueries({
     @NamedQuery(name = "TrivAnswers.findAll", query = "SELECT t FROM TrivAnswers t"),
     @NamedQuery(name = "TrivAnswers.findByAnsId", query = "SELECT t FROM TrivAnswers t WHERE t.ansId = :ansId"),
@@ -37,16 +37,16 @@ public class TrivAnswers implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "ANS_ID", nullable = false, precision = 0, scale = -127)
+    @Column(name = "ANS_ID")
     private BigDecimal ansId;
     @Basic(optional = false)
-    @Column(name = "ANS_VERSION", nullable = false)
+    @Column(name = "ANS_VERSION")
     private BigInteger ansVersion;
     @Basic(optional = false)
-    @Column(name = "ANS_ANSWERS", nullable = false, length = 100)
+    @Column(name = "ANS_ANSWERS")
     private String ansAnswers;
     @Basic(optional = false)
-    @Column(name = "ANS_IS_CORRECT", nullable = false, length = 1)
+    @Column(name = "ANS_IS_CORRECT")
     private String ansIsCorrect;
     @Column(name = "ANS_SELECTEDNUMBER")
     private BigInteger ansSelectednumber;

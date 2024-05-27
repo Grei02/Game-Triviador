@@ -7,7 +7,7 @@ package cr.ac.una.triviador.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +26,7 @@ import javax.persistence.Table;
  * @author Sofia Bejarano Mora
  */
 @Entity
-@Table(name = "TRIV_QUESTIONS")
+@Table(name = "TRIV_QUESTIONS", catalog = "", schema = "TRI")
 @NamedQueries({
     @NamedQuery(name = "TrivQuestions.findAll", query = "SELECT t FROM TrivQuestions t"),
     @NamedQuery(name = "TrivQuestions.findByQueId", query = "SELECT t FROM TrivQuestions t WHERE t.queId = :queId"),
@@ -39,24 +39,24 @@ public class TrivQuestions implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "QUE_ID", nullable = false, precision = 0, scale = -127)
+    @Column(name = "QUE_ID")
     private BigDecimal queId;
     @Basic(optional = false)
-    @Column(name = "QUE_QUESTIONS", nullable = false, length = 300)
+    @Column(name = "QUE_QUESTIONS")
     private String queQuestions;
     @Basic(optional = false)
-    @Column(name = "QUE_IS_ENABLED", nullable = false, length = 1)
+    @Column(name = "QUE_IS_ENABLED")
     private String queIsEnabled;
     @Basic(optional = false)
-    @Column(name = "QUE_VERSION", nullable = false)
+    @Column(name = "QUE_VERSION")
     private BigInteger queVersion;
-    @ManyToMany(mappedBy = "trivQuestionsCollection", fetch = FetchType.LAZY)
-    private Collection<TrivGame> trivGameCollection;
+    @ManyToMany(mappedBy = "trivQuestionsList", fetch = FetchType.LAZY)
+    private List<TrivGame> trivGameList;
     @JoinColumn(name = "CAT_ID", referencedColumnName = "CAT_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private TrivCategories catId;
     @OneToMany(mappedBy = "queId", fetch = FetchType.LAZY)
-    private Collection<TrivAnswers> trivAnswersCollection;
+    private List<TrivAnswers> trivAnswersList;
 
     public TrivQuestions() {
     }
@@ -104,12 +104,12 @@ public class TrivQuestions implements Serializable {
         this.queVersion = queVersion;
     }
 
-    public Collection<TrivGame> getTrivGameCollection() {
-        return trivGameCollection;
+    public List<TrivGame> getTrivGameList() {
+        return trivGameList;
     }
 
-    public void setTrivGameCollection(Collection<TrivGame> trivGameCollection) {
-        this.trivGameCollection = trivGameCollection;
+    public void setTrivGameList(List<TrivGame> trivGameList) {
+        this.trivGameList = trivGameList;
     }
 
     public TrivCategories getCatId() {
@@ -120,12 +120,12 @@ public class TrivQuestions implements Serializable {
         this.catId = catId;
     }
 
-    public Collection<TrivAnswers> getTrivAnswersCollection() {
-        return trivAnswersCollection;
+    public List<TrivAnswers> getTrivAnswersList() {
+        return trivAnswersList;
     }
 
-    public void setTrivAnswersCollection(Collection<TrivAnswers> trivAnswersCollection) {
-        this.trivAnswersCollection = trivAnswersCollection;
+    public void setTrivAnswersList(List<TrivAnswers> trivAnswersList) {
+        this.trivAnswersList = trivAnswersList;
     }
 
     @Override

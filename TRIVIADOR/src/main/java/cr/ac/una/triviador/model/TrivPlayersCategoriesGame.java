@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @author Sofia Bejarano Mora
  */
 @Entity
-@Table(name = "TRIV_PLAYERS_CATEGORIES_GAME")
+@Table(name = "TRIV_PLAYERS_CATEGORIES_GAME", catalog = "", schema = "TRI")
 @NamedQueries({
     @NamedQuery(name = "TrivPlayersCategoriesGame.findAll", query = "SELECT t FROM TrivPlayersCategoriesGame t"),
     @NamedQuery(name = "TrivPlayersCategoriesGame.findByPxcxgId", query = "SELECT t FROM TrivPlayersCategoriesGame t WHERE t.pxcxgId = :pxcxgId"),
@@ -34,18 +34,18 @@ public class TrivPlayersCategoriesGame implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "PXCXG_ID", nullable = false, precision = 0, scale = -127)
+    @Column(name = "PXCXG_ID")
     private BigDecimal pxcxgId;
     @Basic(optional = false)
-    @Column(name = "PXCXG_VERSION", nullable = false)
+    @Column(name = "PXCXG_VERSION")
     private BigInteger pxcxgVersion;
-    @JoinColumn(name = "PXCXG_CAT_ID", referencedColumnName = "CAT_ID", nullable = false)
+    @JoinColumn(name = "PXCXG_CAT_ID", referencedColumnName = "CAT_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TrivCategories pxcxgCatId;
-    @JoinColumn(name = "PXCXG_GAM_ID", referencedColumnName = "GAM_ID", nullable = false)
+    @JoinColumn(name = "PXCXG_GAM_ID", referencedColumnName = "GAM_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TrivGame pxcxgGamId;
-    @JoinColumn(name = "PXCXG_PLA_ID", referencedColumnName = "PLA_ID", nullable = false)
+    @JoinColumn(name = "PXCXG_PLA_ID", referencedColumnName = "PLA_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TrivPlayers pxcxgPlaId;
 

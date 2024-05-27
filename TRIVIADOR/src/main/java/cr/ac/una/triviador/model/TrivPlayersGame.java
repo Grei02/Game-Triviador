@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @author Sofia Bejarano Mora
  */
 @Entity
-@Table(name = "TRIV_PLAYERS_GAME")
+@Table(name = "TRIV_PLAYERS_GAME", catalog = "", schema = "TRI")
 @NamedQueries({
     @NamedQuery(name = "TrivPlayersGame.findAll", query = "SELECT t FROM TrivPlayersGame t"),
     @NamedQuery(name = "TrivPlayersGame.findByPxgId", query = "SELECT t FROM TrivPlayersGame t WHERE t.pxgId = :pxgId"),
@@ -39,27 +39,27 @@ public class TrivPlayersGame implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "PXG_ID", nullable = false, precision = 0, scale = -127)
+    @Column(name = "PXG_ID")
     private BigDecimal pxgId;
-    @Column(name = "PXG_NAMEWORKER", length = 20)
+    @Column(name = "PXG_NAMEWORKER")
     private String pxgNameworker;
     @Basic(optional = false)
-    @Column(name = "PXG_POSBOARD", nullable = false)
+    @Column(name = "PXG_POSBOARD")
     private BigInteger pxgPosboard;
     @Column(name = "PXG_COUNTERCONSECUTIVEQUESTION")
     private BigInteger pxgCounterconsecutivequestion;
     @Column(name = "PXG_NUMBERTURN")
     private BigInteger pxgNumberturn;
     @Basic(optional = false)
-    @Column(name = "PXG_IS_CURRENT", nullable = false, length = 1)
+    @Column(name = "PXG_IS_CURRENT")
     private String pxgIsCurrent;
     @Basic(optional = false)
-    @Column(name = "PXG_VERSION", nullable = false)
+    @Column(name = "PXG_VERSION")
     private BigInteger pxgVersion;
-    @JoinColumn(name = "PXG_GAM_ID", referencedColumnName = "GAM_ID", nullable = false)
+    @JoinColumn(name = "PXG_GAM_ID", referencedColumnName = "GAM_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TrivGame pxgGamId;
-    @JoinColumn(name = "PXG_PLA_ID", referencedColumnName = "PLA_ID", nullable = false)
+    @JoinColumn(name = "PXG_PLA_ID", referencedColumnName = "PLA_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TrivPlayers pxgPlaId;
 

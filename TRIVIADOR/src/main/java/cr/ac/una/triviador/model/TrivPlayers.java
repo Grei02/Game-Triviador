@@ -7,7 +7,7 @@ package cr.ac.una.triviador.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,7 +27,7 @@ import javax.persistence.Table;
  * @author Sofia Bejarano Mora
  */
 @Entity
-@Table(name = "TRIV_PLAYERS")
+@Table(name = "TRIV_PLAYERS", catalog = "", schema = "TRI")
 @NamedQueries({
     @NamedQuery(name = "TrivPlayers.findAll", query = "SELECT t FROM TrivPlayers t"),
     @NamedQuery(name = "TrivPlayers.findByPlaId", query = "SELECT t FROM TrivPlayers t WHERE t.plaId = :plaId"),
@@ -44,12 +44,12 @@ public class TrivPlayers implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "PLA_ID", nullable = false, precision = 0, scale = -127)
+    @Column(name = "PLA_ID")
     private BigDecimal plaId;
     @Basic(optional = false)
-    @Column(name = "PLA_NAME", nullable = false, length = 20)
+    @Column(name = "PLA_NAME")
     private String plaName;
-    @Column(name = "PLA_DESCRIPTION", length = 100)
+    @Column(name = "PLA_DESCRIPTION")
     private String plaDescription;
     @Column(name = "PLA_COUNTERGAMEWIN")
     private BigInteger plaCountergamewin;
@@ -57,24 +57,24 @@ public class TrivPlayers implements Serializable {
     private BigInteger plaCountergamelose;
     @Column(name = "PLA_COUNTERCONSECUTIVEQUESTION")
     private BigInteger plaCounterconsecutivequestion;
-    @Column(name = "PLA_FAVORITECATEGORY", length = 20)
+    @Column(name = "PLA_FAVORITECATEGORY")
     private String plaFavoritecategory;
     @Basic(optional = false)
-    @Column(name = "PLA_VERSION", nullable = false)
+    @Column(name = "PLA_VERSION")
     private BigInteger plaVersion;
     @JoinTable(name = "TRIV_PLAYERS_ACHIEVEMENTS", joinColumns = {
-        @JoinColumn(name = "PXA_PLA_ID", referencedColumnName = "PLA_ID", nullable = false)}, inverseJoinColumns = {
-        @JoinColumn(name = "PXA_ACH_ID", referencedColumnName = "ACH_ID", nullable = false)})
+        @JoinColumn(name = "PXA_PLA_ID", referencedColumnName = "PLA_ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "PXA_ACH_ID", referencedColumnName = "ACH_ID")})
     @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<TrivAchievements> trivAchievementsCollection;
+    private List<TrivAchievements> trivAchievementsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxcxgPlaId", fetch = FetchType.LAZY)
-    private Collection<TrivPlayersCategoriesGame> trivPlayersCategoriesGameCollection;
+    private List<TrivPlayersCategoriesGame> trivPlayersCategoriesGameList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxgPlaId", fetch = FetchType.LAZY)
-    private Collection<TrivPlayersGame> trivPlayersGameCollection;
+    private List<TrivPlayersGame> trivPlayersGameList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxwxgPlaId", fetch = FetchType.LAZY)
-    private Collection<TrivPlayersWildcardGame> trivPlayersWildcardGameCollection;
+    private List<TrivPlayersWildcardGame> trivPlayersWildcardGameList;
     @OneToMany(mappedBy = "plaId", fetch = FetchType.LAZY)
-    private Collection<TrivQuestionsCategories> trivQuestionsCategoriesCollection;
+    private List<TrivQuestionsCategories> trivQuestionsCategoriesList;
 
     public TrivPlayers() {
     }
@@ -153,44 +153,44 @@ public class TrivPlayers implements Serializable {
         this.plaVersion = plaVersion;
     }
 
-    public Collection<TrivAchievements> getTrivAchievementsCollection() {
-        return trivAchievementsCollection;
+    public List<TrivAchievements> getTrivAchievementsList() {
+        return trivAchievementsList;
     }
 
-    public void setTrivAchievementsCollection(Collection<TrivAchievements> trivAchievementsCollection) {
-        this.trivAchievementsCollection = trivAchievementsCollection;
+    public void setTrivAchievementsList(List<TrivAchievements> trivAchievementsList) {
+        this.trivAchievementsList = trivAchievementsList;
     }
 
-    public Collection<TrivPlayersCategoriesGame> getTrivPlayersCategoriesGameCollection() {
-        return trivPlayersCategoriesGameCollection;
+    public List<TrivPlayersCategoriesGame> getTrivPlayersCategoriesGameList() {
+        return trivPlayersCategoriesGameList;
     }
 
-    public void setTrivPlayersCategoriesGameCollection(Collection<TrivPlayersCategoriesGame> trivPlayersCategoriesGameCollection) {
-        this.trivPlayersCategoriesGameCollection = trivPlayersCategoriesGameCollection;
+    public void setTrivPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> trivPlayersCategoriesGameList) {
+        this.trivPlayersCategoriesGameList = trivPlayersCategoriesGameList;
     }
 
-    public Collection<TrivPlayersGame> getTrivPlayersGameCollection() {
-        return trivPlayersGameCollection;
+    public List<TrivPlayersGame> getTrivPlayersGameList() {
+        return trivPlayersGameList;
     }
 
-    public void setTrivPlayersGameCollection(Collection<TrivPlayersGame> trivPlayersGameCollection) {
-        this.trivPlayersGameCollection = trivPlayersGameCollection;
+    public void setTrivPlayersGameList(List<TrivPlayersGame> trivPlayersGameList) {
+        this.trivPlayersGameList = trivPlayersGameList;
     }
 
-    public Collection<TrivPlayersWildcardGame> getTrivPlayersWildcardGameCollection() {
-        return trivPlayersWildcardGameCollection;
+    public List<TrivPlayersWildcardGame> getTrivPlayersWildcardGameList() {
+        return trivPlayersWildcardGameList;
     }
 
-    public void setTrivPlayersWildcardGameCollection(Collection<TrivPlayersWildcardGame> trivPlayersWildcardGameCollection) {
-        this.trivPlayersWildcardGameCollection = trivPlayersWildcardGameCollection;
+    public void setTrivPlayersWildcardGameList(List<TrivPlayersWildcardGame> trivPlayersWildcardGameList) {
+        this.trivPlayersWildcardGameList = trivPlayersWildcardGameList;
     }
 
-    public Collection<TrivQuestionsCategories> getTrivQuestionsCategoriesCollection() {
-        return trivQuestionsCategoriesCollection;
+    public List<TrivQuestionsCategories> getTrivQuestionsCategoriesList() {
+        return trivQuestionsCategoriesList;
     }
 
-    public void setTrivQuestionsCategoriesCollection(Collection<TrivQuestionsCategories> trivQuestionsCategoriesCollection) {
-        this.trivQuestionsCategoriesCollection = trivQuestionsCategoriesCollection;
+    public void setTrivQuestionsCategoriesList(List<TrivQuestionsCategories> trivQuestionsCategoriesList) {
+        this.trivQuestionsCategoriesList = trivQuestionsCategoriesList;
     }
 
     @Override

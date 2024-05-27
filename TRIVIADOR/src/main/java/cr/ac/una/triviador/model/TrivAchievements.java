@@ -7,7 +7,7 @@ package cr.ac.una.triviador.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @author Sofia Bejarano Mora
  */
 @Entity
-@Table(name = "TRIV_ACHIEVEMENTS")
+@Table(name = "TRIV_ACHIEVEMENTS", catalog = "", schema = "TRI")
 @NamedQueries({
     @NamedQuery(name = "TrivAchievements.findAll", query = "SELECT t FROM TrivAchievements t"),
     @NamedQuery(name = "TrivAchievements.findByAchId", query = "SELECT t FROM TrivAchievements t WHERE t.achId = :achId"),
@@ -38,24 +38,24 @@ public class TrivAchievements implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "ACH_ID", nullable = false, precision = 0, scale = -127)
+    @Column(name = "ACH_ID")
     private BigDecimal achId;
     @Basic(optional = false)
-    @Column(name = "ACH_NAME", nullable = false, length = 35)
+    @Column(name = "ACH_NAME")
     private String achName;
     @Basic(optional = false)
-    @Column(name = "ACH_TYPE", nullable = false, length = 30)
+    @Column(name = "ACH_TYPE")
     private String achType;
     @Basic(optional = false)
-    @Column(name = "ACH_AMOUNT", nullable = false)
+    @Column(name = "ACH_AMOUNT")
     private BigInteger achAmount;
-    @Column(name = "ACH_DESCRIPTION", length = 100)
+    @Column(name = "ACH_DESCRIPTION")
     private String achDescription;
     @Basic(optional = false)
-    @Column(name = "ACH_VERSION", nullable = false)
+    @Column(name = "ACH_VERSION")
     private BigInteger achVersion;
-    @ManyToMany(mappedBy = "trivAchievementsCollection", fetch = FetchType.LAZY)
-    private Collection<TrivPlayers> trivPlayersCollection;
+    @ManyToMany(mappedBy = "trivAchievementsList", fetch = FetchType.LAZY)
+    private List<TrivPlayers> trivPlayersList;
 
     public TrivAchievements() {
     }
@@ -120,12 +120,12 @@ public class TrivAchievements implements Serializable {
         this.achVersion = achVersion;
     }
 
-    public Collection<TrivPlayers> getTrivPlayersCollection() {
-        return trivPlayersCollection;
+    public List<TrivPlayers> getTrivPlayersList() {
+        return trivPlayersList;
     }
 
-    public void setTrivPlayersCollection(Collection<TrivPlayers> trivPlayersCollection) {
-        this.trivPlayersCollection = trivPlayersCollection;
+    public void setTrivPlayersList(List<TrivPlayers> trivPlayersList) {
+        this.trivPlayersList = trivPlayersList;
     }
 
     @Override

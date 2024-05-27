@@ -7,7 +7,7 @@ package cr.ac.una.triviador.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,7 +24,7 @@ import javax.persistence.Table;
  * @author Sofia Bejarano Mora
  */
 @Entity
-@Table(name = "TRIV_WILDCARD")
+@Table(name = "TRIV_WILDCARD", catalog = "", schema = "TRI")
 @NamedQueries({
     @NamedQuery(name = "TrivWildcard.findAll", query = "SELECT t FROM TrivWildcard t"),
     @NamedQuery(name = "TrivWildcard.findByWildId", query = "SELECT t FROM TrivWildcard t WHERE t.wildId = :wildId"),
@@ -36,16 +36,16 @@ public class TrivWildcard implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "WILD_ID", nullable = false, precision = 0, scale = -127)
+    @Column(name = "WILD_ID")
     private BigDecimal wildId;
     @Basic(optional = false)
-    @Column(name = "WILD_NAME", nullable = false, length = 20)
+    @Column(name = "WILD_NAME")
     private String wildName;
     @Basic(optional = false)
-    @Column(name = "WILD_VERSION", nullable = false)
+    @Column(name = "WILD_VERSION")
     private BigInteger wildVersion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxwxgWildId", fetch = FetchType.LAZY)
-    private Collection<TrivPlayersWildcardGame> trivPlayersWildcardGameCollection;
+    private List<TrivPlayersWildcardGame> trivPlayersWildcardGameList;
 
     public TrivWildcard() {
     }
@@ -84,12 +84,12 @@ public class TrivWildcard implements Serializable {
         this.wildVersion = wildVersion;
     }
 
-    public Collection<TrivPlayersWildcardGame> getTrivPlayersWildcardGameCollection() {
-        return trivPlayersWildcardGameCollection;
+    public List<TrivPlayersWildcardGame> getTrivPlayersWildcardGameList() {
+        return trivPlayersWildcardGameList;
     }
 
-    public void setTrivPlayersWildcardGameCollection(Collection<TrivPlayersWildcardGame> trivPlayersWildcardGameCollection) {
-        this.trivPlayersWildcardGameCollection = trivPlayersWildcardGameCollection;
+    public void setTrivPlayersWildcardGameList(List<TrivPlayersWildcardGame> trivPlayersWildcardGameList) {
+        this.trivPlayersWildcardGameList = trivPlayersWildcardGameList;
     }
 
     @Override
