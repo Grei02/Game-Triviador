@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.triviador.Controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -16,12 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-/**
- * FXML Controller class
- *
- * @author Sofia Bejarano Mora
- */
-public class CreateGameController implements Initializable {
+public class CreateGameController extends Controller implements Initializable {
 
     
     @FXML
@@ -72,7 +63,12 @@ public class CreateGameController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    
     }    
+
+    @Override
+    public void initialize() {
+        
+    }
     
 }

@@ -1,4 +1,3 @@
-
 package cr.ac.una.triviador.Controller;
 
 import javafx.scene.control.Control;
