@@ -16,15 +16,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Version;
+import java.io.Serializable;
 import java.util.List;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-/**
- *
- * @author Sofia Bejarano Mora
- */
-public class TrivQuestionsDto {
+public class TrivQuestionsDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,18 +32,19 @@ public class TrivQuestionsDto {
     // private List<TrivGame> gameList;
     //  private TrivCategories catId;
     // private List<TrivAnswers> answersList;
-    
-     public TrivQuestionsDto(TrivQuestions question) {
-         this();
-         this.id.set(question.getId().toString());
-         this.questions.set(question.getQuestions());
-         this.isEnabled.set(question.getIsEnabled().equals("1"));
-    }
 
     public TrivQuestionsDto() {
         this.id = new SimpleStringProperty("");
         this.questions = new SimpleStringProperty("");
         this.isEnabled = new SimpleBooleanProperty(true);
+    }
+
+    public TrivQuestionsDto(TrivQuestions question) {
+        this();
+        this.id.set(question.getId().toString());
+        this.questions.set(question.getQuestions());
+        this.isEnabled.set(question.getIsEnabled().equals("1"));
+        this.version = question.getVersion();
     }
 
 //    public TrivQuestions(Long id) {
@@ -79,7 +77,7 @@ public class TrivQuestionsDto {
     }
 
     public String getIsEnabled() {
-        return isEnabled.get()?"0":"1";
+        return isEnabled.get() ? "0" : "1";
     }
 
     public void setIsEnabled(String isEnabled) {
@@ -117,7 +115,6 @@ public class TrivQuestionsDto {
 //    public void setAnswersList(List<TrivAnswers> answersList) {
 //        this.answersList = answersList;
 //    }
-
     @Override
     public int hashCode() {
         int hash = 0;

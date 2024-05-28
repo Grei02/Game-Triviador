@@ -68,13 +68,12 @@ public class TrivQuestions implements Serializable {
         this.id = id;
     }
     
-    public void TrivQuestions (TrivQuestionsDto questionsDto) {
+    public TrivQuestions (TrivQuestionsDto questionsDto) {
         this.id = questionsDto.getId();
         update(questionsDto);
     }
     
     public void update(TrivQuestionsDto questionsDto) {
-        this.id = questionsDto.getId();
         this.questions = questionsDto.getQuestions();
         this.isEnabled = questionsDto.getIsEnabled();
         this.version = questionsDto.getVersion();

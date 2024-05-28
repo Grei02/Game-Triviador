@@ -4,96 +4,71 @@
  */
 package cr.ac.una.triviador.model;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.List;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import java.io.Serializable;
+import java.util.List;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
  * @author Sofia Bejarano Mora
  */
-@Entity
-@Table(name = "TRIV_CATEGORIES", catalog = "", schema = "TRI")
-@NamedQueries({
-    /*@NamedQuery(name = "TrivCategories.findAll", query = "SELECT t FROM TrivCategories t"),
-    @NamedQuery(name = "TrivCategories.findByCatId", query = "SELECT t FROM TrivCategories t WHERE t.catId = :catId"),
-    @NamedQuery(name = "TrivCategories.findByCatName", query = "SELECT t FROM TrivCategories t WHERE t.name = :name"),
-    @NamedQuery(name = "TrivCategories.findByCatNameimage", query = "SELECT t FROM TrivCategories t WHERE t.nameimage = :nameimage"),
-    @NamedQuery(name = "TrivCategories.findByCatVersion", query = "SELECT t FROM TrivCategories t WHERE t.version = :version")*/})
-public class TrivCategories implements Serializable {
+public class TrivCategoriesDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @Column(name = "CAT_ID")
-    private Long id;
-    @Basic(optional = false)
-    @Column(name = "CAT_NAME")
-    private String name;
-    @Column(name = "CAT_NAMEIMAGE")
-    private String nameimage;
-    @Basic(optional = false)
-    @Column(name = "CAT_VERSION")
+    private SimpleStringProperty id;
+    private SimpleStringProperty name;
+    private SimpleStringProperty nameimage;
     private Long version;
-    @OneToMany(mappedBy = "catId", fetch = FetchType.LAZY)
     private List<TrivQuestions> questionsList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxcxgCatId", fetch = FetchType.LAZY)
     private List<TrivPlayersCategoriesGame> playersCategoriesGameList;
-    @OneToMany(mappedBy = "qcatCatId", fetch = FetchType.LAZY)
     private List<TrivQuestionsCategories> questionsCategoriesList;
 
-    public TrivCategories() {
+    public TrivCategoriesDto() {
+        this.id = new SimpleStringProperty("");
+        this.name = new SimpleStringProperty("");
+        this.nameimage = new SimpleStringProperty("");
     }
 
-    public TrivCategories(Long id) {
-        this.id = id;
-    }
-
-    public TrivCategories(TrivCategoriesDto categoriesDto) {
-        this.id = categoriesDto.getId();
-        update(categoriesDto);
+    public TrivCategoriesDto(TrivCategories categories) {
+        this();
+        this.id.set(categories.getId().toString());
+        this.name.set(categories.getName());
+        this.nameimage.set(categories.getNameimage());
+        this.version = categories.getVersion();
     }
     
-    public void update(TrivCategoriesDto categoriesDto) {
-        this.name = categoriesDto.getName();
-        this.nameimage = categoriesDto.getNameimage();
-        this.version = categoriesDto.getVersion();
-    }
-
     public Long getId() {
-        return id;
+        if(this.id.get()!=null & !this.id.get().isBlank()){
+            return Long.valueOf(id.get());
+        }
+        return null;
     }
 
-    public void setId(Long catId) {
-        this.id = catId;
+    public void setId(Long id) {
+        this.id.set(id.toString());
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name.toString());
     }
 
     public String getNameimage() {
-        return nameimage;
+        return nameimage.get();
     }
 
     public void setNameimage(String nameimage) {
-        this.nameimage = nameimage;
+        this.nameimage.set(nameimage.toString());
     }
 
     public Long getVersion() {
@@ -138,10 +113,10 @@ public class TrivCategories implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrivCategories)) {
+        if (!(object instanceof TrivCategoriesDto)) {
             return false;
         }
-        TrivCategories other = (TrivCategories) object;
+        TrivCategoriesDto other = (TrivCategoriesDto) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -152,5 +127,5 @@ public class TrivCategories implements Serializable {
     public String toString() {
         return "cr.ac.una.triviador.model.TrivCategories[ id=" + id + " ]";
     }
-    
+
 }

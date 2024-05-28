@@ -18,20 +18,17 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
-/**
- *
- * @author Sofia Bejarano Mora
- */
+
 @Entity
 @Table(name = "TRIV_ACHIEVEMENTS", catalog = "", schema = "TRI")
 @NamedQueries({
-    @NamedQuery(name = "TrivAchievements.findAll", query = "SELECT t FROM TrivAchievements t"),
-    @NamedQuery(name = "TrivAchievements.findByAchId", query = "SELECT t FROM TrivAchievements t WHERE t.achId = :achId"),
-    @NamedQuery(name = "TrivAchievements.findByAchName", query = "SELECT t FROM TrivAchievements t WHERE t.achName = :achName"),
-    @NamedQuery(name = "TrivAchievements.findByAchType", query = "SELECT t FROM TrivAchievements t WHERE t.achType = :achType"),
-    @NamedQuery(name = "TrivAchievements.findByAchAmount", query = "SELECT t FROM TrivAchievements t WHERE t.achAmount = :achAmount"),
-    @NamedQuery(name = "TrivAchievements.findByAchDescription", query = "SELECT t FROM TrivAchievements t WHERE t.achDescription = :achDescription"),
-    @NamedQuery(name = "TrivAchievements.findByAchVersion", query = "SELECT t FROM TrivAchievements t WHERE t.achVersion = :achVersion")})
+   /* @NamedQuery(name = "TrivAchievements.findAll", query = "SELECT t FROM TrivAchievements t"),
+    @NamedQuery(name = "TrivAchievements.findByAchId", query = "SELECT t FROM TrivAchievements t WHERE t.id = :id"),
+    @NamedQuery(name = "TrivAchievements.findByAchName", query = "SELECT t FROM TrivAchievements t WHERE t.name = :name"),
+    @NamedQuery(name = "TrivAchievements.findByAchType", query = "SELECT t FROM TrivAchievements t WHERE t.type = :type"),
+    @NamedQuery(name = "TrivAchievements.findByAchAmount", query = "SELECT t FROM TrivAchievements t WHERE t.amount = :amount"),
+    @NamedQuery(name = "TrivAchievements.findByAchDescription", query = "SELECT t FROM TrivAchievements t WHERE t.description = :description"),
+    @NamedQuery(name = "TrivAchievements.findByAchVersion", query = "SELECT t FROM TrivAchievements t WHERE t.version = :version")*/})
 public class TrivAchievements implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,99 +36,103 @@ public class TrivAchievements implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ACH_ID")
-    private BigDecimal achId;
+    private Long id;
     @Basic(optional = false)
     @Column(name = "ACH_NAME")
-    private String achName;
+    private String name;
     @Basic(optional = false)
     @Column(name = "ACH_TYPE")
-    private String achType;
+    private String type;
     @Basic(optional = false)
     @Column(name = "ACH_AMOUNT")
-    private BigInteger achAmount;
+    private Long amount;
     @Column(name = "ACH_DESCRIPTION")
-    private String achDescription;
+    private String description;
     @Basic(optional = false)
     @Column(name = "ACH_VERSION")
-    private BigInteger achVersion;
+    private Long version;
     @ManyToMany(mappedBy = "trivAchievementsList", fetch = FetchType.LAZY)
-    private List<TrivPlayers> trivPlayersList;
+    private List<TrivPlayers> playersList;
 
     public TrivAchievements() {
     }
 
-    public TrivAchievements(BigDecimal achId) {
-        this.achId = achId;
+    public TrivAchievements(Long id) {
+        this.id = id;
+    }
+    
+    public TrivAchievements(TrivAchievementsDto achievementsDto) {
+        this.id = achievementsDto.getId();
+        update(achievementsDto);
     }
 
-    public TrivAchievements(BigDecimal achId, String achName, String achType, BigInteger achAmount, BigInteger achVersion) {
-        this.achId = achId;
-        this.achName = achName;
-        this.achType = achType;
-        this.achAmount = achAmount;
-        this.achVersion = achVersion;
+    public void update(TrivAchievementsDto achievementsDto) {
+        this.name = achievementsDto.getName();
+        this.type = achievementsDto.getType();
+        this.amount = achievementsDto.getAmount();
+        this.version = achievementsDto.getVersion();
     }
 
-    public BigDecimal getAchId() {
-        return achId;
+    public Long getId() {
+        return id;
     }
 
-    public void setAchId(BigDecimal achId) {
-        this.achId = achId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getAchName() {
-        return achName;
+    public String getName() {
+        return name;
     }
 
-    public void setAchName(String achName) {
-        this.achName = achName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAchType() {
-        return achType;
+    public String getType() {
+        return type;
     }
 
-    public void setAchType(String achType) {
-        this.achType = achType;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public BigInteger getAchAmount() {
-        return achAmount;
+    public Long getAmount() {
+        return amount;
     }
 
-    public void setAchAmount(BigInteger achAmount) {
-        this.achAmount = achAmount;
+    public void setAmount(Long amount) {
+        this.amount = amount;
     }
 
-    public String getAchDescription() {
-        return achDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAchDescription(String achDescription) {
-        this.achDescription = achDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public BigInteger getAchVersion() {
-        return achVersion;
+    public Long getVersion() {
+        return version;
     }
 
-    public void setAchVersion(BigInteger achVersion) {
-        this.achVersion = achVersion;
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
-    public List<TrivPlayers> getTrivPlayersList() {
-        return trivPlayersList;
+    public List<TrivPlayers> getPlayersList() {
+        return playersList;
     }
 
-    public void setTrivPlayersList(List<TrivPlayers> trivPlayersList) {
-        this.trivPlayersList = trivPlayersList;
+    public void setPlayersList(List<TrivPlayers> playersList) {
+        this.playersList = playersList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (achId != null ? achId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -142,7 +143,7 @@ public class TrivAchievements implements Serializable {
             return false;
         }
         TrivAchievements other = (TrivAchievements) object;
-        if ((this.achId == null && other.achId != null) || (this.achId != null && !this.achId.equals(other.achId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -150,7 +151,7 @@ public class TrivAchievements implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.triviador.model.TrivAchievements[ achId=" + achId + " ]";
+        return "cr.ac.una.triviador.model.TrivAchievements[ id=" + id + " ]";
     }
     
 }

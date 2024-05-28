@@ -69,13 +69,17 @@ public class TrivPlayersGame implements Serializable {
     public TrivPlayersGame(Long id) {
         this.id = id;
     }
+    
+    public TrivPlayersGame(TrivPlayersGameDto playersGameDto) {
+        this.id = playersGameDto.getId();
+        update(playersGameDto);
+    }
 
-//    public void update (TrivPlayersGameDto playersGameDto) {
-//        this.id = playersGameDto;
-//        this.posboard = posboard;
-//        this.isCurrent = isCurrent;
-//        this.version = version;
-//    }
+    public void update (TrivPlayersGameDto playersGameDto) {
+        this.posboard = playersGameDto.getPosboard();
+        this.isCurrent = playersGameDto.getIsCurrent();
+        this.version = playersGameDto.getVersion();
+    }
 
     public Long getId() {
         return id;

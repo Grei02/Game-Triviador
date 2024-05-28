@@ -10,10 +10,11 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import java.io.Serializable;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class TrivPlayersGameDto {
+public class TrivPlayersGameDto implements Serializable {
 
     private SimpleStringProperty id;
     private SimpleStringProperty nameworker;
@@ -37,12 +38,14 @@ public class TrivPlayersGameDto {
     }
 
     public TrivPlayersGameDto(TrivPlayersGame playersGame) {
+        this();
         this.id.set(playersGame.getId().toString());
         this.nameworker.set(playersGame.getNameworker());
         this.posboard.set(playersGame.getPosboard().toString());
         this.counterconsecutivequestion.set(playersGame.getCounterconsecutivequestion().toString());
         this.numberturn.set(playersGame.getNumberturn().toString());
         this.isCurrent.set(playersGame.getIsCurrent().equals("0"));
+        this.version= playersGame.getVersion();
     }
 
 //    public TrivPlayersGameDto(Long id) {
@@ -122,21 +125,21 @@ public class TrivPlayersGameDto {
         this.version = version;
     }
 
-    public TrivGame getGamId() {
-        return gamId;
-    }
-
-    public void setGamId(TrivGame gamId) {
-        this.gamId = gamId;
-    }
-
-    public TrivPlayers getPlaId() {
-        return plaId;
-    }
-
-    public void setPlaId(TrivPlayers plaId) {
-        this.plaId = plaId;
-    }
+//    public TrivGame getGamId() {
+//        return gamId;
+//    }
+//
+//    public void setGamId(TrivGame gamId) {
+//        this.gamId = gamId;
+//    }
+//
+//    public TrivPlayers getPlaId() {
+//        return plaId;
+//    }
+//
+//    public void setPlaId(TrivPlayers plaId) {
+//        this.plaId = plaId;
+//    }
 
     @Override
     public int hashCode() {
