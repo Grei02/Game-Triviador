@@ -28,8 +28,7 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "TRIV_GAME", catalog = "", schema = "TRI")
-@NamedQueries({
-   /* @NamedQuery(name = "TrivGame.findAll", query = "SELECT t FROM TrivGame t"),
+@NamedQueries({ /* @NamedQuery(name = "TrivGame.findAll", query = "SELECT t FROM TrivGame t"),
     @NamedQuery(name = "TrivGame.findByGamId", query = "SELECT t FROM TrivGame t WHERE t.id = :id"),
     @NamedQuery(name = "TrivGame.findByGamName", query = "SELECT t FROM TrivGame t WHERE t.name = :name"),
     @NamedQuery(name = "TrivGame.findByGamTime", query = "SELECT t FROM TrivGame t WHERE t.time = :time"),
@@ -92,15 +91,22 @@ public class TrivGame implements Serializable {
         this.id = id;
     }
 
-    public TrivGame(Long id, String name, String isTime, String difficulty, Long numberplayer, String isDuel, Long turn, Long version) {
-        this.id = id;
-        this.name = name;
-        this.isTime = isTime;
-        this.difficulty = difficulty;
-        this.numberplayer = numberplayer;
-        this.isDuel = isDuel;
-        this.turn = turn;
-        this.version = version;
+    public TrivGame(TrivGameDto gameDto) {
+        this.id = gameDto.getId();
+        update(gameDto);
+    }
+
+    public void update(TrivGameDto gameDto) {
+        this.id = gameDto.getId();
+        this.name = gameDto.getName();
+        this.time = gameDto.getTime();
+        this.isTime = gameDto.getIsTime();
+        this.difficulty = gameDto.getDifficulty();
+        this.numberplayer = gameDto.getNumberplayer();
+        this.isDuel = gameDto.getIsDuel();
+        this.turn = gameDto.getTurn();
+        this.counterround = gameDto.getCounterround();
+        this.version = gameDto.getVersion();
     }
 
     public Long getId() {
@@ -238,5 +244,5 @@ public class TrivGame implements Serializable {
     public String toString() {
         return "cr.ac.una.triviador.model.TrivGame[ id=" + id + " ]";
     }
-    
+
 }

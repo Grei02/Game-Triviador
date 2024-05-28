@@ -29,15 +29,15 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "TRIV_PLAYERS", catalog = "", schema = "TRI")
 @NamedQueries({
-    @NamedQuery(name = "TrivPlayers.findAll", query = "SELECT t FROM TrivPlayers t"),
+    /*@NamedQuery(name = "TrivPlayers.findAll", query = "SELECT t FROM TrivPlayers t"),
     @NamedQuery(name = "TrivPlayers.findByPlaId", query = "SELECT t FROM TrivPlayers t WHERE t.plaId = :plaId"),
-    @NamedQuery(name = "TrivPlayers.findByPlaName", query = "SELECT t FROM TrivPlayers t WHERE t.plaName = :plaName"),
-    @NamedQuery(name = "TrivPlayers.findByPlaDescription", query = "SELECT t FROM TrivPlayers t WHERE t.plaDescription = :plaDescription"),
+    @NamedQuery(name = "TrivPlayers.findByPlaName", query = "SELECT t FROM TrivPlayers t WHERE t.name = :name"),
+    @NamedQuery(name = "TrivPlayers.findByPlaDescription", query = "SELECT t FROM TrivPlayers t WHERE t.description = :description"),
     @NamedQuery(name = "TrivPlayers.findByPlaCountergamewin", query = "SELECT t FROM TrivPlayers t WHERE t.plaCountergamewin = :plaCountergamewin"),
     @NamedQuery(name = "TrivPlayers.findByPlaCountergamelose", query = "SELECT t FROM TrivPlayers t WHERE t.plaCountergamelose = :plaCountergamelose"),
     @NamedQuery(name = "TrivPlayers.findByPlaCounterconsecutivequestion", query = "SELECT t FROM TrivPlayers t WHERE t.plaCounterconsecutivequestion = :plaCounterconsecutivequestion"),
-    @NamedQuery(name = "TrivPlayers.findByPlaFavoritecategory", query = "SELECT t FROM TrivPlayers t WHERE t.plaFavoritecategory = :plaFavoritecategory"),
-    @NamedQuery(name = "TrivPlayers.findByPlaVersion", query = "SELECT t FROM TrivPlayers t WHERE t.plaVersion = :plaVersion")})
+    @NamedQuery(name = "TrivPlayers.findByPlaFavoritecategory", query = "SELECT t FROM TrivPlayers t WHERE t.favoritecategory = :favoritecategory"),
+    @NamedQuery(name = "TrivPlayers.findByPlaVersion", query = "SELECT t FROM TrivPlayers t WHERE t.plaVersion = :plaVersion")*/})
 public class TrivPlayers implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,158 +45,164 @@ public class TrivPlayers implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "PLA_ID")
-    private BigDecimal plaId;
+    private Long id;
     @Basic(optional = false)
     @Column(name = "PLA_NAME")
-    private String plaName;
+    private String name;
     @Column(name = "PLA_DESCRIPTION")
-    private String plaDescription;
+    private String description;
     @Column(name = "PLA_COUNTERGAMEWIN")
-    private BigInteger plaCountergamewin;
+    private Long countergamewin;
     @Column(name = "PLA_COUNTERGAMELOSE")
-    private BigInteger plaCountergamelose;
+    private Long countergamelose;
     @Column(name = "PLA_COUNTERCONSECUTIVEQUESTION")
-    private BigInteger plaCounterconsecutivequestion;
+    private Long counterconsecutivequestion;
     @Column(name = "PLA_FAVORITECATEGORY")
-    private String plaFavoritecategory;
+    private String favoritecategory;
     @Basic(optional = false)
     @Column(name = "PLA_VERSION")
-    private BigInteger plaVersion;
+    private Long version;
     @JoinTable(name = "TRIV_PLAYERS_ACHIEVEMENTS", joinColumns = {
         @JoinColumn(name = "PXA_PLA_ID", referencedColumnName = "PLA_ID")}, inverseJoinColumns = {
         @JoinColumn(name = "PXA_ACH_ID", referencedColumnName = "ACH_ID")})
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<TrivAchievements> trivAchievementsList;
+    private List<TrivAchievements> achievementsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxcxgPlaId", fetch = FetchType.LAZY)
-    private List<TrivPlayersCategoriesGame> trivPlayersCategoriesGameList;
+    private List<TrivPlayersCategoriesGame> playersCategoriesGameList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxgPlaId", fetch = FetchType.LAZY)
-    private List<TrivPlayersGame> trivPlayersGameList;
+    private List<TrivPlayersGame> trivPp;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxwxgPlaId", fetch = FetchType.LAZY)
-    private List<TrivPlayersWildcardGame> trivPlayersWildcardGameList;
+    private List<TrivPlayersWildcardGame> playersWildcardGameList;
     @OneToMany(mappedBy = "plaId", fetch = FetchType.LAZY)
-    private List<TrivQuestionsCategories> trivQuestionsCategoriesList;
+    private List<TrivQuestionsCategories> questionsCategoriesList;
 
     public TrivPlayers() {
     }
 
-    public TrivPlayers(BigDecimal plaId) {
-        this.plaId = plaId;
+    public TrivPlayers(TrivPlayersDto playerDto) {
+        this.id = playerDto.getId();
+        update(playerDto);
     }
 
-    public TrivPlayers(BigDecimal plaId, String plaName, BigInteger plaVersion) {
-        this.plaId = plaId;
-        this.plaName = plaName;
-        this.plaVersion = plaVersion;
+    public void update(TrivPlayersDto playerDto) {
+        this.id =playerDto.getId();
+        this.name = playerDto.getName();
+        this.description = playerDto.getDescription();
+        this.countergamewin = playerDto.getCountergamewin();
+        this.countergamelose = playerDto.getCountergamelose();
+        this.counterconsecutivequestion = playerDto.getCounterconsecutivequestion();
+        this.favoritecategory = playerDto.getFavoritecategory();
+        this.version = playerDto.getVersion();
     }
 
-    public BigDecimal getPlaId() {
-        return plaId;
+    public Long getId() {
+        return id;
     }
 
-    public void setPlaId(BigDecimal plaId) {
-        this.plaId = plaId;
+    public void setId(Long plaId) {
+        this.id = plaId;
     }
 
-    public String getPlaName() {
-        return plaName;
+    public String getName() {
+        return name;
     }
 
-    public void setPlaName(String plaName) {
-        this.plaName = plaName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPlaDescription() {
-        return plaDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPlaDescription(String plaDescription) {
-        this.plaDescription = plaDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public BigInteger getPlaCountergamewin() {
-        return plaCountergamewin;
+    public Long getCountergamewin() {
+        return countergamewin;
     }
 
-    public void setPlaCountergamewin(BigInteger plaCountergamewin) {
-        this.plaCountergamewin = plaCountergamewin;
+    public void setCountergamewin(Long plaCountergamewin) {
+        this.countergamewin = plaCountergamewin;
     }
 
-    public BigInteger getPlaCountergamelose() {
-        return plaCountergamelose;
+    public Long getCountergamelose() {
+        return countergamelose;
     }
 
-    public void setPlaCountergamelose(BigInteger plaCountergamelose) {
-        this.plaCountergamelose = plaCountergamelose;
+    public void setCountergamelose(Long plaCountergamelose) {
+        this.countergamelose = plaCountergamelose;
     }
 
-    public BigInteger getPlaCounterconsecutivequestion() {
-        return plaCounterconsecutivequestion;
+    public Long getCounterconsecutivequestion() {
+        return counterconsecutivequestion;
     }
 
-    public void setPlaCounterconsecutivequestion(BigInteger plaCounterconsecutivequestion) {
-        this.plaCounterconsecutivequestion = plaCounterconsecutivequestion;
+    public void setCounterconsecutivequestion(Long Counterconsecutivequestion) {
+        this.counterconsecutivequestion = Counterconsecutivequestion;
     }
 
-    public String getPlaFavoritecategory() {
-        return plaFavoritecategory;
+    public String getFavoritecategory() {
+        return favoritecategory;
     }
 
-    public void setPlaFavoritecategory(String plaFavoritecategory) {
-        this.plaFavoritecategory = plaFavoritecategory;
+    public void setFavoritecategory(String favoritecategory) {
+        this.favoritecategory = favoritecategory;
     }
 
-    public BigInteger getPlaVersion() {
-        return plaVersion;
+    public Long getVersion() {
+        return version;
     }
 
-    public void setPlaVersion(BigInteger plaVersion) {
-        this.plaVersion = plaVersion;
+    public void setVersion(Long plaVersion) {
+        this.version = plaVersion;
     }
 
-    public List<TrivAchievements> getTrivAchievementsList() {
-        return trivAchievementsList;
+    public List<TrivAchievements> getAchievementsList() {
+        return achievementsList;
     }
 
-    public void setTrivAchievementsList(List<TrivAchievements> trivAchievementsList) {
-        this.trivAchievementsList = trivAchievementsList;
+    public void setAchievementsList(List<TrivAchievements> achievementsList) {
+        this.achievementsList = achievementsList;
     }
 
-    public List<TrivPlayersCategoriesGame> getTrivPlayersCategoriesGameList() {
-        return trivPlayersCategoriesGameList;
+    public List<TrivPlayersCategoriesGame> getPlayersCategoriesGameList() {
+        return playersCategoriesGameList;
     }
 
-    public void setTrivPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> trivPlayersCategoriesGameList) {
-        this.trivPlayersCategoriesGameList = trivPlayersCategoriesGameList;
+    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> playersCategoriesGameList) {
+        this.playersCategoriesGameList = playersCategoriesGameList;
     }
 
-    public List<TrivPlayersGame> getTrivPlayersGameList() {
-        return trivPlayersGameList;
+    public List<TrivPlayersGame> getTrivPp() {
+        return trivPp;
     }
 
-    public void setTrivPlayersGameList(List<TrivPlayersGame> trivPlayersGameList) {
-        this.trivPlayersGameList = trivPlayersGameList;
+    public void setTrivPp(List<TrivPlayersGame> trivPp) {
+        this.trivPp = trivPp;
     }
 
-    public List<TrivPlayersWildcardGame> getTrivPlayersWildcardGameList() {
-        return trivPlayersWildcardGameList;
+    public List<TrivPlayersWildcardGame> getPlayersWildcardGameList() {
+        return playersWildcardGameList;
     }
 
-    public void setTrivPlayersWildcardGameList(List<TrivPlayersWildcardGame> trivPlayersWildcardGameList) {
-        this.trivPlayersWildcardGameList = trivPlayersWildcardGameList;
+    public void setPlayersWildcardGameList(List<TrivPlayersWildcardGame> playersWildcardGameList) {
+        this.playersWildcardGameList = playersWildcardGameList;
     }
 
-    public List<TrivQuestionsCategories> getTrivQuestionsCategoriesList() {
-        return trivQuestionsCategoriesList;
+    public List<TrivQuestionsCategories> getQuestionsCategoriesList() {
+        return questionsCategoriesList;
     }
 
-    public void setTrivQuestionsCategoriesList(List<TrivQuestionsCategories> trivQuestionsCategoriesList) {
-        this.trivQuestionsCategoriesList = trivQuestionsCategoriesList;
+    public void setQuestionsCategoriesList(List<TrivQuestionsCategories> questionsCategoriesList) {
+        this.questionsCategoriesList = questionsCategoriesList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (plaId != null ? plaId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -207,7 +213,7 @@ public class TrivPlayers implements Serializable {
             return false;
         }
         TrivPlayers other = (TrivPlayers) object;
-        if ((this.plaId == null && other.plaId != null) || (this.plaId != null && !this.plaId.equals(other.plaId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -215,7 +221,7 @@ public class TrivPlayers implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.triviador.model.TrivPlayers[ plaId=" + plaId + " ]";
+        return "cr.ac.una.triviador.model.TrivPlayers[ id=" + id + " ]";
     }
     
 }

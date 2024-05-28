@@ -69,6 +69,7 @@ public class TrivAchievements implements Serializable {
     public void update(TrivAchievementsDto achievementsDto) {
         this.name = achievementsDto.getName();
         this.type = achievementsDto.getType();
+        this.description=achievementsDto.getDescription();
         this.amount = achievementsDto.getAmount();
         this.version = achievementsDto.getVersion();
     }

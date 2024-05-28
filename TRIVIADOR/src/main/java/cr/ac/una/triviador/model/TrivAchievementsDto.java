@@ -28,6 +28,7 @@ public class TrivAchievementsDto implements Serializable{
     public TrivAchievementsDto() {
         this.id = new SimpleStringProperty("");
         this.name = new SimpleStringProperty("");
+        this.description= new SimpleStringProperty("");
         this.type = new SimpleStringProperty("");
         this.amount = new SimpleStringProperty("");
     }
@@ -36,6 +37,7 @@ public class TrivAchievementsDto implements Serializable{
         this();
         this.id.set(trivAchievements.getId().toString());
         this.name.set(trivAchievements.getName());
+        this.description.set(trivAchievements.getDescription());
         this.type.set(trivAchievements.getType());
         this.amount.set(trivAchievements.getAmount().toString());
         this.version = trivAchievements.getVersion();
