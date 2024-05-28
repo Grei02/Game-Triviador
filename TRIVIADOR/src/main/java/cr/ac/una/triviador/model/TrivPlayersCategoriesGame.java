@@ -25,9 +25,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "TRIV_PLAYERS_CATEGORIES_GAME", catalog = "", schema = "TRI")
 @NamedQueries({
-    @NamedQuery(name = "TrivPlayersCategoriesGame.findAll", query = "SELECT t FROM TrivPlayersCategoriesGame t"),
+    /*@NamedQuery(name = "TrivPlayersCategoriesGame.findAll", query = "SELECT t FROM TrivPlayersCategoriesGame t"),
     @NamedQuery(name = "TrivPlayersCategoriesGame.findByPxcxgId", query = "SELECT t FROM TrivPlayersCategoriesGame t WHERE t.pxcxgId = :pxcxgId"),
-    @NamedQuery(name = "TrivPlayersCategoriesGame.findByPxcxgVersion", query = "SELECT t FROM TrivPlayersCategoriesGame t WHERE t.pxcxgVersion = :pxcxgVersion")})
+    @NamedQuery(name = "TrivPlayersCategoriesGame.findByPxcxgVersion", query = "SELECT t FROM TrivPlayersCategoriesGame t WHERE t.pxcxgVersion = :pxcxgVersion")*/})
 public class TrivPlayersCategoriesGame implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,76 +35,79 @@ public class TrivPlayersCategoriesGame implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "PXCXG_ID")
-    private BigDecimal pxcxgId;
+    private Long id;
     @Basic(optional = false)
-    @Column(name = "PXCXG_VERSION")
-    private BigInteger pxcxgVersion;
+    @Column(name=  "PXCXG_VERSION")
+    private Long version;
     @JoinColumn(name = "PXCXG_CAT_ID", referencedColumnName = "CAT_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivCategories pxcxgCatId;
+    private TrivCategories catId;
     @JoinColumn(name = "PXCXG_GAM_ID", referencedColumnName = "GAM_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivGame pxcxgGamId;
+    private TrivGame gamId;
     @JoinColumn(name = "PXCXG_PLA_ID", referencedColumnName = "PLA_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivPlayers pxcxgPlaId;
+    private TrivPlayers plaId;
 
     public TrivPlayersCategoriesGame() {
     }
 
-    public TrivPlayersCategoriesGame(BigDecimal pxcxgId) {
-        this.pxcxgId = pxcxgId;
+    public TrivPlayersCategoriesGame(TrivPlayersCategoriesGameDto playersCategoriesGameDto) {
+        this.id = playersCategoriesGameDto.getId();
+        update(playersCategoriesGameDto);
     }
 
-    public TrivPlayersCategoriesGame(BigDecimal pxcxgId, BigInteger pxcxgVersion) {
-        this.pxcxgId = pxcxgId;
-        this.pxcxgVersion = pxcxgVersion;
+    public void update(TrivPlayersCategoriesGameDto playersCategoriesGameDto) {
+        this.version = playersCategoriesGameDto.getVersion();
+        this.catId = catId;
+        this.gamId = gamId;
+        this.plaId = plaId;
     }
 
-    public BigDecimal getPxcxgId() {
-        return pxcxgId;
+    public Long getId() {
+        return id;
     }
 
-    public void setPxcxgId(BigDecimal pxcxgId) {
-        this.pxcxgId = pxcxgId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public BigInteger getPxcxgVersion() {
-        return pxcxgVersion;
+    public Long getVersion() {
+        return version;
     }
 
-    public void setPxcxgVersion(BigInteger pxcxgVersion) {
-        this.pxcxgVersion = pxcxgVersion;
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
-    public TrivCategories getPxcxgCatId() {
-        return pxcxgCatId;
+    public TrivCategories getCatId() {
+        return catId;
     }
 
-    public void setPxcxgCatId(TrivCategories pxcxgCatId) {
-        this.pxcxgCatId = pxcxgCatId;
+    public void setCatId(TrivCategories catId) {
+        this.catId = catId;
     }
 
-    public TrivGame getPxcxgGamId() {
-        return pxcxgGamId;
+    public TrivGame getGamId() {
+        return gamId;
     }
 
-    public void setPxcxgGamId(TrivGame pxcxgGamId) {
-        this.pxcxgGamId = pxcxgGamId;
+    public void setGamId(TrivGame gamId) {
+        this.gamId = gamId;
     }
 
-    public TrivPlayers getPxcxgPlaId() {
-        return pxcxgPlaId;
+    public TrivPlayers getPlaId() {
+        return plaId;
     }
 
-    public void setPxcxgPlaId(TrivPlayers pxcxgPlaId) {
-        this.pxcxgPlaId = pxcxgPlaId;
+    public void setPlaId(TrivPlayers plaId) {
+        this.plaId = plaId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (pxcxgId != null ? pxcxgId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -115,7 +118,7 @@ public class TrivPlayersCategoriesGame implements Serializable {
             return false;
         }
         TrivPlayersCategoriesGame other = (TrivPlayersCategoriesGame) object;
-        if ((this.pxcxgId == null && other.pxcxgId != null) || (this.pxcxgId != null && !this.pxcxgId.equals(other.pxcxgId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -123,7 +126,7 @@ public class TrivPlayersCategoriesGame implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.triviador.model.TrivPlayersCategoriesGame[ pxcxgId=" + pxcxgId + " ]";
+        return "cr.ac.una.triviador.model.TrivPlayersCategoriesGame[ id=" + id + " ]";
     }
     
 }

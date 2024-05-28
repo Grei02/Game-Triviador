@@ -25,11 +25,10 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "TRIV_WILDCARD", catalog = "", schema = "TRI")
-@NamedQueries({
-    @NamedQuery(name = "TrivWildcard.findAll", query = "SELECT t FROM TrivWildcard t"),
+@NamedQueries({ /* @NamedQuery(name = "TrivWildcard.findAll", query = "SELECT t FROM TrivWildcard t"),
     @NamedQuery(name = "TrivWildcard.findByWildId", query = "SELECT t FROM TrivWildcard t WHERE t.wildId = :wildId"),
     @NamedQuery(name = "TrivWildcard.findByWildName", query = "SELECT t FROM TrivWildcard t WHERE t.wildName = :wildName"),
-    @NamedQuery(name = "TrivWildcard.findByWildVersion", query = "SELECT t FROM TrivWildcard t WHERE t.wildVersion = :wildVersion")})
+    @NamedQuery(name = "TrivWildcard.findByWildVersion", query = "SELECT t FROM TrivWildcard t WHERE t.wildVersion = :wildVersion")*/})
 public class TrivWildcard implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,65 +36,69 @@ public class TrivWildcard implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "WILD_ID")
-    private BigDecimal wildId;
+    private Long id;
     @Basic(optional = false)
     @Column(name = "WILD_NAME")
-    private String wildName;
+    private String name;
     @Basic(optional = false)
     @Column(name = "WILD_VERSION")
-    private BigInteger wildVersion;
+    private Long version;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxwxgWildId", fetch = FetchType.LAZY)
-    private List<TrivPlayersWildcardGame> trivPlayersWildcardGameList;
+    private List<TrivPlayersWildcardGame> playersWildcardGameList;
 
     public TrivWildcard() {
     }
 
-    public TrivWildcard(BigDecimal wildId) {
-        this.wildId = wildId;
+    public TrivWildcard(Long id) {
+        this.id = id;
     }
 
-    public TrivWildcard(BigDecimal wildId, String wildName, BigInteger wildVersion) {
-        this.wildId = wildId;
-        this.wildName = wildName;
-        this.wildVersion = wildVersion;
+    public TrivWildcard(TrivWildcardDto wildcardDto) {
+        this.id = wildcardDto.getId();
+        update(wildcardDto);
     }
 
-    public BigDecimal getWildId() {
-        return wildId;
+    public void update(TrivWildcardDto wildcardDto) {
+        this.name = wildcardDto.getName();
+        this.version = wildcardDto.getVersion();
     }
 
-    public void setWildId(BigDecimal wildId) {
-        this.wildId = wildId;
+    public Long getId() {
+        return id;
     }
 
-    public String getWildName() {
-        return wildName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setWildName(String wildName) {
-        this.wildName = wildName;
+    public String getName() {
+        return name;
     }
 
-    public BigInteger getWildVersion() {
-        return wildVersion;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setWildVersion(BigInteger wildVersion) {
-        this.wildVersion = wildVersion;
+    public Long getVersion() {
+        return version;
     }
 
-    public List<TrivPlayersWildcardGame> getTrivPlayersWildcardGameList() {
-        return trivPlayersWildcardGameList;
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
-    public void setTrivPlayersWildcardGameList(List<TrivPlayersWildcardGame> trivPlayersWildcardGameList) {
-        this.trivPlayersWildcardGameList = trivPlayersWildcardGameList;
+    public List<TrivPlayersWildcardGame> getPlayersWildcardGameList() {
+        return playersWildcardGameList;
+    }
+
+    public void setPlayersWildcardGameList(List<TrivPlayersWildcardGame> playersWildcardGameList) {
+        this.playersWildcardGameList = playersWildcardGameList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (wildId != null ? wildId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -106,7 +109,7 @@ public class TrivWildcard implements Serializable {
             return false;
         }
         TrivWildcard other = (TrivWildcard) object;
-        if ((this.wildId == null && other.wildId != null) || (this.wildId != null && !this.wildId.equals(other.wildId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -114,7 +117,7 @@ public class TrivWildcard implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.triviador.model.TrivWildcard[ wildId=" + wildId + " ]";
+        return "cr.ac.una.triviador.model.TrivWildcard[ id=" + id + " ]";
     }
-    
+
 }

@@ -25,11 +25,11 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "TRIV_QUESTIONS_CATEGORIES", catalog = "", schema = "TRI")
 @NamedQueries({
-    @NamedQuery(name = "TrivQuestionsCategories.findAll", query = "SELECT t FROM TrivQuestionsCategories t"),
-    @NamedQuery(name = "TrivQuestionsCategories.findByQcatId", query = "SELECT t FROM TrivQuestionsCategories t WHERE t.qcatId = :qcatId"),
-    @NamedQuery(name = "TrivQuestionsCategories.findByQcatCountanswer", query = "SELECT t FROM TrivQuestionsCategories t WHERE t.qcatCountanswer = :qcatCountanswer"),
-    @NamedQuery(name = "TrivQuestionsCategories.findByQcatCounthit", query = "SELECT t FROM TrivQuestionsCategories t WHERE t.qcatCounthit = :qcatCounthit"),
-    @NamedQuery(name = "TrivQuestionsCategories.findByQcatVersion", query = "SELECT t FROM TrivQuestionsCategories t WHERE t.qcatVersion = :qcatVersion")})
+    /*@NamedQuery(name = "TrivQuestionsCategories.findAll", query = "SELECT t FROM TrivQuestionsCategories t"),
+    @NamedQuery(name = "TrivQuestionsCategories.findByQcatId", query = "SELECT t FROM TrivQuestionsCategories t WHERE t.id = :id"),
+    @NamedQuery(name = "TrivQuestionsCategories.findByQcatCountanswer", query = "SELECT t FROM TrivQuestionsCategories t WHERE t.countanswer = :countanswer"),
+    @NamedQuery(name = "TrivQuestionsCategories.findByQcatCounthit", query = "SELECT t FROM TrivQuestionsCategories t WHERE t.counthit = :counthit"),
+    @NamedQuery(name = "TrivQuestionsCategories.findByQcatVersion", query = "SELECT t FROM TrivQuestionsCategories t WHERE t.version = :version")*/})
 public class TrivQuestionsCategories implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,71 +37,78 @@ public class TrivQuestionsCategories implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "QCAT_ID")
-    private BigDecimal qcatId;
+    private Long id;
     @Column(name = "QCAT_COUNTANSWER")
-    private BigInteger qcatCountanswer;
+    private Long countanswer;
     @Column(name = "QCAT_COUNTHIT")
-    private BigInteger qcatCounthit;
+    private Long counthit;
     @Basic(optional = false)
     @Column(name = "QCAT_VERSION")
-    private BigInteger qcatVersion;
+    private Long version;
     @JoinColumn(name = "QCAT_CAT_ID", referencedColumnName = "CAT_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private TrivCategories qcatCatId;
+    private TrivCategories catId;
     @JoinColumn(name = "PLA_ID", referencedColumnName = "PLA_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private TrivPlayers plaId;
 
     public TrivQuestionsCategories() {
+        
     }
 
-    public TrivQuestionsCategories(BigDecimal qcatId) {
-        this.qcatId = qcatId;
+    public TrivQuestionsCategories(Long id) {
+        this.id = id;
     }
 
-    public TrivQuestionsCategories(BigDecimal qcatId, BigInteger qcatVersion) {
-        this.qcatId = qcatId;
-        this.qcatVersion = qcatVersion;
+    public TrivQuestionsCategories(TrivQuestionsCategoriesDto questionsCategoriesDto) {
+        this.id = questionsCategoriesDto.getId();
+        update(questionsCategoriesDto);
+    }
+    
+        public void update(TrivQuestionsCategoriesDto questionsCategoriesDto) {
+        this.countanswer = questionsCategoriesDto.getCountanswer(); 
+        this.counthit = questionsCategoriesDto.getCounthit();
+        this.version = questionsCategoriesDto.getVersion();
     }
 
-    public BigDecimal getQcatId() {
-        return qcatId;
+    public Long getId() {
+        return id;
     }
 
-    public void setQcatId(BigDecimal qcatId) {
-        this.qcatId = qcatId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public BigInteger getQcatCountanswer() {
-        return qcatCountanswer;
+    public Long getCountanswer() {
+        return countanswer;
     }
 
-    public void setQcatCountanswer(BigInteger qcatCountanswer) {
-        this.qcatCountanswer = qcatCountanswer;
+    public void setCountanswer(Long countanswer) {
+        this.countanswer = countanswer;
     }
 
-    public BigInteger getQcatCounthit() {
-        return qcatCounthit;
+    public Long getCounthit() {
+        return counthit;
     }
 
-    public void setQcatCounthit(BigInteger qcatCounthit) {
-        this.qcatCounthit = qcatCounthit;
+    public void setCounthit(Long counthit) {
+        this.counthit = counthit;
     }
 
-    public BigInteger getQcatVersion() {
-        return qcatVersion;
+    public Long getVersion() {
+        return version;
     }
 
-    public void setQcatVersion(BigInteger qcatVersion) {
-        this.qcatVersion = qcatVersion;
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
-    public TrivCategories getQcatCatId() {
-        return qcatCatId;
+    public TrivCategories getCatId() {
+        return catId;
     }
 
-    public void setQcatCatId(TrivCategories qcatCatId) {
-        this.qcatCatId = qcatCatId;
+    public void setCatId(TrivCategories catId) {
+        this.catId = catId;
     }
 
     public TrivPlayers getPlaId() {
@@ -115,7 +122,7 @@ public class TrivQuestionsCategories implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (qcatId != null ? qcatId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -126,7 +133,7 @@ public class TrivQuestionsCategories implements Serializable {
             return false;
         }
         TrivQuestionsCategories other = (TrivQuestionsCategories) object;
-        if ((this.qcatId == null && other.qcatId != null) || (this.qcatId != null && !this.qcatId.equals(other.qcatId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -134,7 +141,7 @@ public class TrivQuestionsCategories implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.triviador.model.TrivQuestionsCategories[ qcatId=" + qcatId + " ]";
+        return "cr.ac.una.triviador.model.TrivQuestionsCategories[ id=" + id + " ]";
     }
     
 }

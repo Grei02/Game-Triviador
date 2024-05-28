@@ -24,11 +24,10 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "TRIV_PLAYERS_WILDCARD_GAME", catalog = "", schema = "TRI")
-@NamedQueries({
-    @NamedQuery(name = "TrivPlayersWildcardGame.findAll", query = "SELECT t FROM TrivPlayersWildcardGame t"),
-    @NamedQuery(name = "TrivPlayersWildcardGame.findByPxwxgId", query = "SELECT t FROM TrivPlayersWildcardGame t WHERE t.pxwxgId = :pxwxgId"),
-    @NamedQuery(name = "TrivPlayersWildcardGame.findByPxwxgIsUsed", query = "SELECT t FROM TrivPlayersWildcardGame t WHERE t.pxwxgIsUsed = :pxwxgIsUsed"),
-    @NamedQuery(name = "TrivPlayersWildcardGame.findByPxwxgVersion", query = "SELECT t FROM TrivPlayersWildcardGame t WHERE t.pxwxgVersion = :pxwxgVersion")})
+@NamedQueries({ /*@NamedQuery(name = "TrivPlayersWildcardGame.findAll", query = "SELECT t FROM TrivPlayersWildcardGame t"),
+    @NamedQuery(name = "TrivPlayersWildcardGame.findByPxwxgId", query = "SELECT t FROM TrivPlayersWildcardGame t WHERE t.id = :id"),
+    @NamedQuery(name = "TrivPlayersWildcardGame.findByPxwxgIsUsed", query = "SELECT t FROM TrivPlayersWildcardGame t WHERE t.isUsed = :isUsed"),
+    @NamedQuery(name = "TrivPlayersWildcardGame.findByPxwxgVersion", query = "SELECT t FROM TrivPlayersWildcardGame t WHERE t.version = :version")*/})
 public class TrivPlayersWildcardGame implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,88 +35,92 @@ public class TrivPlayersWildcardGame implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "PXWXG_ID")
-    private BigDecimal pxwxgId;
+    private Long id;
     @Basic(optional = false)
     @Column(name = "PXWXG_IS_USED")
-    private String pxwxgIsUsed;
+    private String isUsed;
     @Basic(optional = false)
     @Column(name = "PXWXG_VERSION")
-    private BigInteger pxwxgVersion;
+    private Long version;
     @JoinColumn(name = "PXWXG_GAM_ID", referencedColumnName = "GAM_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivGame pxwxgGamId;
+    private TrivGame gamId;
     @JoinColumn(name = "PXWXG_PLA_ID", referencedColumnName = "PLA_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivPlayers pxwxgPlaId;
+    private TrivPlayers plaId;
     @JoinColumn(name = "PXWXG_WILD_ID", referencedColumnName = "WILD_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivWildcard pxwxgWildId;
+    private TrivWildcard wildId;
 
     public TrivPlayersWildcardGame() {
     }
 
-    public TrivPlayersWildcardGame(BigDecimal pxwxgId) {
-        this.pxwxgId = pxwxgId;
+    public TrivPlayersWildcardGame(Long id) {
+        this.id = id;
     }
 
-    public TrivPlayersWildcardGame(BigDecimal pxwxgId, String pxwxgIsUsed, BigInteger pxwxgVersion) {
-        this.pxwxgId = pxwxgId;
-        this.pxwxgIsUsed = pxwxgIsUsed;
-        this.pxwxgVersion = pxwxgVersion;
+    public TrivPlayersWildcardGame(TrivPlayersWildcardGameDto playersWildcardGameDto) {
+        this.id = playersWildcardGameDto.getId();
+        update(playersWildcardGameDto);
     }
 
-    public BigDecimal getPxwxgId() {
-        return pxwxgId;
+    public void update(TrivPlayersWildcardGameDto playersWildcardGameDto) {
+        this.isUsed = playersWildcardGameDto.getIsUsed();
+        this.version = playersWildcardGameDto.getVersion();
     }
 
-    public void setPxwxgId(BigDecimal pxwxgId) {
-        this.pxwxgId = pxwxgId;
+    public Long getId() {
+        return id;
     }
 
-    public String getPxwxgIsUsed() {
-        return pxwxgIsUsed;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setPxwxgIsUsed(String pxwxgIsUsed) {
-        this.pxwxgIsUsed = pxwxgIsUsed;
+    public String getIsUsed() {
+        return isUsed;
     }
 
-    public BigInteger getPxwxgVersion() {
-        return pxwxgVersion;
+    public void setIsUsed(String isUsed) {
+        this.isUsed = isUsed;
     }
 
-    public void setPxwxgVersion(BigInteger pxwxgVersion) {
-        this.pxwxgVersion = pxwxgVersion;
+    public Long getVersion() {
+        return version;
     }
 
-    public TrivGame getPxwxgGamId() {
-        return pxwxgGamId;
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
-    public void setPxwxgGamId(TrivGame pxwxgGamId) {
-        this.pxwxgGamId = pxwxgGamId;
+    public TrivGame getGamId() {
+        return gamId;
     }
 
-    public TrivPlayers getPxwxgPlaId() {
-        return pxwxgPlaId;
+    public void setGamId(TrivGame gamId) {
+        this.gamId = gamId;
     }
 
-    public void setPxwxgPlaId(TrivPlayers pxwxgPlaId) {
-        this.pxwxgPlaId = pxwxgPlaId;
+    public TrivPlayers getPlaId() {
+        return plaId;
     }
 
-    public TrivWildcard getPxwxgWildId() {
-        return pxwxgWildId;
+    public void setPlaId(TrivPlayers plaId) {
+        this.plaId = plaId;
     }
 
-    public void setPxwxgWildId(TrivWildcard pxwxgWildId) {
-        this.pxwxgWildId = pxwxgWildId;
+    public TrivWildcard getWildId() {
+        return wildId;
+    }
+
+    public void setWildId(TrivWildcard wildId) {
+        this.wildId = wildId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (pxwxgId != null ? pxwxgId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -128,7 +131,7 @@ public class TrivPlayersWildcardGame implements Serializable {
             return false;
         }
         TrivPlayersWildcardGame other = (TrivPlayersWildcardGame) object;
-        if ((this.pxwxgId == null && other.pxwxgId != null) || (this.pxwxgId != null && !this.pxwxgId.equals(other.pxwxgId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -136,7 +139,7 @@ public class TrivPlayersWildcardGame implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.triviador.model.TrivPlayersWildcardGame[ pxwxgId=" + pxwxgId + " ]";
+        return "cr.ac.una.triviador.model.TrivPlayersWildcardGame[ id=" + id + " ]";
     }
-    
+
 }
