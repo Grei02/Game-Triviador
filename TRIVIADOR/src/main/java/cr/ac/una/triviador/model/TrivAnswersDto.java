@@ -23,8 +23,6 @@ public class TrivAnswersDto implements Serializable {
     private SimpleStringProperty answers;
     private SimpleBooleanProperty isCorrect;
     private SimpleStringProperty selectednumber;
-    @JoinColumn(name = "QUE_ID", referencedColumnName = "QUE_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
     private TrivQuestions queId;
 
     public TrivAnswersDto() {
@@ -67,7 +65,7 @@ public class TrivAnswersDto implements Serializable {
     }
 
     public void setAnswers(String answers) {
-        this.answers.set(answers.toString());
+        this.answers.set(answers);
     }
 
     public String getIsCorrect() {

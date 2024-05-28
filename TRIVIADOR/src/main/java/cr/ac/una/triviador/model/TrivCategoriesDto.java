@@ -60,7 +60,7 @@ public class TrivCategoriesDto implements Serializable {
     }
 
     public void setName(String name) {
-        this.name.set(name.toString());
+        this.name.set(name);
     }
 
     public String getNameimage() {
@@ -68,7 +68,7 @@ public class TrivCategoriesDto implements Serializable {
     }
 
     public void setNameimage(String nameimage) {
-        this.nameimage.set(nameimage.toString());
+        this.nameimage.set(nameimage);
     }
 
     public Long getVersion() {

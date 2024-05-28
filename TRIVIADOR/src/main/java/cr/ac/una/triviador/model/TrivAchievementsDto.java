@@ -59,7 +59,7 @@ public class TrivAchievementsDto implements Serializable{
     }
 
     public void setName(String name) {
-        this.name.set(name.toString());
+        this.name.set(name);
     }
 
     public String getType() {
@@ -67,7 +67,7 @@ public class TrivAchievementsDto implements Serializable{
     }
 
     public void setType(String type) {
-        this.type.set(type.toString());
+        this.type.set(type);
     }
 
     public Long getAmount() {
@@ -86,7 +86,7 @@ public class TrivAchievementsDto implements Serializable{
     }
 
     public void setDescription(String description) {
-        this.description.set(description.toString());
+        this.description.set(description);
     }
 
     public Long getVersion() {

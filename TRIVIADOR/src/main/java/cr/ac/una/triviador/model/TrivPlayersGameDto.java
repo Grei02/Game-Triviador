@@ -33,8 +33,8 @@ public class TrivPlayersGameDto implements Serializable {
         this.counterconsecutivequestion = new SimpleStringProperty("");
         this.numberturn = new SimpleStringProperty("");
         this.isCurrent = new SimpleBooleanProperty(false);
-//        this.gamId = gamId;
-//        this.plaId = plaId; 
+        this.gamId = gamId;
+        this.plaId = plaId; 
     }
 
     public TrivPlayersGameDto(TrivPlayersGame playersGame) {
@@ -48,15 +48,6 @@ public class TrivPlayersGameDto implements Serializable {
         this.version= playersGame.getVersion();
     }
 
-//    public TrivPlayersGameDto(Long id) {
-//        this.id = id;
-//    }
-//    public void update (TrivPlayersGameDto playersGameDto) {
-//        this.id = playersGameDto;
-//        this.posboard = posboard;
-//        this.isCurrent = isCurrent;
-//        this.version = version;
-//    }
     public Long getId() {
         if (this.id.get() != null & !this.id.get().isBlank()) {
             return Long.valueOf(id.get());

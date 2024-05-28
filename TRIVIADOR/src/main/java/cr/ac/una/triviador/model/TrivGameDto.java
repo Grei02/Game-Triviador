@@ -83,7 +83,7 @@ public class TrivGameDto implements Serializable {
     }
 
     public void setName(String name) {
-        this.name.set(name.toString());
+        this.name.set(name);
     }
 
     public Long getTime() {
@@ -110,7 +110,7 @@ public class TrivGameDto implements Serializable {
     }
 
     public void setDifficulty(String difficulty) {
-        this.difficulty.set(difficulty.toString());
+        this.difficulty.set(difficulty);
     }
 
     public Long getNumberplayer() {
