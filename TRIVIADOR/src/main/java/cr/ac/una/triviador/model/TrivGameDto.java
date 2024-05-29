@@ -4,15 +4,6 @@
  */
 package cr.ac.una.triviador.model;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.List;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -58,10 +49,10 @@ public class TrivGameDto implements Serializable {
         this.id.set(game.getId().toString());
         this.name.set(game.getName());
         this.time.set(game.getTime().toString());
-        this.isTime.set(game.getIsTime().equals("0"));
+        this.isTime.set(game.getIsTime().equals("1"));
         this.difficulty.set(game.getDifficulty());
         this.numberplayer.set(game.getNumberplayer().toString());
-        this.isDuel.set(game.getIsDuel().equals("0"));
+        this.isDuel.set(game.getIsDuel().equals("1"));
         this.turn.set(game.getTurn().toString());
         this.counterround.set(game.getCounterround().toString());
         this.version =game.getVersion();
@@ -98,11 +89,11 @@ public class TrivGameDto implements Serializable {
     }
 
     public String getIsTime() {
-        return isTime.get()?"0":"1";
+        return isTime.get()?"1":"0";
     }
 
     public void setIsTime(String isTime) {
-        this.isTime.set(isTime.equalsIgnoreCase("0"));
+        this.isTime.set(isTime.equals("1"));
     }
 
     public String getDifficulty() {
@@ -125,11 +116,11 @@ public class TrivGameDto implements Serializable {
     }
 
     public String getIsDuel() {
-        return isDuel.get()?"0":"1";
+        return isDuel.get()?"1":"0";
     }
 
     public void setIsDuel(String isDuel) {
-        this.isDuel.set(isDuel.equalsIgnoreCase("0"));
+        this.isDuel.set(isDuel.equals("1"));
     }
 
     public Long getTurn() {

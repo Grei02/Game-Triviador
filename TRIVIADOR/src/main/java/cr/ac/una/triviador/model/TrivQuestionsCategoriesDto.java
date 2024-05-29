@@ -4,12 +4,6 @@
  */
 package cr.ac.una.triviador.model;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
 import javafx.beans.property.SimpleStringProperty;
 

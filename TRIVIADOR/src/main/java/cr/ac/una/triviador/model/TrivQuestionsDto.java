@@ -4,18 +4,6 @@
  */
 package cr.ac.una.triviador.model;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.util.List;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -29,9 +17,9 @@ public class TrivQuestionsDto implements Serializable {
     private SimpleStringProperty questions;
     private SimpleBooleanProperty isEnabled;
     private Long version;
-    // private List<TrivGame> gameList;
-    //  private TrivCategories catId;
-    // private List<TrivAnswers> answersList;
+    private List<TrivGame> gameList;
+    private TrivCategories catId;
+    private List<TrivAnswers> answersList;
 
     public TrivQuestionsDto() {
         this.id = new SimpleStringProperty("");
@@ -47,16 +35,6 @@ public class TrivQuestionsDto implements Serializable {
         this.version = question.getVersion();
     }
 
-//    public TrivQuestions(Long id) {
-//        this.id = id;
-//    }
-//
-//    public TrivQuestions(Long id, String questions, String isEnabled, Long version) {
-//        this.id = id;
-//        this.questions = questions;
-//        this.isEnabled = isEnabled;
-//        this.version = version;
-//    }
     public Long getId() {
         if (this.id.get() != null & !this.id.get().isBlank()) {
             return Long.valueOf(id.get());
@@ -73,15 +51,15 @@ public class TrivQuestionsDto implements Serializable {
     }
 
     public void setQuestions(String questions) {
-        this.questions.set(questions.toString());
+        this.questions.set(questions);
     }
 
     public String getIsEnabled() {
-        return isEnabled.get() ? "0" : "1";
+        return isEnabled.get() ? "1" : "0";
     }
 
     public void setIsEnabled(String isEnabled) {
-        this.isEnabled.set(isEnabled.equalsIgnoreCase("1"));
+        this.isEnabled.set(isEnabled.equals("1"));
     }
 
     public Long getVersion() {
@@ -92,29 +70,30 @@ public class TrivQuestionsDto implements Serializable {
         this.version = version;
     }
 
-//    public List<TrivGame> getGameList() {
-//        return gameList;
-//    }
-//
-//    public void setGameList(List<TrivGame> gameList) {
-//        this.gameList = gameList;
-//    }
-//
-//    public TrivCategories getCatId() {
-//        return catId;
-//    }
-//
-//    public void setCatId(TrivCategories catId) {
-//        this.catId = catId;
-//    }
-//
-//    public List<TrivAnswers> getAnswersList() {
-//        return answersList;
-//    }
-//
-//    public void setAnswersList(List<TrivAnswers> answersList) {
-//        this.answersList = answersList;
-//    }
+    public List<TrivGame> getGameList() {
+        return gameList;
+    }
+
+    public void setGameList(List<TrivGame> gameList) {
+        this.gameList = gameList;
+    }
+
+    public TrivCategories getCatId() {
+        return catId;
+    }
+
+    public void setCatId(TrivCategories catId) {
+        this.catId = catId;
+    }
+
+    public List<TrivAnswers> getAnswersList() {
+        return answersList;
+    }
+
+    public void setAnswersList(List<TrivAnswers> answersList) {
+        this.answersList = answersList;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

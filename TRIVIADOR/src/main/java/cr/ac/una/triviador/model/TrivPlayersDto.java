@@ -4,23 +4,10 @@
  */
 package cr.ac.una.triviador.model;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 
-/**
- *
- * @author Sofia Bejarano Mora
- */
 public class TrivPlayersDto implements Serializable {
 
     private static final long serialVersionUID = 1L;

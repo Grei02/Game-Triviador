@@ -4,12 +4,6 @@
  */
 package cr.ac.una.triviador.model;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -25,18 +19,12 @@ public class TrivPlayersCategoriesGameDto implements Serializable {
     
     public TrivPlayersCategoriesGameDto() {
         this.id = new SimpleStringProperty("");
-        this.catId = catId;
-        this.gamId = gamId;
-        this.plaId = plaId;
     }
 
     public TrivPlayersCategoriesGameDto(TrivPlayersCategoriesGame playersCategoriesGame) {
         this();
         this.id.set(playersCategoriesGame.getCatId().toString());
         this.version=playersCategoriesGame.getVersion();
-        this.catId = catId;
-        this.gamId = gamId;
-        this.plaId = plaId;
     }
     
     public Long getId() {

@@ -4,12 +4,6 @@
  */
 package cr.ac.una.triviador.model;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -36,7 +30,7 @@ public class TrivPlayersWildcardGameDto implements Serializable {
 
     public TrivPlayersWildcardGameDto(TrivPlayersWildcardGame playersWildcardGame) {
         this.id.set(playersWildcardGame.getId().toString());
-        this.isUsed.set(playersWildcardGame.getIsUsed().equals("0"));
+        this.isUsed.set(playersWildcardGame.getIsUsed().equals("1"));
         this.version = playersWildcardGame.getVersion();
     }
 
@@ -52,11 +46,11 @@ public class TrivPlayersWildcardGameDto implements Serializable {
     }
 
     public String getIsUsed() {
-        return isUsed.get() ? "0" : "1";
+        return isUsed.get() ? "1" : "0";
     }
 
     public void setIsUsed(String isUsed) {
-        this.isUsed.set(isUsed.equalsIgnoreCase("0"));
+        this.isUsed.set(isUsed.equals("1"));
     }
 
     public Long getVersion() {

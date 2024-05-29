@@ -37,7 +37,7 @@ public class TrivAnswersDto implements Serializable {
         this.id.set(trivAnswers.getId().toString());
         this.answers.set(trivAnswers.getAnswers());
         this.selectednumber.set(trivAnswers.getSelectednumber().toString());
-        this.isCorrect.set(trivAnswers.getIsCorrect().equals("0"));
+        this.isCorrect.set(trivAnswers.getIsCorrect().equals("1"));
         this.version = trivAnswers.getVersion();
     }
 
@@ -69,11 +69,11 @@ public class TrivAnswersDto implements Serializable {
     }
 
     public String getIsCorrect() {
-        return isCorrect.get()?"0":"1";
+        return isCorrect.get()?"1":"0";
     }
 
     public void setIsCorrect(String isCorrect) {
-        this.isCorrect.set(isCorrect.equalsIgnoreCase("0"));
+        this.isCorrect.set(isCorrect.equals("1"));
     }
 
     public Long getSelectednumber() {
