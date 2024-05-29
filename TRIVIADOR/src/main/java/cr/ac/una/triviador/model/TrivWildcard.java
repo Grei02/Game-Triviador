@@ -13,11 +13,15 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 /**
  *
@@ -34,13 +38,15 @@ public class TrivWildcard implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "TRI_WILDCARD_WIL_ID_WILDCARD", sequenceName = "tri.TRIV_WILDCARD_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRI_WILDCARD_WIL_ID_WILDCARD")
     @Basic(optional = false)
     @Column(name = "WILD_ID")
     private Long id;
     @Basic(optional = false)
     @Column(name = "WILD_NAME")
     private String name;
-    @Basic(optional = false)
+    @Version
     @Column(name = "WILD_VERSION")
     private Long version;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxwxgWildId", fetch = FetchType.LAZY)

@@ -5,23 +5,20 @@
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
-/**
- *
- * @author Sofia Bejarano Mora
- */
 @Entity
 @Table(name = "TRIV_ANSWERS", catalog = "", schema = "TRI")
 @NamedQueries({ /* @NamedQuery(name = "TrivAnswers.findAll", query = "SELECT t FROM TrivAnswers t"),
@@ -33,12 +30,14 @@ import jakarta.persistence.Table;
 public class TrivAnswers implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @Id
+    @SequenceGenerator(name = "TRI_ANSWERS_ANS_ID_ANSWERS", sequenceName = "tri.TRIV_ANSWERS_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRI_ANSWERS_ANS_ID_ANSWERS")
     @Basic(optional = false)
     @Column(name = "ANS_ID")
     private Long id;
-    @Basic(optional = false)
+    @Version
     @Column(name = "ANS_VERSION")
     private Long version;
     @Basic(optional = false)
@@ -59,14 +58,14 @@ public class TrivAnswers implements Serializable {
     public TrivAnswers(Long id) {
         this.id = id;
     }
-    
+
     public TrivAnswers(TrivAnswersDto answersDto) {
         this.id = answersDto.getId();
         update(answersDto);
     }
 
-    public void update (TrivAnswersDto answersDto) {
-        this.selectednumber=answersDto.getSelectednumber();
+    public void update(TrivAnswersDto answersDto) {
+        this.selectednumber = answersDto.getSelectednumber();
         this.answers = answersDto.getAnswers();
         this.isCorrect = answersDto.getIsCorrect();
         this.version = answersDto.getVersion();

@@ -5,27 +5,23 @@
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
-/**
- *
- * @author Sofia Bejarano Mora
- */
 @Entity
 @Table(name = "TRIV_PLAYERS_GAME", catalog = "", schema = "TRI")
-@NamedQueries({
-    /*@NamedQuery(name = "TrivPlayersGame.findAll", query = "SELECT t FROM TrivPlayersGame t"),
+@NamedQueries({ /*@NamedQuery(name = "TrivPlayersGame.findAll", query = "SELECT t FROM TrivPlayersGame t"),
     @NamedQuery(name = "TrivPlayersGame.findByPxgId", query = "SELECT t FROM TrivPlayersGame t WHERE t.id = :id"),
     @NamedQuery(name = "TrivPlayersGame.findByPxgNameworker", query = "SELECT t FROM TrivPlayersGame t WHERE t.nameworker = :nameworker"),
     @NamedQuery(name = "TrivPlayersGame.findByPxgPosboard", query = "SELECT t FROM TrivPlayersGame t WHERE t.posboard = :posboard"),
@@ -38,6 +34,8 @@ public class TrivPlayersGame implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "TRI_PLAYERS_GAME_PXQ_ID_PLAYERS_GAME", sequenceName = "tri.TRIV_PLAYERS_GAME_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRI_PLAYERS_GAME_PXQ_ID_PLAYERS_GAME")
     @Basic(optional = false)
     @Column(name = "PXG_ID")
     private Long id;
@@ -53,7 +51,7 @@ public class TrivPlayersGame implements Serializable {
     @Basic(optional = false)
     @Column(name = "PXG_IS_CURRENT")
     private String isCurrent;
-    @Basic(optional = false)
+    @Version
     @Column(name = "PXG_VERSION")
     private Long version;
     @JoinColumn(name = "PXG_GAM_ID", referencedColumnName = "GAM_ID")
@@ -69,13 +67,13 @@ public class TrivPlayersGame implements Serializable {
     public TrivPlayersGame(Long id) {
         this.id = id;
     }
-    
+
     public TrivPlayersGame(TrivPlayersGameDto playersGameDto) {
         this.id = playersGameDto.getId();
         update(playersGameDto);
     }
 
-    public void update (TrivPlayersGameDto playersGameDto) {
+    public void update(TrivPlayersGameDto playersGameDto) {
         this.posboard = playersGameDto.getPosboard();
         this.isCurrent = playersGameDto.getIsCurrent();
         this.version = playersGameDto.getVersion();
@@ -177,5 +175,5 @@ public class TrivPlayersGame implements Serializable {
     public String toString() {
         return "cr.ac.una.triviador.model.TrivPlayersGame[ id=" + id + " ]";
     }
-    
+
 }

@@ -11,13 +11,17 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 /**
  *
@@ -41,6 +45,8 @@ public class TrivGame implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "TRI_GAME_GAM_ID_GAME", sequenceName = "tri.TRIV_GAME_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRI_GAME_GAM_ID_GAME")
     @Basic(optional = false)
     @Column(name = "GAM_ID")
     private Long id;
@@ -66,7 +72,7 @@ public class TrivGame implements Serializable {
     private Long turn;
     @Column(name = "GAM_COUNTERROUND")
     private Long counterround;
-    @Basic(optional = false)
+    @Version
     @Column(name = "GAM_VERSION")
     private Long version;
     @JoinTable(name = "TRIV_GAME_QUESTIONS", joinColumns = {

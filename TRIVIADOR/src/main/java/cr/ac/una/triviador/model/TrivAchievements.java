@@ -12,11 +12,15 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 
 @Entity
@@ -34,6 +38,8 @@ public class TrivAchievements implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "TRI_ACHIEVEMENTS_ACH_ID_ACHIEVEMENTS", sequenceName = "tri.TRIV_ACHIEVEMENTS_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRI_ACHIEVEMENTS_ACH_ID_ACHIEVEMENTS")
     @Basic(optional = false)
     @Column(name = "ACH_ID")
     private Long id;
@@ -48,7 +54,7 @@ public class TrivAchievements implements Serializable {
     private Long amount;
     @Column(name = "ACH_DESCRIPTION")
     private String description;
-    @Basic(optional = false)
+    @Version
     @Column(name = "ACH_VERSION")
     private Long version;
     @ManyToMany(mappedBy = "trivAchievementsList", fetch = FetchType.LAZY)

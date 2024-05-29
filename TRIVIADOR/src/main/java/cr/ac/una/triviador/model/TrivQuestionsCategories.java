@@ -5,18 +5,19 @@
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 /**
  *
@@ -35,6 +36,8 @@ public class TrivQuestionsCategories implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "TRI_QUESTIONS_CATEGORIES_QXC_ID_QUESTIONS_CATEGORIES", sequenceName = "tri.TRIV_QUESTIONS_CATEGORIES_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRI_QUESTIONS_CATEGORIES_QXC_ID_QUESTIONS_CATEGORIES")
     @Basic(optional = false)
     @Column(name = "QCAT_ID")
     private Long id;
@@ -42,7 +45,7 @@ public class TrivQuestionsCategories implements Serializable {
     private Long countanswer;
     @Column(name = "QCAT_COUNTHIT")
     private Long counthit;
-    @Basic(optional = false)
+    @Version
     @Column(name = "QCAT_VERSION")
     private Long version;
     @JoinColumn(name = "QCAT_CAT_ID", referencedColumnName = "CAT_ID")

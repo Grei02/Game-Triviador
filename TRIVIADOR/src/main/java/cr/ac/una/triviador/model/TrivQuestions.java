@@ -17,16 +17,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 
-/**
- *
- * @author Sofia Bejarano Mora
- */
 @Entity
 @Table(name = "TRIV_QUESTIONS", catalog = "", schema = "TRI")
 @NamedQueries({ /* @NamedQuery(name = "TrivQuestions.findAll", query = "SELECT t FROM TrivQuestions t"),

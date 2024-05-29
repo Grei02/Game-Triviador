@@ -5,23 +5,20 @@
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
-/**
- *
- * @author Sofia Bejarano Mora
- */
 @Entity
 @Table(name = "TRIV_PLAYERS_WILDCARD_GAME", catalog = "", schema = "TRI")
 @NamedQueries({ /*@NamedQuery(name = "TrivPlayersWildcardGame.findAll", query = "SELECT t FROM TrivPlayersWildcardGame t"),
@@ -33,13 +30,15 @@ public class TrivPlayersWildcardGame implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "TRI_PLAYERS_WILDCARD_GAME_PXWXG_ID_PLAYERS_WILDCARD_GAME", sequenceName = "tri.TRIV_PLAYERS_WILDCARD_GAME_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRI_PLAYERS_WILDCARD_GAME_PXWXG_ID_PLAYERS_WILDCARD_GAME")
     @Basic(optional = false)
     @Column(name = "PXWXG_ID")
     private Long id;
     @Basic(optional = false)
     @Column(name = "PXWXG_IS_USED")
     private String isUsed;
-    @Basic(optional = false)
+    @Version
     @Column(name = "PXWXG_VERSION")
     private Long version;
     @JoinColumn(name = "PXWXG_GAM_ID", referencedColumnName = "GAM_ID")
