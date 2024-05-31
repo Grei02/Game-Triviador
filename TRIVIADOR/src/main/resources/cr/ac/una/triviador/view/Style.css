@@ -9,6 +9,7 @@
     -fx-effect:dropshadow(gaussian,rgba(0.0,0.0,0.0,0.15),10.0,0.7,0.0,1.5);
     -fx-padding:25 15 15 15;
 }
+
 .mfx-text-field1 {
   -mfx-main: #dbe7e4; /* Color principal para el enfoque */
   -fx-background-color: black; /* Fondo negro para alto contraste */

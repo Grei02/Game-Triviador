@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
@@ -15,8 +12,8 @@ public class TrivQuestionsCategoriesDto implements Serializable  {
     private SimpleStringProperty countanswer;
     private SimpleStringProperty counthit;
     private Long version;
-    private TrivCategories catId;
-    private TrivPlayers plaId;
+    private TrivCategoriesDto categoryDto;
+    private TrivPlayersDto playerDto;
 
     public TrivQuestionsCategoriesDto() {
         this.id = new SimpleStringProperty("");
@@ -73,20 +70,20 @@ public class TrivQuestionsCategoriesDto implements Serializable  {
         this.version = version;
     }
 
-    public TrivCategories getCatId() {
-        return catId;
+    public TrivCategoriesDto getCategoryDto() {
+        return categoryDto;
     }
 
-    public void setCatId(TrivCategories catId) {
-        this.catId = catId;
+    public void setCategoryDto(TrivCategoriesDto categoryDto) {
+        this.categoryDto = categoryDto;
     }
 
-    public TrivPlayers getPlaId() {
-        return plaId;
+    public TrivPlayersDto getPlayerDto() {
+        return playerDto;
     }
 
-    public void setPlaId(TrivPlayers plaId) {
-        this.plaId = plaId;
+    public void setPlayerDto(TrivPlayersDto playerDto) {
+        this.playerDto = playerDto;
     }
 
     @Override

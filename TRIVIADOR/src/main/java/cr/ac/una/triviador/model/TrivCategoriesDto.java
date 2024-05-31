@@ -5,20 +5,19 @@
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 
 public class TrivCategoriesDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     private SimpleStringProperty id;
     private SimpleStringProperty name;
     private SimpleStringProperty nameimage;
     private Long version;
-    private List<TrivQuestions> questionsList;
-    private List<TrivPlayersCategoriesGame> playersCategoriesGameList;
-    private List<TrivQuestionsCategories> questionsCategoriesList;
+//    private List<TrivQuestionsDto> questionsDtoList;
+//    private List<TrivPlayersCategoriesGameDto> playersCategoriesGameDtoList;
+//    private List<TrivQuestionsCategoriesDto> questionsCategoriesDtoList;
 
     public TrivCategoriesDto() {
         this.id = new SimpleStringProperty("");
@@ -69,29 +68,29 @@ public class TrivCategoriesDto implements Serializable {
         this.version = version;
     }
 
-    public List<TrivQuestions> getQuestionsList() {
-        return questionsList;
-    }
-
-    public void setQuestionsList(List<TrivQuestions> questionsList) {
-        this.questionsList = questionsList;
-    }
-
-    public List<TrivPlayersCategoriesGame> getPlayersCategoriesGameList() {
-        return playersCategoriesGameList;
-    }
-
-    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> playersCategoriesGameList) {
-        this.playersCategoriesGameList = playersCategoriesGameList;
-    }
-
-    public List<TrivQuestionsCategories> getQuestionsCategoriesList() {
-        return questionsCategoriesList;
-    }
-
-    public void setQuestionsCategoriesList(List<TrivQuestionsCategories> questionsCategoriesList) {
-        this.questionsCategoriesList = questionsCategoriesList;
-    }
+//    public List<TrivQuestionsDto> getQuestionsDtoList() {
+//        return questionsDtoList;
+//    }
+//
+//    public void setQuestionsDtoList(List<TrivQuestionsDto> questionsDtoList) {
+//        this.questionsDtoList = questionsDtoList;
+//    }
+//
+//    public List<TrivPlayersCategoriesGameDto> getPlayersCategoriesGameDtoList() {
+//        return playersCategoriesGameDtoList;
+//    }
+//
+//    public void setPlayersCategoriesGameDtoList(List<TrivPlayersCategoriesGameDto> playersCategoriesGameDtoList) {
+//        this.playersCategoriesGameDtoList = playersCategoriesGameDtoList;
+//    }
+//
+//    public List<TrivQuestionsCategoriesDto> getQuestionsCategoriesDtoList() {
+//        return questionsCategoriesDtoList;
+//    }
+//
+//    public void setQuestionsCategoriesDtoList(List<TrivQuestionsCategoriesDto> questionsCategoriesDtoList) {
+//        this.questionsCategoriesDtoList = questionsCategoriesDtoList;
+//    }
 
     @Override
     public int hashCode() {

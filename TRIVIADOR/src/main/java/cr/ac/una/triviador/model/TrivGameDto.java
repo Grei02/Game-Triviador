@@ -9,10 +9,6 @@ import java.util.List;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-/**
- *
- * @author Sofia Bejarano Mora
- */
 public class TrivGameDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,10 +23,10 @@ public class TrivGameDto implements Serializable {
     private SimpleStringProperty turn;
     private SimpleStringProperty counterround;
     private Long version;
-    private List<TrivQuestions> questionsList;
-    private List<TrivPlayersCategoriesGame> playersCategoriesGameList;
-    private List<TrivPlayersGame> playersGameList;
-    private List<TrivPlayersWildcardGame> playersWildcardGameList;
+    private List<TrivQuestionsDto> questionsDtoList;
+    //private List<TrivPlayersCategoriesGameDto> playersCategoriesGameDtoList;
+    private List<TrivPlayersGameDto> playersGameDtoList;
+   // private List<TrivPlayersWildcardGameDto> playersWildcardGameDtoList;
 
     public TrivGameDto() {
         this.id = new SimpleStringProperty("");
@@ -153,37 +149,37 @@ public class TrivGameDto implements Serializable {
         this.version = version;
     }
 
-    public List<TrivQuestions> getQuestionsList() {
-        return questionsList;
+    public List<TrivQuestionsDto> getQuestionsList() {
+        return questionsDtoList;
     }
 
-    public void setQuestionsList(List<TrivQuestions> questionsList) {
-        this.questionsList = questionsList;
+    public void setQuestionsList(List<TrivQuestionsDto> questionsDtoList) {
+        this.questionsDtoList = questionsDtoList;
     }
 
-    public List<TrivPlayersCategoriesGame> getPlayersCategoriesGameList() {
-        return playersCategoriesGameList;
+//    public List<TrivPlayersCategoriesGameDto> getPlayersCategoriesGameList() {
+//        return playersCategoriesGameDtoList;
+//    }
+//
+//    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGameDto> playersCategoriesGameDtoList) {
+//        this.playersCategoriesGameDtoList = playersCategoriesGameDtoList;
+//    }
+
+    public List<TrivPlayersGameDto> getPlayersGameList() {
+        return playersGameDtoList;
     }
 
-    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> playersCategoriesGameList) {
-        this.playersCategoriesGameList = playersCategoriesGameList;
+    public void setPlayersGameList(List<TrivPlayersGameDto> playersGameDtoList) {
+        this.playersGameDtoList = playersGameDtoList;
     }
 
-    public List<TrivPlayersGame> getPlayersGameList() {
-        return playersGameList;
-    }
-
-    public void setPlayersGameList(List<TrivPlayersGame> playersGameList) {
-        this.playersGameList = playersGameList;
-    }
-
-    public List<TrivPlayersWildcardGame> getPlayersWildcardGameList() {
-        return playersWildcardGameList;
-    }
-
-    public void setPlayersWildcardGameList(List<TrivPlayersWildcardGame> playersWildcardGameList) {
-        this.playersWildcardGameList = playersWildcardGameList;
-    }
+//    public List<TrivPlayersWildcardGameDto> getPlayersWildcardGameList() {
+//        return playersWildcardGameDtoList;
+//    }
+//
+//    public void setPlayersWildcardGameList(List<TrivPlayersWildcardGameDto> playersWildcardGameDtoList) {
+//        this.playersWildcardGameDtoList = playersWildcardGameDtoList;
+//    }
 
     @Override
     public int hashCode() {

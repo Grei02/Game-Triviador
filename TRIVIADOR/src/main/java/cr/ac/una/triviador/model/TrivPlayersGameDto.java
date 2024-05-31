@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
@@ -17,8 +14,8 @@ public class TrivPlayersGameDto implements Serializable {
     private SimpleStringProperty numberturn;
     private SimpleBooleanProperty isCurrent;
     private Long version;
-    private TrivGame gamId;
-    private TrivPlayers plaId;
+    private TrivGameDto gameDto;
+    private TrivPlayersDto playerDto;
 
     public TrivPlayersGameDto() {
         this.id = new SimpleStringProperty("");
@@ -27,8 +24,6 @@ public class TrivPlayersGameDto implements Serializable {
         this.counterconsecutivequestion = new SimpleStringProperty("");
         this.numberturn = new SimpleStringProperty("");
         this.isCurrent = new SimpleBooleanProperty(false);
-        this.gamId = gamId;
-        this.plaId = plaId; 
     }
 
     public TrivPlayersGameDto(TrivPlayersGame playersGame) {
@@ -110,20 +105,20 @@ public class TrivPlayersGameDto implements Serializable {
         this.version = version;
     }
 
-    public TrivGame getGamId() {
-        return gamId;
+    public TrivGameDto getGameDto() {
+        return gameDto;
     }
 
-    public void setGamId(TrivGame gamId) {
-        this.gamId = gamId;
+    public void setGameDto(TrivGameDto gameDto) {
+        this.gameDto = gameDto;
     }
 
-    public TrivPlayers getPlaId() {
-        return plaId;
+    public TrivPlayersDto getPlayerDto() {
+        return playerDto;
     }
 
-    public void setPlaId(TrivPlayers plaId) {
-        this.plaId = plaId;
+    public void setPlayerDto(TrivPlayersDto playerDto) {
+        this.playerDto = playerDto;
     }
 
     @Override

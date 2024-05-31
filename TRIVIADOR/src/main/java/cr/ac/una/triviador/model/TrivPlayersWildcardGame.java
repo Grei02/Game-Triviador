@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
@@ -43,13 +40,13 @@ public class TrivPlayersWildcardGame implements Serializable {
     private Long version;
     @JoinColumn(name = "PXWXG_GAM_ID", referencedColumnName = "GAM_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivGame gamId;
+    private TrivGame game;
     @JoinColumn(name = "PXWXG_PLA_ID", referencedColumnName = "PLA_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivPlayers plaId;
+    private TrivPlayers player;
     @JoinColumn(name = "PXWXG_WILD_ID", referencedColumnName = "WILD_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivWildcard wildId;
+    private TrivWildcard wildcard;
 
     public TrivPlayersWildcardGame() {
     }
@@ -92,28 +89,28 @@ public class TrivPlayersWildcardGame implements Serializable {
         this.version = version;
     }
 
-    public TrivGame getGamId() {
-        return gamId;
+    public TrivGame getGame() {
+        return game;
     }
 
-    public void setGamId(TrivGame gamId) {
-        this.gamId = gamId;
+    public void setGame(TrivGame game) {
+        this.game = game;
     }
 
-    public TrivPlayers getPlaId() {
-        return plaId;
+    public TrivPlayers getPlayer() {
+        return player;
     }
 
-    public void setPlaId(TrivPlayers plaId) {
-        this.plaId = plaId;
+    public void setPlayer(TrivPlayers player) {
+        this.player = player;
     }
 
-    public TrivWildcard getWildId() {
-        return wildId;
+    public TrivWildcard getWildcard() {
+        return wildcard;
     }
 
-    public void setWildId(TrivWildcard wildId) {
-        this.wildId = wildId;
+    public void setWildcard(TrivWildcard wildcard) {
+        this.wildcard = wildcard;
     }
 
     @Override

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
@@ -19,11 +16,11 @@ public class TrivPlayersDto implements Serializable {
     private SimpleStringProperty counterconsecutivequestion;
     private SimpleStringProperty favoritecategory;
     private Long version;
-    private List<TrivAchievements> achievementsList;
-    private List<TrivPlayersCategoriesGame> playersCategoriesGameList;
-    private List<TrivPlayersGame> trivPp;
-    private List<TrivPlayersWildcardGame> playersWildcardGameList;
-    private List<TrivQuestionsCategories> questionsCategoriesList;
+    private List<TrivAchievementsDto> achievementDtoList;
+    private List<TrivPlayersCategoriesGameDto> playerCategoryGameDtoList;
+    //private List<TrivPlayersGameDto> playerGameDtoList;
+    private List<TrivPlayersWildcardGameDto> playerWildcardGameDtoList;
+    private List<TrivQuestionsCategoriesDto> questionCategoryDtoList;
 
     public TrivPlayersDto() {
         this.id = new SimpleStringProperty("");
@@ -123,44 +120,44 @@ public class TrivPlayersDto implements Serializable {
         this.version = plaVersion;
     }
 
-    public List<TrivAchievements> getAchievementsList() {
-        return achievementsList;
+    public List<TrivAchievementsDto> getAchievementsList() {
+        return achievementDtoList;
     }
 
-    public void setAchievementsList(List<TrivAchievements> achievementsList) {
-        this.achievementsList = achievementsList;
+    public void setAchievementsList(List<TrivAchievementsDto> achievementDtoList) {
+        this.achievementDtoList = achievementDtoList;
     }
 
-    public List<TrivPlayersCategoriesGame> getPlayersCategoriesGameList() {
-        return playersCategoriesGameList;
+    public List<TrivPlayersCategoriesGameDto> getPlayersCategoriesGameList() {
+        return playerCategoryGameDtoList;
     }
 
-    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> playersCategoriesGameList) {
-        this.playersCategoriesGameList = playersCategoriesGameList;
+    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGameDto> playerCategoryGameDtoList) {
+        this.playerCategoryGameDtoList = playerCategoryGameDtoList;
     }
 
-    public List<TrivPlayersGame> getTrivPp() {
-        return trivPp;
+//    public List<TrivPlayersGameDto> getPlayersGameList() {
+//        return playerGameDtoList;
+//    }
+//
+//    public void setPlayersGameList(List<TrivPlayersGameDto> playerGameDtoList) {
+//        this.playerGameDtoList = playerGameDtoList;
+//    }
+
+    public List<TrivPlayersWildcardGameDto> getPlayersWildcardGameList() {
+        return playerWildcardGameDtoList;
     }
 
-    public void setTrivPp(List<TrivPlayersGame> trivPp) {
-        this.trivPp = trivPp;
+    public void setPlayersWildcardGameList(List<TrivPlayersWildcardGameDto> playerWildcardGameDtoList) {
+        this.playerWildcardGameDtoList = playerWildcardGameDtoList;
     }
 
-    public List<TrivPlayersWildcardGame> getPlayersWildcardGameList() {
-        return playersWildcardGameList;
+    public List<TrivQuestionsCategoriesDto> getQuestionsCategoriesList() {
+        return questionCategoryDtoList;
     }
 
-    public void setPlayersWildcardGameList(List<TrivPlayersWildcardGame> playersWildcardGameList) {
-        this.playersWildcardGameList = playersWildcardGameList;
-    }
-
-    public List<TrivQuestionsCategories> getQuestionsCategoriesList() {
-        return questionsCategoriesList;
-    }
-
-    public void setQuestionsCategoriesList(List<TrivQuestionsCategories> questionsCategoriesList) {
-        this.questionsCategoriesList = questionsCategoriesList;
+    public void setQuestionsCategoriesList(List<TrivQuestionsCategoriesDto> questionCategoryDtoList) {
+        this.questionCategoryDtoList = questionCategoryDtoList;
     }
 
     @Override
@@ -172,7 +169,6 @@ public class TrivPlayersDto implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof TrivPlayersDto)) {
             return false;
         }

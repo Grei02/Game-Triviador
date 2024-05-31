@@ -81,8 +81,8 @@ public class TrivCategories implements Serializable {
         return id;
     }
 
-    public void setId(Long catId) {
-        this.id = catId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

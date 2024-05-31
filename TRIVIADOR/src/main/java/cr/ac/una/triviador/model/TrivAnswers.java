@@ -50,7 +50,7 @@ public class TrivAnswers implements Serializable {
     private Long selectednumber;
     @JoinColumn(name = "QUE_ID", referencedColumnName = "QUE_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private TrivQuestions queId;
+    private TrivQuestions questions;
 
     public TrivAnswers() {
     }
@@ -111,12 +111,12 @@ public class TrivAnswers implements Serializable {
         this.selectednumber = selectednumber;
     }
 
-    public TrivQuestions getQueId() {
-        return queId;
+    public TrivQuestions getQuestions() {
+        return questions;
     }
 
-    public void setQueId(TrivQuestions queId) {
-        this.queId = queId;
+    public void setQuestions(TrivQuestions questions) {
+        this.questions = questions;
     }
 
     @Override
