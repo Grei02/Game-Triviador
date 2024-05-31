@@ -18,7 +18,7 @@ public class TrivAchievementsDto implements Serializable{
     private SimpleStringProperty amount;
     private SimpleStringProperty description;
     private Long version;
-    private List<TrivPlayers> playersList;
+    private List<TrivPlayersDto> playersDtoList;
     
     public TrivAchievementsDto() {
         this.id = new SimpleStringProperty("");
@@ -29,8 +29,8 @@ public class TrivAchievementsDto implements Serializable{
     }
 
     public TrivAchievementsDto(TrivAchievements trivAchievements) {
-        this();
-        this.id.set(trivAchievements.getId().toString());
+       this();
+       this.id.set(trivAchievements.getId().toString());
         this.name.set(trivAchievements.getName());
         this.description.set(trivAchievements.getDescription());
         this.type.set(trivAchievements.getType());
@@ -92,12 +92,12 @@ public class TrivAchievementsDto implements Serializable{
         this.version = version;
     }
 
-    public List<TrivPlayers> getPlayersList() {
-        return playersList;
+    public List<TrivPlayersDto> getPlayersDtoList() {
+        return playersDtoList;
     }
 
-    public void setPlayersList(List<TrivPlayers> playersList) {
-        this.playersList = playersList;
+    public void setPlayersList(List<TrivPlayersDto> playersListDto) {
+        this.playersDtoList = playersListDto;
     }
 
     @Override
@@ -109,7 +109,6 @@ public class TrivAchievementsDto implements Serializable{
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof TrivAchievementsDto)) {
             return false;
         }

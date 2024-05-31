@@ -15,7 +15,7 @@ public class TrivWildcardDto implements Serializable {
     private SimpleStringProperty id;
     private SimpleStringProperty name;
     private Long version;
-    private List<TrivPlayersWildcardGame> playersWildcardGameList;
+    private List<TrivPlayersWildcardGameDto> playersWildcardGameDtoList;
 
     public TrivWildcardDto() {
         this.id = new SimpleStringProperty("");
@@ -56,12 +56,12 @@ public class TrivWildcardDto implements Serializable {
         this.version = version;
     }
 
-    public List<TrivPlayersWildcardGame> getPlayersWildcardGameList() {
-        return playersWildcardGameList;
+    public List<TrivPlayersWildcardGameDto> getPlayersWildcardGameDtoList() {
+        return playersWildcardGameDtoList;
     }
 
-    public void setPlayersWildcardGameList(List<TrivPlayersWildcardGame> playersWildcardGameList) {
-        this.playersWildcardGameList = playersWildcardGameList;
+    public void setPlayersWildcardGameDtoList(List<TrivPlayersWildcardGameDto> playersWildcardGameDtoList) {
+        this.playersWildcardGameDtoList = playersWildcardGameDtoList;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class TrivWildcardDto implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+
         if (!(object instanceof TrivWildcardDto)) {
             return false;
         }

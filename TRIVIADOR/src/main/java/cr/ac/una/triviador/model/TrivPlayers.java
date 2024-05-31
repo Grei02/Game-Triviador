@@ -76,7 +76,7 @@ public class TrivPlayers implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxcxgPlaId", fetch = FetchType.LAZY)
     private List<TrivPlayersCategoriesGame> playersCategoriesGameList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxgPlaId", fetch = FetchType.LAZY)
-    private List<TrivPlayersGame> trivPp;
+    private List<TrivPlayersGame> playersGameList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxwxgPlaId", fetch = FetchType.LAZY)
     private List<TrivPlayersWildcardGame> playersWildcardGameList;
     @OneToMany(mappedBy = "plaId", fetch = FetchType.LAZY)
@@ -181,12 +181,12 @@ public class TrivPlayers implements Serializable {
         this.playersCategoriesGameList = playersCategoriesGameList;
     }
 
-    public List<TrivPlayersGame> getTrivPp() {
-        return trivPp;
+    public List<TrivPlayersGame> getPlayersGameList() {
+        return playersGameList;
     }
 
-    public void setTrivPp(List<TrivPlayersGame> trivPp) {
-        this.trivPp = trivPp;
+    public void setPlayersGameList(List<TrivPlayersGame> playersGameList) {
+        this.playersGameList = playersGameList;
     }
 
     public List<TrivPlayersWildcardGame> getPlayersWildcardGameList() {

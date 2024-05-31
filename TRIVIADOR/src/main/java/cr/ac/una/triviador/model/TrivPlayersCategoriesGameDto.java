@@ -13,9 +13,9 @@ public class TrivPlayersCategoriesGameDto implements Serializable {
     
     private SimpleStringProperty id;
     private Long version;
-    private TrivCategories catId;
-    private TrivGame gamId;
-    private TrivPlayers plaId;
+    private TrivCategoriesDto categoriesDto;
+    private TrivGameDto gameDto;
+    private TrivPlayersDto playerDto;
     
     public TrivPlayersCategoriesGameDto() {
         this.id = new SimpleStringProperty("");
@@ -23,7 +23,7 @@ public class TrivPlayersCategoriesGameDto implements Serializable {
 
     public TrivPlayersCategoriesGameDto(TrivPlayersCategoriesGame playersCategoriesGame) {
         this();
-        this.id.set(playersCategoriesGame.getCatId().toString());
+        this.id.set(playersCategoriesGame.getCategories().toString());
         this.version=playersCategoriesGame.getVersion();
     }
     
@@ -46,28 +46,28 @@ public class TrivPlayersCategoriesGameDto implements Serializable {
         this.version = version;
     }
 
-    public TrivCategories getCatId() {
-        return catId;
+    public TrivCategoriesDto getCategoriesDto() {
+        return categoriesDto;
     }
 
-    public void setCatId(TrivCategories catId) {
-        this.catId = catId;
+    public void setCategoriesDto(TrivCategoriesDto categoriesDto) {
+        this.categoriesDto = categoriesDto;
     }
 
-    public TrivGame getGamId() {
-        return gamId;
+    public TrivGameDto getGameDto() {
+        return gameDto;
     }
 
-    public void setGamId(TrivGame gamId) {
-        this.gamId = gamId;
+    public void setGameDto(TrivGameDto gameDto) {
+        this.gameDto = gameDto;
     }
 
-    public TrivPlayers getPlaId() {
-        return plaId;
+    public TrivPlayersDto getPlayer() {
+        return playerDto;
     }
 
-    public void setPlaId(TrivPlayers plaId) {
-        this.plaId = plaId;
+    public void setPlayer(TrivPlayersDto playerDto) {
+        this.playerDto = playerDto;
     }
 
     @Override

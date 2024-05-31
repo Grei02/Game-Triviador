@@ -5,8 +5,6 @@
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;

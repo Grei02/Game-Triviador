@@ -17,9 +17,9 @@ public class TrivQuestionsDto implements Serializable {
     private SimpleStringProperty questions;
     private SimpleBooleanProperty isEnabled;
     private Long version;
-    private List<TrivGame> gameList;
-    private TrivCategories catId;
-    private List<TrivAnswers> answersList;
+    private List<TrivGameDto> gameDtoList;
+    private TrivCategoriesDto categoryDto;
+    private List<TrivAnswersDto> answersDtoList;
 
     public TrivQuestionsDto() {
         this.id = new SimpleStringProperty("");
@@ -70,28 +70,28 @@ public class TrivQuestionsDto implements Serializable {
         this.version = version;
     }
 
-    public List<TrivGame> getGameList() {
-        return gameList;
+    public List<TrivGameDto> getGameDtoList() {
+        return gameDtoList;
     }
 
-    public void setGameList(List<TrivGame> gameList) {
-        this.gameList = gameList;
+    public void setGameDtoList(List<TrivGameDto> gameDtoList) {
+        this.gameDtoList = gameDtoList;
     }
 
-    public TrivCategories getCatId() {
-        return catId;
+    public TrivCategoriesDto getCategoryDto() {
+        return categoryDto;
     }
 
-    public void setCatId(TrivCategories catId) {
-        this.catId = catId;
+    public void setCategoryDto(TrivCategoriesDto categoryDto) {
+        this.categoryDto = categoryDto;
     }
 
-    public List<TrivAnswers> getAnswersList() {
-        return answersList;
+    public List<TrivAnswersDto> getAnswersDtoList() {
+        return answersDtoList;
     }
 
-    public void setAnswersList(List<TrivAnswers> answersList) {
-        this.answersList = answersList;
+    public void setAnswersDtoList(List<TrivAnswersDto> answersDtoList) {
+        this.answersDtoList = answersDtoList;
     }
     
     @Override

@@ -16,9 +16,9 @@ public class TrivCategoriesDto implements Serializable {
     private SimpleStringProperty name;
     private SimpleStringProperty nameimage;
     private Long version;
-    private List<TrivQuestions> questionsList;
-    private List<TrivPlayersCategoriesGame> playersCategoriesGameList;
-    private List<TrivQuestionsCategories> questionsCategoriesList;
+    private List<TrivQuestionsDto> questionsDtoList;
+    private List<TrivPlayersCategoriesGameDto> playersCategoriesGameDtoList;
+    private List<TrivQuestionsCategoriesDto> questionsCategoriesDtoList;
 
     public TrivCategoriesDto() {
         this.id = new SimpleStringProperty("");
@@ -69,28 +69,28 @@ public class TrivCategoriesDto implements Serializable {
         this.version = version;
     }
 
-    public List<TrivQuestions> getQuestionsList() {
-        return questionsList;
+    public List<TrivQuestionsDto> getQuestionsDtoList() {
+        return questionsDtoList;
     }
 
-    public void setQuestionsList(List<TrivQuestions> questionsList) {
-        this.questionsList = questionsList;
+    public void setQuestionsDtoList(List<TrivQuestionsDto> questionsDtoList) {
+        this.questionsDtoList = questionsDtoList;
     }
 
-    public List<TrivPlayersCategoriesGame> getPlayersCategoriesGameList() {
-        return playersCategoriesGameList;
+    public List<TrivPlayersCategoriesGameDto> getPlayersCategoriesGameDtoList() {
+        return playersCategoriesGameDtoList;
     }
 
-    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> playersCategoriesGameList) {
-        this.playersCategoriesGameList = playersCategoriesGameList;
+    public void setPlayersCategoriesGameDtoList(List<TrivPlayersCategoriesGameDto> playersCategoriesGameDtoList) {
+        this.playersCategoriesGameDtoList = playersCategoriesGameDtoList;
     }
 
-    public List<TrivQuestionsCategories> getQuestionsCategoriesList() {
-        return questionsCategoriesList;
+    public List<TrivQuestionsCategoriesDto> getQuestionsCategoriesDtoList() {
+        return questionsCategoriesDtoList;
     }
 
-    public void setQuestionsCategoriesList(List<TrivQuestionsCategories> questionsCategoriesList) {
-        this.questionsCategoriesList = questionsCategoriesList;
+    public void setQuestionsCategoriesDtoList(List<TrivQuestionsCategoriesDto> questionsCategoriesDtoList) {
+        this.questionsCategoriesDtoList = questionsCategoriesDtoList;
     }
 
     @Override

@@ -56,10 +56,10 @@ public class TrivPlayersGame implements Serializable {
     private Long version;
     @JoinColumn(name = "PXG_GAM_ID", referencedColumnName = "GAM_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivGame gamId;
+    private TrivGame game;
     @JoinColumn(name = "PXG_PLA_ID", referencedColumnName = "PLA_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivPlayers plaId;
+    private TrivPlayers player;
 
     public TrivPlayersGame() {
     }
@@ -136,19 +136,19 @@ public class TrivPlayersGame implements Serializable {
     }
 
     public TrivGame getGamId() {
-        return gamId;
+        return game;
     }
 
-    public void setGamId(TrivGame gamId) {
-        this.gamId = gamId;
+    public void setGame(TrivGame game) {
+        this.game = game;
     }
 
-    public TrivPlayers getPlaId() {
-        return plaId;
+    public TrivPlayers getPlayer() {
+        return player;
     }
 
-    public void setPlaId(TrivPlayers plaId) {
-        this.plaId = plaId;
+    public void setPlayer(TrivPlayers player) {
+        this.player = player;
     }
 
     @Override

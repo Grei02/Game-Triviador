@@ -52,7 +52,7 @@ public class TrivQuestions implements Serializable {
     private List<TrivGame> gameList;
     @JoinColumn(name = "CAT_ID", referencedColumnName = "CAT_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private TrivCategories catId;
+    private TrivCategories category;
     @OneToMany(mappedBy = "queId", fetch = FetchType.LAZY)
     private List<TrivAnswers> answersList;
 
@@ -114,12 +114,12 @@ public class TrivQuestions implements Serializable {
         this.gameList = gameList;
     }
 
-    public TrivCategories getCatId() {
-        return catId;
+    public TrivCategories getCategory() {
+        return category;
     }
 
-    public void setCatId(TrivCategories catId) {
-        this.catId = catId;
+    public void setCategory(TrivCategories category) {
+        this.category = category;
     }
 
     public List<TrivAnswers> getAnswersList() {
@@ -139,7 +139,7 @@ public class TrivQuestions implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        
         if (!(object instanceof TrivQuestions)) {
             return false;
         }

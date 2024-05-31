@@ -35,7 +35,7 @@ import jakarta.persistence.Version;
 public class TrivPlayersCategoriesGame implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @Id
     @SequenceGenerator(name = "TRI_PLAYERS_CATEGORIES_GAME_PXCXG_ID_PLAYERS_CATEGORIES_GAME", sequenceName = "tri.TRIV_PLAYERS_CATEGORIES_GAME_SEQ01", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRI_PLAYERS_CATEGORIES_GAME_PXCXG_ID_PLAYERS_CATEGORIES_GAME")
@@ -47,13 +47,13 @@ public class TrivPlayersCategoriesGame implements Serializable {
     private Long version;
     @JoinColumn(name = "PXCXG_CAT_ID", referencedColumnName = "CAT_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivCategories catId;
+    private TrivCategories categories;
     @JoinColumn(name = "PXCXG_GAM_ID", referencedColumnName = "GAM_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivGame gamId;
+    private TrivGame game;
     @JoinColumn(name = "PXCXG_PLA_ID", referencedColumnName = "PLA_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivPlayers plaId;
+    private TrivPlayers player;
 
     public TrivPlayersCategoriesGame() {
     }
@@ -65,9 +65,6 @@ public class TrivPlayersCategoriesGame implements Serializable {
 
     public void update(TrivPlayersCategoriesGameDto playersCategoriesGameDto) {
         this.version = playersCategoriesGameDto.getVersion();
-        this.catId = catId;
-        this.gamId = gamId;
-        this.plaId = plaId;
     }
 
     public Long getId() {
@@ -86,28 +83,28 @@ public class TrivPlayersCategoriesGame implements Serializable {
         this.version = version;
     }
 
-    public TrivCategories getCatId() {
-        return catId;
+    public TrivCategories getCategories() {
+        return categories;
     }
 
-    public void setCatId(TrivCategories catId) {
-        this.catId = catId;
+    public void setCategories(TrivCategories categories) {
+        this.categories = categories;
     }
 
-    public TrivGame getGamId() {
-        return gamId;
+    public TrivGame getGame() {
+        return game;
     }
 
-    public void setGamId(TrivGame gamId) {
-        this.gamId = gamId;
+    public void setGame(TrivGame game) {
+        this.game = game;
     }
 
-    public TrivPlayers getPlaId() {
-        return plaId;
+    public TrivPlayers getPlayer() {
+        return player;
     }
 
-    public void setPlaId(TrivPlayers plaId) {
-        this.plaId = plaId;
+    public void setPlayer(TrivPlayers player) {
+        this.player = player;
     }
 
     @Override

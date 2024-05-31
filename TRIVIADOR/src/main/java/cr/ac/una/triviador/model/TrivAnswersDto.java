@@ -23,7 +23,7 @@ public class TrivAnswersDto implements Serializable {
     private SimpleStringProperty answers;
     private SimpleBooleanProperty isCorrect;
     private SimpleStringProperty selectednumber;
-    private TrivQuestions queId;
+    private TrivQuestionsDto questionsDto;
 
     public TrivAnswersDto() {
         this.id = new SimpleStringProperty("");
@@ -87,12 +87,12 @@ public class TrivAnswersDto implements Serializable {
         this.selectednumber.set(selectednumber.toString());
     }
 
-    public TrivQuestions getQueId() {
-        return queId;
+    public TrivQuestionsDto getQuestionsDto() {
+        return questionsDto;
     }
 
-    public void setQueId(TrivQuestions queId) {
-        this.queId = queId;
+    public void setQuestionsDto(TrivQuestionsDto questionsDto) {
+        this.questionsDto = questionsDto;
     }
 
     @Override

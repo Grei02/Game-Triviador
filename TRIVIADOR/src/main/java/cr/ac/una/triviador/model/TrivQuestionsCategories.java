@@ -50,10 +50,10 @@ public class TrivQuestionsCategories implements Serializable {
     private Long version;
     @JoinColumn(name = "QCAT_CAT_ID", referencedColumnName = "CAT_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private TrivCategories catId;
+    private TrivCategories category;
     @JoinColumn(name = "PLA_ID", referencedColumnName = "PLA_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private TrivPlayers plaId;
+    private TrivPlayers player;
 
     public TrivQuestionsCategories() {
         
@@ -106,20 +106,20 @@ public class TrivQuestionsCategories implements Serializable {
         this.version = version;
     }
 
-    public TrivCategories getCatId() {
-        return catId;
+    public TrivCategories getCategory() {
+        return category;
     }
 
-    public void setCatId(TrivCategories catId) {
-        this.catId = catId;
+    public void setCategory(TrivCategories category) {
+        this.category = category;
     }
 
-    public TrivPlayers getPlaId() {
-        return plaId;
+    public TrivPlayers getPlayer() {
+        return player;
     }
 
-    public void setPlaId(TrivPlayers plaId) {
-        this.plaId = plaId;
+    public void setPlayer(TrivPlayers player) {
+        this.player = player;
     }
 
     @Override

@@ -19,9 +19,9 @@ public class TrivPlayersWildcardGameDto implements Serializable {
     private SimpleStringProperty id;
     private SimpleBooleanProperty isUsed;
     private Long version;
-    private TrivGame gamId;
-    private TrivPlayers plaId;
-    private TrivWildcard wildId;
+    private TrivGameDto gameDto;
+    private TrivPlayersDto player;
+    private TrivWildcardDto WildcardDto;
 
     public TrivPlayersWildcardGameDto() {
         this.id = new SimpleStringProperty("");
@@ -61,28 +61,28 @@ public class TrivPlayersWildcardGameDto implements Serializable {
         this.version = version;
     }
 
-    public TrivGame getGamId() {
-        return gamId;
+    public TrivGameDto getGameDto() {
+        return gameDto;
     }
 
-    public void setGamId(TrivGame gamId) {
-        this.gamId = gamId;
+    public void setGameDto(TrivGameDto gameDto) {
+        this.gameDto = gameDto;
     }
 
-    public TrivPlayers getPlaId() {
-        return plaId;
+    public TrivPlayersDto getPlaId() {
+        return player;
     }
 
-    public void setPlaId(TrivPlayers plaId) {
-        this.plaId = plaId;
+    public void setPlaId(TrivPlayersDto player) {
+        this.player = player;
     }
 
-    public TrivWildcard getWildId() {
-        return wildId;
+    public TrivWildcardDto getWildcardDto() {
+        return WildcardDto;
     }
 
-    public void setWildId(TrivWildcard wildId) {
-        this.wildId = wildId;
+    public void setWildcardDto(TrivWildcardDto WildcardDto) {
+        this.WildcardDto = WildcardDto;
     }
 
     @Override
