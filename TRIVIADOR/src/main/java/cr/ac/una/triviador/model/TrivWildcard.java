@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -23,10 +18,7 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 
-/**
- *
- * @author Sofia Bejarano Mora
- */
+
 @Entity
 @Table(name = "TRIV_WILDCARD", catalog = "", schema = "TRI")
 @NamedQueries({ /* @NamedQuery(name = "TrivWildcard.findAll", query = "SELECT t FROM TrivWildcard t"),
@@ -36,7 +28,7 @@ import jakarta.persistence.Version;
 public class TrivWildcard implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @Id
     @SequenceGenerator(name = "TRI_WILDCARD_WIL_ID_WILDCARD", sequenceName = "tri.TRIV_WILDCARD_SEQ01", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRI_WILDCARD_WIL_ID_WILDCARD")

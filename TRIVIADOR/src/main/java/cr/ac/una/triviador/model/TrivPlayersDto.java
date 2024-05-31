@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
@@ -21,7 +18,7 @@ public class TrivPlayersDto implements Serializable {
     private Long version;
     private List<TrivAchievementsDto> achievementDtoList;
     private List<TrivPlayersCategoriesGameDto> playerCategoryGameDtoList;
-    private List<TrivPlayersGameDto> playerGameDtoList;
+    //private List<TrivPlayersGameDto> playerGameDtoList;
     private List<TrivPlayersWildcardGameDto> playerWildcardGameDtoList;
     private List<TrivQuestionsCategoriesDto> questionCategoryDtoList;
 
@@ -139,13 +136,13 @@ public class TrivPlayersDto implements Serializable {
         this.playerCategoryGameDtoList = playerCategoryGameDtoList;
     }
 
-    public List<TrivPlayersGameDto> getPlayersGameList() {
-        return playerGameDtoList;
-    }
-
-    public void setPlayersGameList(List<TrivPlayersGameDto> playerGameDtoList) {
-        this.playerGameDtoList = playerGameDtoList;
-    }
+//    public List<TrivPlayersGameDto> getPlayersGameList() {
+//        return playerGameDtoList;
+//    }
+//
+//    public void setPlayersGameList(List<TrivPlayersGameDto> playerGameDtoList) {
+//        this.playerGameDtoList = playerGameDtoList;
+//    }
 
     public List<TrivPlayersWildcardGameDto> getPlayersWildcardGameList() {
         return playerWildcardGameDtoList;

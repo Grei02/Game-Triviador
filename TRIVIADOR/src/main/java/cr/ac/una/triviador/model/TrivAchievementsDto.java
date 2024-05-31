@@ -18,7 +18,7 @@ public class TrivAchievementsDto implements Serializable{
     private SimpleStringProperty amount;
     private SimpleStringProperty description;
     private Long version;
-    private List<TrivPlayersDto> playersDtoList;
+    //private List<TrivPlayersDto> playersDtoList;
     
     public TrivAchievementsDto() {
         this.id = new SimpleStringProperty("");
@@ -92,13 +92,13 @@ public class TrivAchievementsDto implements Serializable{
         this.version = version;
     }
 
-    public List<TrivPlayersDto> getPlayersDtoList() {
-        return playersDtoList;
-    }
+//    public List<TrivPlayersDto> getPlayersDtoList() {
+//        return playersDtoList;
+//    }
 
-    public void setPlayersList(List<TrivPlayersDto> playersListDto) {
-        this.playersDtoList = playersListDto;
-    }
+//    public void setPlayersList(List<TrivPlayersDto> playersListDto) {
+//        this.playersDtoList = playersListDto;
+//    }
 
     @Override
     public int hashCode() {

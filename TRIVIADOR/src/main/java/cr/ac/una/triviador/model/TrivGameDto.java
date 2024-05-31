@@ -24,9 +24,9 @@ public class TrivGameDto implements Serializable {
     private SimpleStringProperty counterround;
     private Long version;
     private List<TrivQuestionsDto> questionsDtoList;
-    private List<TrivPlayersCategoriesGameDto> playersCategoriesGameDtoList;
+    //private List<TrivPlayersCategoriesGameDto> playersCategoriesGameDtoList;
     private List<TrivPlayersGameDto> playersGameDtoList;
-    private List<TrivPlayersWildcardGameDto> playersWildcardGameDtoList;
+   // private List<TrivPlayersWildcardGameDto> playersWildcardGameDtoList;
 
     public TrivGameDto() {
         this.id = new SimpleStringProperty("");
@@ -157,13 +157,13 @@ public class TrivGameDto implements Serializable {
         this.questionsDtoList = questionsDtoList;
     }
 
-    public List<TrivPlayersCategoriesGameDto> getPlayersCategoriesGameList() {
-        return playersCategoriesGameDtoList;
-    }
-
-    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGameDto> playersCategoriesGameDtoList) {
-        this.playersCategoriesGameDtoList = playersCategoriesGameDtoList;
-    }
+//    public List<TrivPlayersCategoriesGameDto> getPlayersCategoriesGameList() {
+//        return playersCategoriesGameDtoList;
+//    }
+//
+//    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGameDto> playersCategoriesGameDtoList) {
+//        this.playersCategoriesGameDtoList = playersCategoriesGameDtoList;
+//    }
 
     public List<TrivPlayersGameDto> getPlayersGameList() {
         return playersGameDtoList;
@@ -173,13 +173,13 @@ public class TrivGameDto implements Serializable {
         this.playersGameDtoList = playersGameDtoList;
     }
 
-    public List<TrivPlayersWildcardGameDto> getPlayersWildcardGameList() {
-        return playersWildcardGameDtoList;
-    }
-
-    public void setPlayersWildcardGameList(List<TrivPlayersWildcardGameDto> playersWildcardGameDtoList) {
-        this.playersWildcardGameDtoList = playersWildcardGameDtoList;
-    }
+//    public List<TrivPlayersWildcardGameDto> getPlayersWildcardGameList() {
+//        return playersWildcardGameDtoList;
+//    }
+//
+//    public void setPlayersWildcardGameList(List<TrivPlayersWildcardGameDto> playersWildcardGameDtoList) {
+//        this.playersWildcardGameDtoList = playersWildcardGameDtoList;
+//    }
 
     @Override
     public int hashCode() {

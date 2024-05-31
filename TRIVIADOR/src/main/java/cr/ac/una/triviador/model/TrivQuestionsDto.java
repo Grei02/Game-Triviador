@@ -17,7 +17,7 @@ public class TrivQuestionsDto implements Serializable {
     private SimpleStringProperty questions;
     private SimpleBooleanProperty isEnabled;
     private Long version;
-    private List<TrivGameDto> gameDtoList;
+    //oprivate List<TrivGameDto> gameDtoList;
     private TrivCategoriesDto categoryDto;
     private List<TrivAnswersDto> answersDtoList;
 
@@ -70,13 +70,13 @@ public class TrivQuestionsDto implements Serializable {
         this.version = version;
     }
 
-    public List<TrivGameDto> getGameDtoList() {
-        return gameDtoList;
-    }
-
-    public void setGameDtoList(List<TrivGameDto> gameDtoList) {
-        this.gameDtoList = gameDtoList;
-    }
+//    public List<TrivGameDto> getGameDtoList() {
+//        return gameDtoList;
+//    }
+//
+//    public void setGameDtoList(List<TrivGameDto> gameDtoList) {
+//        this.gameDtoList = gameDtoList;
+//    }
 
     public TrivCategoriesDto getCategoryDto() {
         return categoryDto;
