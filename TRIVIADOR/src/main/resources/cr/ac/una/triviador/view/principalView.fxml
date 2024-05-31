@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.triviador.Controller.PrincipalViewController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.triviador.Controller.PrincipalViewController">
+   <children>
+      <VBox layoutY="14.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <MenuButton mnemonicParsing="false" text="Menu">
+                    <items>
+                      <MenuItem fx:id="itemLoadGame" mnemonicParsing="false" onAction="#onActionItemLoadGame" text="Cargar Partida" />
+                      <MenuItem fx:id="itemStartGame" mnemonicParsing="false" onAction="#onActioniIemStartGame" text="Iniciar Partida " />
+                        <MenuItem fx:id="itemAbout" mnemonicParsing="false" onAction="#onActionItemAbout" text="Acerca" />
+                        <MenuItem fx:id="itemHowToPlay" mnemonicParsing="false" onAction="#onActionItemHowToPlay" text="Como Jugar " />
+                        <MenuItem fx:id="itemSeeRanking" mnemonicParsing="false" onAction="#onActionItemSeeRanking" text="Ver ranquin" />
+                        <MenuItem fx:id="itemSeeProfile" mnemonicParsing="false" onAction="#onActionItemSeeProfile" text="Ver perfil" />
+                        <MenuItem fx:id="itemManageQuestions" mnemonicParsing="false" onAction="#onAxtionItemManageQuestions" text="Administrar Preguntas " />
+                    </items>
+                  </MenuButton>
+               </children></HBox>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </VBox>
+      <ImageView fx:id="imgPrincipal" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" styleClass="backgroundView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
 </AnchorPane>

@@ -74,3 +74,11 @@
 .mfx-combo-box:disabled .caret .mfx-font-icon {
   -mfx-color: #555555; /* Color del caret cuando está deshabilitado */
 }
+.backgroundView  {
+    -fx-background-image: url("../resources/mainFund.png");
+    -fx-width: 100%;
+    -fx-height: 400px;
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
