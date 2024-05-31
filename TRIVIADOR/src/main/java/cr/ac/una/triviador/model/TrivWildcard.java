@@ -1,4 +1,3 @@
-
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;

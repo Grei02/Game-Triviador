@@ -1,4 +1,3 @@
-
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
@@ -137,5 +136,4 @@ public class TrivPlayersWildcardGame implements Serializable {
     public String toString() {
         return "cr.ac.una.triviador.model.TrivPlayersWildcardGame[ id=" + id + " ]";
     }
-
 }
