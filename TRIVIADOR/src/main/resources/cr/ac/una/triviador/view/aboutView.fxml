@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.triviador.Controller.AboutController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="700.0" styleClass="backgroundAbout" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.triviador.Controller.AboutController">
    <children>
-      <ImageView fx:id="imgAbout1" fitHeight="400.0" fitWidth="600.0" layoutX="40.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <VBox layoutX="422.0" layoutY="334.0" prefHeight="66.0" prefWidth="176.0">
+      <VBox alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="292.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="102.0" prefWidth="116.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="564.0" AnchorPane.topAnchor="292.0">
          <children>
-            <MFXButton fx:id="btnNext" onAction="#onActionBtnNext" prefHeight="60.0" prefWidth="245.0">
-               <graphic>
-                  <ImageView fx:id="imgBtnNext" fitHeight="52.0" fitWidth="100.0" pickOnBounds="true" smooth="false" />
-               </graphic>
-            </MFXButton>
-         </children>
-      </VBox>
+            <ImageView fx:id="imgSalir" fitHeight="136.0" fitWidth="100.0" onMouseClicked="#onMouseClickedSalir" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
+         </children></VBox>
    </children>
 </AnchorPane>

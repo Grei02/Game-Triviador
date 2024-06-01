@@ -77,8 +77,13 @@
 }
 .backgroundPrincipal  {
      -fx-background-image: url("../resources/mainFund.png");
-    -fx-width: 50%;
-    -fx-height: 400px;
+
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+.backgroundAbout {
+     -fx-background-image: url("../resources/acerca.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
@@ -110,4 +115,11 @@
     -fx-background-color: #81D4FA; /* Color de fondo al seleccionar un elemento del menú */
 }
 
+#imgSalir{
+     -fx-image: url("../resources/salir.png");
+}
+
+#imgSalir:hover{
+     -fx-image: url("../resources/salirHover.png");
+}
 

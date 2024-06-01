@@ -1,6 +1,7 @@
 
 package cr.ac.una.triviador.Controller;
 
+import cr.ac.una.triviador.util.FlowController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -46,10 +47,13 @@ public class PrincipalViewController extends Controller implements Initializable
 
     @FXML
     private void onActionItemAbout(ActionEvent event) {
+        FlowController.getInstance().goViewInStage("aboutView", getStage());
+       
     }
 
     @FXML
     private void onActionItemHowToPlay(ActionEvent event) {
+        
     }
 
     @FXML
