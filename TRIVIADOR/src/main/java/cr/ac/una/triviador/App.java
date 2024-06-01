@@ -1,5 +1,6 @@
 package cr.ac.una.triviador;
 
+import cr.ac.una.triviador.util.FlowController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,18 +16,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("CreateGameView"), 640, 480);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/"+fxml + ".fxml"));
-        return fxmlLoader.load();
+        FlowController.getInstance().InitializeFlow(stage, null);
+        FlowController.getInstance().goViewInWindow("CreateGameView");
     }
 
     public static void main(String[] args) {
