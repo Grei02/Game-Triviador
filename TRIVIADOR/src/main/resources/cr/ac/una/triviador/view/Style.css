@@ -75,12 +75,39 @@
 .mfx-combo-box:disabled .caret .mfx-font-icon {
   -mfx-color: #555555; /* Color del caret cuando está deshabilitado */
 }
-.backgroundView  {
-    -fx-background-image: url("...\resources\mainFund.png");
-/*    -fx-width: 100%;
+.backgroundPrincipal  {
+     -fx-background-image: url("../resources/mainFund.png");
+    -fx-width: 50%;
     -fx-height: 400px;
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
-    -fx-background-position: center center;*/
+    -fx-background-position: center center;
 }
+
+.menu-button-custom {
+    -fx-background-color: #2980b9; /* Color de fondo del botón */
+    -fx-text-fill: white; /* Color del texto */
+    -fx-font-size: 16px;
+    -fx-background-radius: 5px; /* Radio de las esquinas */
+    -fx-border-radius: 5px; /* Radio del borde */
+}
+
+.menu-button-custom:hover {
+    -fx-background-color: #E0F7FA; /* Color de fondo al pasar el cursor */
+}
+
+/* Estilo para el menú desplegable */
+.menu-button-custom .menu-item {
+    -fx-background-color: #2980b9; /* Color de fondo del menú desplegable */
+    -fx-text-fill: black; /* Color del texto del menú desplegable */
+}
+
+.menu-button-custom .menu-item:hover {
+    -fx-background-color: #B3E5FC; /* Color de fondo al pasar el cursor sobre los elementos del menú */
+}
+
+.menu-button-custom .menu-item:selected {
+    -fx-background-color: #81D4FA; /* Color de fondo al seleccionar un elemento del menú */
+}
+
 

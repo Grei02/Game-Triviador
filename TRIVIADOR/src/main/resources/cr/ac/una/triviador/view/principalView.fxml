@@ -3,18 +3,17 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.triviador.Controller.PrincipalViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundPrincipal" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.triviador.Controller.PrincipalViewController">
    <children>
-      <VBox layoutY="14.0" prefHeight="55.0" prefWidth="600.0" AnchorPane.bottomAnchor="364.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="backgroundPrincipal" layoutY="14.0" prefHeight="55.0" prefWidth="600.0" AnchorPane.bottomAnchor="364.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="26.0" prefWidth="570.0">
                <children>
-                  <MenuButton mnemonicParsing="false" text="Menu">
+                  <MenuButton mnemonicParsing="false" prefHeight="41.0" prefWidth="130.0" styleClass="menu-button-custom" text="Menu">
                     <items>
                       <MenuItem fx:id="itemLoadGame" mnemonicParsing="false" onAction="#onActionItemLoadGame" text="Cargar Partida" />
                       <MenuItem fx:id="itemStartGame" mnemonicParsing="false" onAction="#onActioniIemStartGame" text="Iniciar Partida " />
@@ -31,6 +30,5 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </VBox>
-      <ImageView fx:id="imgPrincipal" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" styleClass="backgroundView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>
