@@ -1,4 +1,4 @@
-package cr.ac.una.triviador.Controller;
+ package cr.ac.una.triviador.Controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
@@ -14,7 +14,6 @@ import javafx.fxml.Initializable;
 
 public class CreateGameController extends Controller implements Initializable {
 
-    
     @FXML
     private MFXButton btnPlayerRegistration;
 
@@ -68,7 +67,6 @@ public class CreateGameController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
-        
     }
     
 }

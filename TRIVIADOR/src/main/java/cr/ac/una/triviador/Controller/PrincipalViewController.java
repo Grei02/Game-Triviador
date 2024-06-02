@@ -1,4 +1,3 @@
-
 package cr.ac.una.triviador.Controller;
 
 import cr.ac.una.triviador.util.FlowController;
@@ -44,12 +43,12 @@ public class PrincipalViewController extends Controller implements Initializable
 
     @FXML
     private void onActioniIemStartGame(ActionEvent event) {
+         FlowController.getInstance().goViewInStage("CreateGameView", getStage());
     }
 
     @FXML
     private void onActionItemAbout(ActionEvent event) {
         FlowController.getInstance().goViewInStage("aboutView", getStage());
-       
     }
 
     @FXML
