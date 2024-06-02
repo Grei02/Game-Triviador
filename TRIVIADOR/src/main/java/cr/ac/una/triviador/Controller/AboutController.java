@@ -28,7 +28,6 @@ public class AboutController extends Controller implements Initializable {
     @FXML
     private void onMouseClickedSalir(MouseEvent event) {
      FlowController.getInstance().goViewInStage("principalView", getStage());
-  
     }
     
 }

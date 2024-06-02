@@ -1,5 +1,6 @@
 package cr.ac.una.triviador.Controller;
 
+import cr.ac.una.triviador.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
@@ -8,56 +9,41 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class LoadGameController extends Controller implements Initializable {
 
     @FXML
-    private MFXButton btnAdd;
+    private MFXLegacyTableView<?> tabAvailableGames;
 
     @FXML
-    private MFXButton btnCancel;
+    private MFXLegacyTableView<?> tabGamePlayer;
 
     @FXML
-    private MFXButton btnChangeName;
+    private ImageView imgSalir;
 
-    @FXML
-    private MFXButton btnEliminate;
 
-    @FXML
-    private MFXButton btnSave;
-
-    @FXML
-    private MFXLegacyTableView<?> tabRegistered;
-
-    @FXML
-    private MFXTextField txtName;
-
-    @FXML
     void onActionBtnAdd(ActionEvent event) {
 
     }
 
-    @FXML
     void onActionBtnCancel(ActionEvent event) {
 
     }
 
-    @FXML
     void onActionBtnChangeName(ActionEvent event) {
 
     }
 
-    @FXML
     void onActionBtnEliminate(ActionEvent event) {
 
     }
 
-    @FXML
     void onActionBtnSave(ActionEvent event) {
 
     }
 
-    @FXML
     void onActionTxtName(ActionEvent event) {
 
     }
@@ -69,6 +55,11 @@ public class LoadGameController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
+    }
+
+    @FXML
+    private void onMouseClickedSalir(MouseEvent event) {
+     FlowController.getInstance().goViewInStage("principalView", getStage());
     }
     
 }

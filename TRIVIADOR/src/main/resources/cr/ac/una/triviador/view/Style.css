@@ -82,6 +82,13 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 }
+.backgroundFondoPrincipal  {
+     -fx-background-image: url("../resources/fondoPrincipal.png");
+
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
 .backgroundAbout {
      -fx-background-image: url("../resources/acerca.png");
     -fx-background-size: cover;
@@ -122,4 +129,101 @@
 #imgSalir:hover{
      -fx-image: url("../resources/salirHover.png");
 }
+
+.jfx-titulo-label{
+    -fx-font-size:24.0px;
+    -fx-padding: 5 0 5 0;
+    -fx-text-fill: #33ffff;
+    -fx-text-fill:  -fx-base-color-titulos;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 51, 204, 1),2,0.0,1,2);
+}
+
+/********************
+Table View
+********************/
+.mfx-table-view {
+  -fx-background-color: #E0F7FA; /* Fondo celeste claro */
+  -fx-background-radius: 10; /* Aumentar el redondeo */
+  -fx-border-color: #00ACC1; /* Borde celeste más oscuro */
+  -fx-border-width: 2px; /* Grosor del borde */
+  -fx-border-radius: 10; /* Aumentar el redondeo */
+  -fx-padding: 5; /* Añadir algo de padding */
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 4); /* Sombra para un efecto más atractivo */
+}
+
+.mfx-table-view .columns-container {
+  -fx-border-color: transparent transparent #00ACC1 transparent; /* Borde inferior celeste */
+  -fx-background-color: #B2EBF2; /* Fondo ligeramente más oscuro */
+  -fx-padding: 5; /* Añadir padding para espacio */
+  -fx-border-width: 2px; /* Grosor del borde */
+}
+
+.mfx-table-view .default-footer {
+  -fx-border-color: #00ACC1 transparent transparent transparent; /* Borde superior celeste */
+  -fx-padding: 10; /* Mantener el padding */
+  -fx-background-color: #E0F7FA; /* Fondo celeste claro */
+  -fx-border-width: 2px; /* Grosor del borde */
+}
+
+.mfx-table-view .default-footer .mfx-icon-wrapper .mfx-ripple-generator {
+  -mfx-ripple-radius: 18; /* Mantener el radio del ripple */
+  -fx-background-color: #4DD0E1; /* Color del ripple */
+}
+
+/********************
+Table Columns
+********************/
+.mfx-table-column {
+  -fx-border-color: transparent transparent #00ACC1 transparent; /* Borde inferior celeste */
+  -fx-background-color: #B2EBF2; /* Fondo celeste ligeramente más oscuro */
+  -fx-padding: 10 15; /* Ajuste de padding */
+}
+
+.mfx-table-column:hover,
+.mfx-table-column:dragged {
+  -fx-border-color: transparent #00ACC1 transparent transparent; /* Borde celeste más oscuro al pasar el ratón */
+  -fx-background-color: #B2EBF2; /* Fondo celeste ligeramente más oscuro */
+}
+
+/********************
+Table Rows
+********************/
+.mfx-table-row {
+  -fx-background-color: #E0F7FA; /* Fondo celeste claro */
+}
+
+.mfx-table-row:hover {
+  -fx-background-color: #E0F7FA; /* Fondo celeste claro */
+}
+
+.mfx-table-row:selected {
+  -fx-background-color: #80DEEA; /* Fondo celeste más oscuro al seleccionar */
+}
+
+/********************
+Table Row Cells
+********************/
+.mfx-table-row-cell {
+  -fx-background-color: #E0F7FA; /* Fondo celeste claro */
+  -fx-padding: 5 15; /* Ajuste de padding */
+}
+
+/********************
+Virtual Flow
+********************/
+.mfx-table-view .virtual-flow {
+  -fx-background-color: #E0F7FA; /* Fondo celeste claro */
+  -track-color: #B2EBF2; /* Color de la pista */
+  -thumb-color: #00ACC1; /* Color del thumb */
+  -thumb-hover-color: #007BFF; /* Color del thumb al pasar el ratón */
+}
+//SEPARTOR
+#separator {
+  width: 100%;
+  height: 5px;
+  background-color: #00BFFF; /* Color celeste */
+  margin: 20px 0;
+}
+
 

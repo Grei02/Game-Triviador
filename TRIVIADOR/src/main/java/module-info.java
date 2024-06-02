@@ -1,4 +1,3 @@
-
 module module {
     opens cr.ac.una.triviador.Controller to javafx.fxml;
     exports cr.ac.una.triviador.Controller;

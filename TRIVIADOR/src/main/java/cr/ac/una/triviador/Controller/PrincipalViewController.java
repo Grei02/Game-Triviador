@@ -39,6 +39,7 @@ public class PrincipalViewController extends Controller implements Initializable
 
     @FXML
     private void onActionItemLoadGame(ActionEvent event) {
+   FlowController.getInstance().goViewInStage("LoadGameView", getStage());
     }
 
     @FXML
