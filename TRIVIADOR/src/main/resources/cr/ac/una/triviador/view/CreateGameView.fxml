@@ -25,11 +25,11 @@
             </ImageView>
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="186.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <MFXTextField fx:id="txtName" floatingText="Nombre De Partida" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="49.0" prefWidth="167.0" styleClass="mfx-text-field1" VBox.vgrow="ALWAYS" />
-                        <MFXComboBox fx:id="cmbNumberPlayer" floatingText="Cantidad Jugadores" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onActionCmbNumberPlayer" styleClass="mfx-combo-box" VBox.vgrow="ALWAYS" />
-                        <MFXButton fx:id="btnPlayerRegistration" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onActionBtnPlayerRegistration" styleClass="jfx-contenedor-principal" text="Registrar jugadores" VBox.vgrow="ALWAYS" />
+                        <MFXTextField fx:id="txtName" floatingText="Nombre De Partida" maxWidth="1.7976931348623157E308" prefHeight="49.0" prefWidth="167.0" styleClass="mfx-text-field1" VBox.vgrow="ALWAYS" />
+                        <MFXComboBox fx:id="cmbNumberPlayer" floatingText="Cantidad Jugadores" maxWidth="1.7976931348623157E308" onAction="#onActionCmbNumberPlayer" styleClass="mfx-combo-box" VBox.vgrow="ALWAYS" />
+                        <MFXButton fx:id="btnPlayerRegistration" maxWidth="1.7976931348623157E308" onAction="#onActionBtnPlayerRegistration" styleClass="jfx-contenedor-principal" text="Registrar jugadores" VBox.vgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets bottom="30.0" />
@@ -75,9 +75,9 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <MFXButton fx:id="btnReturnBeginning" onAction="#onActionBtnReturnBeginning" text="Volver al inicio" />
+                  <MFXButton fx:id="btnReturnBeginning" onAction="#onActionBtnReturnBeginning" text="Volver al inicio" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
