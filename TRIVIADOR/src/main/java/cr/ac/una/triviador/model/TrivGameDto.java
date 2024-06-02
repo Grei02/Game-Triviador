@@ -13,19 +13,19 @@ public class TrivGameDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private SimpleStringProperty id;
-    private SimpleStringProperty name;
-    private SimpleStringProperty time;
-    private SimpleBooleanProperty isTime;
-    private SimpleStringProperty difficulty;
-    private SimpleStringProperty numberplayer;
-    private SimpleBooleanProperty isDuel;
-    private SimpleStringProperty turn;
-    private SimpleStringProperty counterround;
+    public SimpleStringProperty id;
+    public SimpleStringProperty name;
+    public SimpleStringProperty time;
+    public SimpleBooleanProperty isTime;
+    public SimpleStringProperty difficulty;
+    public SimpleStringProperty numberplayer;
+    public SimpleBooleanProperty isDuel;
+    public SimpleStringProperty turn;
+    public SimpleStringProperty counterround;
     private Long version;
-    private List<TrivQuestionsDto> questionsDtoList;
+    public List<TrivQuestionsDto> questionsDtoList;
     //private List<TrivPlayersCategoriesGameDto> playersCategoriesGameDtoList;
-    private List<TrivPlayersGameDto> playersGameDtoList;
+    public List<TrivPlayersGameDto> playersGameDtoList;
    // private List<TrivPlayersWildcardGameDto> playersWildcardGameDtoList;
 
     public TrivGameDto() {
@@ -40,7 +40,7 @@ public class TrivGameDto implements Serializable {
         this.counterround = new SimpleStringProperty("");
     }
 
-    public TrivGameDto(TrivGame game) {
+    public TrivGameDto(Game game) {
         this();
         this.id.set(game.getId().toString());
         this.name.set(game.getName());

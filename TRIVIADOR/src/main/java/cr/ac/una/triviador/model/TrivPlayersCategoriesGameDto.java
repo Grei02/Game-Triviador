@@ -8,19 +8,19 @@ public class TrivPlayersCategoriesGameDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
-    private SimpleStringProperty id;
+    public SimpleStringProperty id;
     private Long version;
-    private TrivCategoriesDto categoriesDto;
-    private TrivGameDto gameDto;
-    private TrivPlayersDto playerDto;
+    public TrivCategoriesDto categoriesDto;
+    public TrivGameDto gameDto;
+    public TrivPlayersDto playerDto;
     
     public TrivPlayersCategoriesGameDto() {
         this.id = new SimpleStringProperty("");
     }
 
-    public TrivPlayersCategoriesGameDto(TrivPlayersCategoriesGame playersCategoriesGame) {
+    public TrivPlayersCategoriesGameDto(PlayersCategoriesGame playersCategoriesGame) {
         this();
-        this.id.set(playersCategoriesGame.getCategories().toString());
+        this.id.set(playersCategoriesGame.getCategory().toString());
         this.version=playersCategoriesGame.getVersion();
     }
     

@@ -9,19 +9,19 @@ public class TrivPlayersWildcardGameDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private SimpleStringProperty id;
-    private SimpleBooleanProperty isUsed;
+    public SimpleStringProperty id;
+    public SimpleBooleanProperty isUsed;
     private Long version;
-    private TrivGameDto gameDto;
-    private TrivPlayersDto player;
-    private TrivWildcardDto WildcardDto;
+    public TrivGameDto gameDto;
+    public TrivPlayersDto player;
+    public TrivWildcardDto WildcardDto;
 
     public TrivPlayersWildcardGameDto() {
         this.id = new SimpleStringProperty("");
         this.isUsed = new SimpleBooleanProperty(false);
     }
 
-    public TrivPlayersWildcardGameDto(TrivPlayersWildcardGame playersWildcardGame) {
+    public TrivPlayersWildcardGameDto(PlayersWildcardGame playersWildcardGame) {
         this.id.set(playersWildcardGame.getId().toString());
         this.isUsed.set(playersWildcardGame.getIsUsed().equals("1"));
         this.version = playersWildcardGame.getVersion();

@@ -14,16 +14,17 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "TRIV_ANSWERS", catalog = "", schema = "TRI")
-@NamedQueries({ /* @NamedQuery(name = "TrivAnswers.findAll", query = "SELECT t FROM TrivAnswers t"),
-    @NamedQuery(name = "TrivAnswers.findByAnsId", query = "SELECT t FROM TrivAnswers t WHERE t.id = :id"),
-    @NamedQuery(name = "TrivAnswers.findByAnsVersion", query = "SELECT t FROM TrivAnswers t WHERE t.version = :version"),
-    @NamedQuery(name = "TrivAnswers.findByAnsAnswers", query = "SELECT t FROM TrivAnswers t WHERE t.answers = :answers"),
-    @NamedQuery(name = "TrivAnswers.findByAnsIsCorrect", query = "SELECT t FROM TrivAnswers t WHERE t.isCorrect = :isCorrect"),
-    @NamedQuery(name = "TrivAnswers.findByAnsSelectednumber", query = "SELECT t FROM TrivAnswers t WHERE t.selectednumber = :selectednumber")*/})
-public class TrivAnswers implements Serializable {
+@NamedQueries({ /* @NamedQuery(name = "Answers.findAll", query = "SELECT t FROM Answers t"),
+    @NamedQuery(name = "Answers.findByAnsId", query = "SELECT t FROM Answers t WHERE t.id = :id"),
+    @NamedQuery(name = "Answers.findByAnsVersion", query = "SELECT t FROM Answers t WHERE t.version = :version"),
+    @NamedQuery(name = "Answers.findByAnsAnswers", query = "SELECT t FROM Answers t WHERE t.answers = :answers"),
+    @NamedQuery(name = "Answers.findByAnsIsCorrect", query = "SELECT t FROM Answers t WHERE t.isCorrect = :isCorrect"),
+    @NamedQuery(name = "Answers.findByAnsSelectednumber", query = "SELECT t FROM Answers t WHERE t.selectednumber = :selectednumber")*/})
+public class Answers implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,29 +34,29 @@ public class TrivAnswers implements Serializable {
     @Basic(optional = false)
     @Column(name = "ANS_ID")
     private Long id;
-    @Version
-    @Column(name = "ANS_VERSION")
-    private Long version;
     @Basic(optional = false)
     @Column(name = "ANS_ANSWERS")
     private String answers;
     @Basic(optional = false)
     @Column(name = "ANS_IS_CORRECT")
     private String isCorrect;
+    @Version
+    @Column(name = "ANS_VERSION")
+    private Long version;
     @Column(name = "ANS_SELECTEDNUMBER")
     private Long selectednumber;
-    @JoinColumn(name = "QUE_ID", referencedColumnName = "QUE_ID")
+    @JoinColumn(name = "QXA_QUE_ID", referencedColumnName = "QUE_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private TrivQuestions questions;
+    private Questions questions;
 
-    public TrivAnswers() {
+    public Answers() {
     }
 
-    public TrivAnswers(Long id) {
+    public Answers(Long id) {
         this.id = id;
     }
 
-    public TrivAnswers(TrivAnswersDto answersDto) {
+    public Answers(TrivAnswersDto answersDto) {
         this.id = answersDto.getId();
         update(answersDto);
     }
@@ -107,11 +108,11 @@ public class TrivAnswers implements Serializable {
         this.selectednumber = selectednumber;
     }
 
-    public TrivQuestions getQuestions() {
+    public Questions getQuestions() {
         return questions;
     }
 
-    public void setQuestions(TrivQuestions questions) {
+    public void setQuestions(Questions questions) {
         this.questions = questions;
     }
 
@@ -125,10 +126,10 @@ public class TrivAnswers implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrivAnswers)) {
+        if (!(object instanceof Answers)) {
             return false;
         }
-        TrivAnswers other = (TrivAnswers) object;
+        Answers other = (Answers) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

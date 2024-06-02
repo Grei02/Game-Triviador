@@ -9,8 +9,8 @@ public class TrivWildcardDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private SimpleStringProperty id;
-    private SimpleStringProperty name;
+    public SimpleStringProperty id;
+    public SimpleStringProperty name;
     private Long version;
    // private List<TrivPlayersWildcardGameDto> playersWildcardGameDtoList;
 
@@ -19,7 +19,7 @@ public class TrivWildcardDto implements Serializable {
         this.name = new SimpleStringProperty("");
     }
 
-    public TrivWildcardDto(TrivWildcard wildcard) {
+    public TrivWildcardDto(Wildcard wildcard) {
         this();
         this.id.set(wildcard.getId().toString());
         this.name.set(wildcard.getName());

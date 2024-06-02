@@ -17,15 +17,16 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "TRIV_QUESTIONS", catalog = "", schema = "TRI")
-@NamedQueries({ /* @NamedQuery(name = "TrivQuestions.findAll", query = "SELECT t FROM TrivQuestions t"),
-    @NamedQuery(name = "TrivQuestions.findByQueId", query = "SELECT t FROM TrivQuestions t WHERE t.id = :id"),
-    @NamedQuery(name = "TrivQuestions.findByQueQuestions", query = "SELECT t FROM TrivQuestions t WHERE t.questions = :questions"),
-    @NamedQuery(name = "TrivQuestions.findByQueIsEnabled", query = "SELECT t FROM TrivQuestions t WHERE t.isEnabled = :isEnabled"),
-    @NamedQuery(name = "TrivQuestions.findByQueVersion", query = "SELECT t FROM TrivQuestions t WHERE t.queVersion = :queVersion")*/})
-public class TrivQuestions implements Serializable {
+@NamedQueries({ /* @NamedQuery(name = "Questions.findAll", query = "SELECT t FROM Questions t"),
+    @NamedQuery(name = "Questions.findByQueId", query = "SELECT t FROM Questions t WHERE t.id = :id"),
+    @NamedQuery(name = "Questions.findByQueQuestions", query = "SELECT t FROM Questions t WHERE t.questions = :questions"),
+    @NamedQuery(name = "Questions.findByQueIsEnabled", query = "SELECT t FROM Questions t WHERE t.isEnabled = :isEnabled"),
+    @NamedQuery(name = "Questions.findByQueVersion", query = "SELECT t FROM Questions t WHERE t.queVersion = :queVersion")*/})
+public class Questions implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -41,25 +42,25 @@ public class TrivQuestions implements Serializable {
     @Basic(optional = false)
     @Column(name = "QUE_IS_ENABLED")
     private String isEnabled;
+    @ManyToMany(mappedBy = "questionsList", fetch = FetchType.LAZY)
+    private List<Game> gameList;
+    @OneToMany(mappedBy = "questions", fetch = FetchType.LAZY)
+    private List<Answers> answersList;
     @Version
     @Column(name = "QUE_VERSION")
     private Long version;
-    @ManyToMany(mappedBy = "trivQuestionsList", fetch = FetchType.LAZY)
-    private List<TrivGame> gameList;
-    @JoinColumn(name = "CAT_ID", referencedColumnName = "CAT_ID")
+    @JoinColumn(name = "CXQ_CAT_ID", referencedColumnName = "CAT_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private TrivCategories category;
-    @OneToMany(mappedBy = "queId", fetch = FetchType.LAZY)
-    private List<TrivAnswers> answersList;
+    private Categories category;
 
-    public TrivQuestions() {
+    public Questions() {
     }
 
-    public TrivQuestions(Long id) {
+    public Questions(Long id) {
         this.id = id;
     }
     
-    public TrivQuestions (TrivQuestionsDto questionsDto) {
+    public Questions (TrivQuestionsDto questionsDto) {
         this.id = questionsDto.getId();
         update(questionsDto);
     }
@@ -102,27 +103,27 @@ public class TrivQuestions implements Serializable {
         this.version = version;
     }
 
-    public List<TrivGame> getGameList() {
+    public List<Game> getGameList() {
         return gameList;
     }
 
-    public void setGameList(List<TrivGame> gameList) {
+    public void setGameList(List<Game> gameList) {
         this.gameList = gameList;
     }
 
-    public TrivCategories getCategory() {
+    public Categories getCategory() {
         return category;
     }
 
-    public void setCategory(TrivCategories category) {
+    public void setCategory(Categories category) {
         this.category = category;
     }
 
-    public List<TrivAnswers> getAnswersList() {
+    public List<Answers> getAnswersList() {
         return answersList;
     }
 
-    public void setAnswersList(List<TrivAnswers> answersList) {
+    public void setAnswersList(List<Answers> answersList) {
         this.answersList = answersList;
     }
 
@@ -136,10 +137,10 @@ public class TrivQuestions implements Serializable {
     @Override
     public boolean equals(Object object) {
         
-        if (!(object instanceof TrivQuestions)) {
+        if (!(object instanceof Questions)) {
             return false;
         }
-        TrivQuestions other = (TrivQuestions) object;
+        Questions other = (Questions) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

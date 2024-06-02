@@ -14,16 +14,19 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "TRIV_QUESTIONS_CATEGORIES", catalog = "", schema = "TRI")
 @NamedQueries({
-    /*@NamedQuery(name = "TrivQuestionsCategories.findAll", query = "SELECT t FROM TrivQuestionsCategories t"),
-    @NamedQuery(name = "TrivQuestionsCategories.findByQcatId", query = "SELECT t FROM TrivQuestionsCategories t WHERE t.id = :id"),
-    @NamedQuery(name = "TrivQuestionsCategories.findByQcatCountanswer", query = "SELECT t FROM TrivQuestionsCategories t WHERE t.countanswer = :countanswer"),
-    @NamedQuery(name = "TrivQuestionsCategories.findByQcatCounthit", query = "SELECT t FROM TrivQuestionsCategories t WHERE t.counthit = :counthit"),
-    @NamedQuery(name = "TrivQuestionsCategories.findByQcatVersion", query = "SELECT t FROM TrivQuestionsCategories t WHERE t.version = :version")*/})
-public class TrivQuestionsCategories implements Serializable {
+    /*@NamedQuery(name = "QuestionsCategories.findAll", query = "SELECT t FROM QuestionsCategories t"),
+    @NamedQuery(name = "QuestionsCategories.findByQcatId", query = "SELECT t FROM QuestionsCategories t WHERE t.id = :id"),
+    @NamedQuery(name = "QuestionsCategories.findByQcatCountanswer", query = "SELECT t FROM QuestionsCategories t WHERE t.countanswer = :countanswer"),
+    @NamedQuery(name = "QuestionsCategories.findByQcatCounthit", query = "SELECT t FROM QuestionsCategories t WHERE t.counthit = :counthit"),
+    @NamedQuery(name = "QuestionsCategories.findByQcatVersion", query = "SELECT t FROM QuestionsCategories t WHERE t.version = :version")*/})
+public class QuestionsCategories implements Serializable {
+
+
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -40,22 +43,22 @@ public class TrivQuestionsCategories implements Serializable {
     @Version
     @Column(name = "QCAT_VERSION")
     private Long version;
-    @JoinColumn(name = "QCAT_CAT_ID", referencedColumnName = "CAT_ID")
+    @JoinColumn(name = "CXQC_CAT_ID", referencedColumnName = "CAT_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private TrivCategories category;
-    @JoinColumn(name = "PLA_ID", referencedColumnName = "PLA_ID")
+    private Categories category;
+    @JoinColumn(name = "PXQC_PLA_ID", referencedColumnName = "PLA_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private TrivPlayers player;
-
-    public TrivQuestionsCategories() {
+    private Players player;
+    
+    public QuestionsCategories() {
         
     }
 
-    public TrivQuestionsCategories(Long id) {
+    public QuestionsCategories(Long id) {
         this.id = id;
     }
 
-    public TrivQuestionsCategories(TrivQuestionsCategoriesDto questionsCategoriesDto) {
+    public QuestionsCategories(TrivQuestionsCategoriesDto questionsCategoriesDto) {
         this.id = questionsCategoriesDto.getId();
         update(questionsCategoriesDto);
     }
@@ -98,19 +101,19 @@ public class TrivQuestionsCategories implements Serializable {
         this.version = version;
     }
 
-    public TrivCategories getCategory() {
+    public Categories getCategory() {
         return category;
     }
 
-    public void setCategory(TrivCategories category) {
+    public void setCategory(Categories category) {
         this.category = category;
     }
 
-    public TrivPlayers getPlayer() {
+    public Players getPlayer() {
         return player;
     }
 
-    public void setPlayer(TrivPlayers player) {
+    public void setPlayer(Players player) {
         this.player = player;
     }
 
@@ -124,10 +127,10 @@ public class TrivQuestionsCategories implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrivQuestionsCategories)) {
+        if (!(object instanceof QuestionsCategories)) {
             return false;
         }
-        TrivQuestionsCategories other = (TrivQuestionsCategories) object;
+        QuestionsCategories other = (QuestionsCategories) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -138,5 +141,5 @@ public class TrivQuestionsCategories implements Serializable {
     public String toString() {
         return "cr.ac.una.triviador.model.TrivQuestionsCategories[ id=" + id + " ]";
     }
-    
+
 }

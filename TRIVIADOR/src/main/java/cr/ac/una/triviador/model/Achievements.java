@@ -15,19 +15,18 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
-
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "TRIV_ACHIEVEMENTS", catalog = "", schema = "TRI")
-@NamedQueries({
-   /* @NamedQuery(name = "TrivAchievements.findAll", query = "SELECT t FROM TrivAchievements t"),
-    @NamedQuery(name = "TrivAchievements.findByAchId", query = "SELECT t FROM TrivAchievements t WHERE t.id = :id"),
-    @NamedQuery(name = "TrivAchievements.findByAchName", query = "SELECT t FROM TrivAchievements t WHERE t.name = :name"),
-    @NamedQuery(name = "TrivAchievements.findByAchType", query = "SELECT t FROM TrivAchievements t WHERE t.type = :type"),
-    @NamedQuery(name = "TrivAchievements.findByAchAmount", query = "SELECT t FROM TrivAchievements t WHERE t.amount = :amount"),
-    @NamedQuery(name = "TrivAchievements.findByAchDescription", query = "SELECT t FROM TrivAchievements t WHERE t.description = :description"),
-    @NamedQuery(name = "TrivAchievements.findByAchVersion", query = "SELECT t FROM TrivAchievements t WHERE t.version = :version")*/})
-public class TrivAchievements implements Serializable {
+@NamedQueries({ /* @NamedQuery(name = "Achievements.findAll", query = "SELECT t FROM Achievements t"),
+    @NamedQuery(name = "Achievements.findByAchId", query = "SELECT t FROM Achievements t WHERE t.id = :id"),
+    @NamedQuery(name = "Achievements.findByAchName", query = "SELECT t FROM Achievements t WHERE t.name = :name"),
+    @NamedQuery(name = "Achievements.findByAchType", query = "SELECT t FROM Achievements t WHERE t.type = :type"),
+    @NamedQuery(name = "Achievements.findByAchAmount", query = "SELECT t FROM Achievements t WHERE t.amount = :amount"),
+    @NamedQuery(name = "Achievements.findByAchDescription", query = "SELECT t FROM Achievements t WHERE t.description = :description"),
+    @NamedQuery(name = "Achievements.findByAchVersion", query = "SELECT t FROM Achievements t WHERE t.version = :version")*/})
+public class Achievements implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -43,25 +42,27 @@ public class TrivAchievements implements Serializable {
     @Basic(optional = false)
     @Column(name = "ACH_TYPE")
     private String type;
+    @Column(name = "ACH_DESCRIPTION")
+    private String description;
     @Basic(optional = false)
     @Column(name = "ACH_AMOUNT")
     private Long amount;
-    @Column(name = "ACH_DESCRIPTION")
-    private String description;
     @Version
     @Column(name = "ACH_VERSION")
     private Long version;
-    @ManyToMany(mappedBy = "trivAchievementsList", fetch = FetchType.LAZY)
-    private List<TrivPlayers> playersList;
+    @Column(name = "ACH_NAMEIMAGE")
+    private String nameImage;
+    @ManyToMany(mappedBy = "achievementsList", fetch = FetchType.LAZY)
+    private List<Players> playersList;
 
-    public TrivAchievements() {
+    public Achievements() {
     }
 
-    public TrivAchievements(Long id) {
+    public Achievements(Long id) {
         this.id = id;
     }
-    
-    public TrivAchievements(TrivAchievementsDto achievementsDto) {
+
+    public Achievements(TrivAchievementsDto achievementsDto) {
         this.id = achievementsDto.getId();
         update(achievementsDto);
     }
@@ -69,7 +70,8 @@ public class TrivAchievements implements Serializable {
     public void update(TrivAchievementsDto achievementsDto) {
         this.name = achievementsDto.getName();
         this.type = achievementsDto.getType();
-        this.description=achievementsDto.getDescription();
+        this.description = achievementsDto.getDescription();
+        this.nameImage = achievementsDto.getNameImage();
         this.amount = achievementsDto.getAmount();
         this.version = achievementsDto.getVersion();
     }
@@ -114,6 +116,14 @@ public class TrivAchievements implements Serializable {
         this.description = description;
     }
 
+    public String getNameImage() {
+        return nameImage;
+    }
+
+    public void setNameImage(String nameImage) {
+        this.nameImage = nameImage;
+    }
+
     public Long getVersion() {
         return version;
     }
@@ -122,11 +132,11 @@ public class TrivAchievements implements Serializable {
         this.version = version;
     }
 
-    public List<TrivPlayers> getPlayersList() {
+    public List<Players> getPlayersList() {
         return playersList;
     }
 
-    public void setPlayersList(List<TrivPlayers> playersList) {
+    public void setPlayersList(List<Players> playersList) {
         this.playersList = playersList;
     }
 
@@ -140,10 +150,10 @@ public class TrivAchievements implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrivAchievements)) {
+        if (!(object instanceof Achievements)) {
             return false;
         }
-        TrivAchievements other = (TrivAchievements) object;
+        Achievements other = (Achievements) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

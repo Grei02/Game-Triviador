@@ -8,19 +8,19 @@ import javafx.beans.property.SimpleStringProperty;
 public class TrivPlayersDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private SimpleStringProperty id;
-    private SimpleStringProperty name;
-    private SimpleStringProperty description;
-    private SimpleStringProperty countergamewin;
-    private SimpleStringProperty countergamelose;
-    private SimpleStringProperty counterconsecutivequestion;
-    private SimpleStringProperty favoritecategory;
+    public SimpleStringProperty id;
+    public SimpleStringProperty name;
+    public SimpleStringProperty description;
+    public SimpleStringProperty countergamewin;
+    public SimpleStringProperty countergamelose;
+    public SimpleStringProperty counterconsecutivequestion;
+    public SimpleStringProperty favoritecategory;
     private Long version;
-    private List<TrivAchievementsDto> achievementDtoList;
-    private List<TrivPlayersCategoriesGameDto> playerCategoryGameDtoList;
-    //private List<TrivPlayersGameDto> playerGameDtoList;
-    private List<TrivPlayersWildcardGameDto> playerWildcardGameDtoList;
-    private List<TrivQuestionsCategoriesDto> questionCategoryDtoList;
+    public List<TrivAchievementsDto> achievementDtoList;
+    public List<TrivPlayersCategoriesGameDto> playerCategoryGameDtoList;
+//    private List<TrivPlayersGameDto> playerGameDtoList; cometada
+    public List<TrivPlayersWildcardGameDto> playerWildcardGameDtoList;
+    public List<TrivQuestionsCategoriesDto> questionCategoryDtoList;
 
     public TrivPlayersDto() {
         this.id = new SimpleStringProperty("");
@@ -32,7 +32,7 @@ public class TrivPlayersDto implements Serializable {
         this.favoritecategory = new SimpleStringProperty("");
     }
     
-        public TrivPlayersDto(TrivPlayers players) {
+        public TrivPlayersDto(Players players) {
         this();
         this.id.set(players.getId().toString());
         this.name.set(players.getName());

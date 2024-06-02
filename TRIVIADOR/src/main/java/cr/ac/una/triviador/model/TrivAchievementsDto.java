@@ -8,32 +8,35 @@ import java.io.Serializable;
 import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 
-public class TrivAchievementsDto implements Serializable{
+public class TrivAchievementsDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private SimpleStringProperty id;
-    private SimpleStringProperty name;
-    private SimpleStringProperty type;
-    private SimpleStringProperty amount;
-    private SimpleStringProperty description;
+    public  SimpleStringProperty id;
+    public SimpleStringProperty name;
+    public SimpleStringProperty type;
+    public SimpleStringProperty amount;
+    public SimpleStringProperty description;
+    public SimpleStringProperty nameImage;
     private Long version;
     //private List<TrivPlayersDto> playersDtoList;
-    
+
     public TrivAchievementsDto() {
         this.id = new SimpleStringProperty("");
         this.name = new SimpleStringProperty("");
-        this.description= new SimpleStringProperty("");
+        this.description = new SimpleStringProperty("");
         this.type = new SimpleStringProperty("");
+        this.nameImage = new SimpleStringProperty("");
         this.amount = new SimpleStringProperty("");
     }
 
-    public TrivAchievementsDto(TrivAchievements trivAchievements) {
-       this();
-       this.id.set(trivAchievements.getId().toString());
+    public TrivAchievementsDto(Achievements trivAchievements) {
+        this();
+        this.id.set(trivAchievements.getId().toString());
         this.name.set(trivAchievements.getName());
         this.description.set(trivAchievements.getDescription());
         this.type.set(trivAchievements.getType());
+        this.nameImage.set(trivAchievements.getNameImage());
         this.amount.set(trivAchievements.getAmount().toString());
         this.version = trivAchievements.getVersion();
     }
@@ -63,6 +66,14 @@ public class TrivAchievementsDto implements Serializable{
 
     public void setType(String type) {
         this.type.set(type);
+    }
+    
+    public String getNameImage() {
+        return nameImage.get();
+    }
+
+    public void setNameImageString (String nameImage) {
+        this.nameImage.set(nameImage);
     }
 
     public Long getAmount() {
@@ -95,11 +106,9 @@ public class TrivAchievementsDto implements Serializable{
 //    public List<TrivPlayersDto> getPlayersDtoList() {
 //        return playersDtoList;
 //    }
-
 //    public void setPlayersList(List<TrivPlayersDto> playersListDto) {
 //        this.playersDtoList = playersListDto;
 //    }
-
     @Override
     public int hashCode() {
         int hash = 0;

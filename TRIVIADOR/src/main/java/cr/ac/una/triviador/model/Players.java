@@ -19,27 +19,24 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import java.math.BigInteger;
 
-/**
- *
- * @author Sofia Bejarano Mora
- */
 @Entity
 @Table(name = "TRIV_PLAYERS", catalog = "", schema = "TRI")
 @NamedQueries({
-    /*@NamedQuery(name = "TrivPlayers.findAll", query = "SELECT t FROM TrivPlayers t"),
-    @NamedQuery(name = "TrivPlayers.findByPlaId", query = "SELECT t FROM TrivPlayers t WHERE t.plaId = :plaId"),
+    @NamedQuery(name = "TrivPlayers.findAll", query = "SELECT t FROM TrivPlayers t"),
     @NamedQuery(name = "TrivPlayers.findByPlaName", query = "SELECT t FROM TrivPlayers t WHERE t.name = :name"),
-    @NamedQuery(name = "TrivPlayers.findByPlaDescription", query = "SELECT t FROM TrivPlayers t WHERE t.description = :description"),
-    @NamedQuery(name = "TrivPlayers.findByPlaCountergamewin", query = "SELECT t FROM TrivPlayers t WHERE t.plaCountergamewin = :plaCountergamewin"),
-    @NamedQuery(name = "TrivPlayers.findByPlaCountergamelose", query = "SELECT t FROM TrivPlayers t WHERE t.plaCountergamelose = :plaCountergamelose"),
-    @NamedQuery(name = "TrivPlayers.findByPlaCounterconsecutivequestion", query = "SELECT t FROM TrivPlayers t WHERE t.plaCounterconsecutivequestion = :plaCounterconsecutivequestion"),
-    @NamedQuery(name = "TrivPlayers.findByPlaFavoritecategory", query = "SELECT t FROM TrivPlayers t WHERE t.favoritecategory = :favoritecategory"),
-    @NamedQuery(name = "TrivPlayers.findByPlaVersion", query = "SELECT t FROM TrivPlayers t WHERE t.plaVersion = :plaVersion")*/})
-public class TrivPlayers implements Serializable {
+    /*@NamedQuery(name = "Players.findByPlaId", query = "SELECT t FROM Players t WHERE t.plaId = :plaId"),
+    @NamedQuery(name = "Players.findByPlaDescription", query = "SELECT t FROM Players t WHERE t.description = :description"),
+    @NamedQuery(name = "Players.findByPlaCountergamewin", query = "SELECT t FROM Players t WHERE t.plaCountergamewin = :plaCountergamewin"),
+    @NamedQuery(name = "Players.findByPlaCountergamelose", query = "SELECT t FROM Players t WHERE t.plaCountergamelose = :plaCountergamelose"),
+    @NamedQuery(name = "Players.findByPlaCounterconsecutivequestion", query = "SELECT t FROM Players t WHERE t.plaCounterconsecutivequestion = :plaCounterconsecutivequestion"),
+    @NamedQuery(name = "Players.findByPlaFavoritecategory", query = "SELECT t FROM Players t WHERE t.favoritecategory = :favoritecategory"),
+    @NamedQuery(name = "Players.findByPlaVersion", query = "SELECT t FROM Players t WHERE t.plaVersion = :plaVersion")*/})
+public class Players implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @Id
     @SequenceGenerator(name = "TRI_PLAYERS_PLA_ID_PLAYERS", sequenceName = "tri.TRIV_PLAYERS_SEQ01", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRI_PLAYERS_PLA_ID_PLAYERS")
@@ -51,14 +48,14 @@ public class TrivPlayers implements Serializable {
     private String name;
     @Column(name = "PLA_DESCRIPTION")
     private String description;
-    @Column(name = "PLA_COUNTERGAMEWIN")
+    @Column(name = "PLA_FAVORITECATEGORY")
+    private String favoritecategory;
+        @Column(name = "PLA_COUNTERGAMEWIN")
     private Long countergamewin;
     @Column(name = "PLA_COUNTERGAMELOSE")
     private Long countergamelose;
     @Column(name = "PLA_COUNTERCONSECUTIVEQUESTION")
     private Long counterconsecutivequestion;
-    @Column(name = "PLA_FAVORITECATEGORY")
-    private String favoritecategory;
     @Version
     @Column(name = "PLA_VERSION")
     private Long version;
@@ -66,20 +63,20 @@ public class TrivPlayers implements Serializable {
         @JoinColumn(name = "PXA_PLA_ID", referencedColumnName = "PLA_ID")}, inverseJoinColumns = {
         @JoinColumn(name = "PXA_ACH_ID", referencedColumnName = "ACH_ID")})
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<TrivAchievements> achievementsList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxcxgPlaId", fetch = FetchType.LAZY)
-    private List<TrivPlayersCategoriesGame> playersCategoriesGameList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxgPlaId", fetch = FetchType.LAZY)
-    private List<TrivPlayersGame> playersGameList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxwxgPlaId", fetch = FetchType.LAZY)
-    private List<TrivPlayersWildcardGame> playersWildcardGameList;
-    @OneToMany(mappedBy = "plaId", fetch = FetchType.LAZY)
-    private List<TrivQuestionsCategories> questionsCategoriesList;
+    private List<Achievements> achievementsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "player", fetch = FetchType.LAZY)
+    private List<PlayersCategoriesGame> playersCategoriesGameList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "player", fetch = FetchType.LAZY)
+    private List<PlayersGame> playersGameList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "player", fetch = FetchType.LAZY)
+    private List<PlayersWildcardGame> playersWildcardGameList;
+    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
+    private List<QuestionsCategories> questionsCategoriesList;
 
-    public TrivPlayers() {
+    public Players() {
     }
 
-    public TrivPlayers(TrivPlayersDto playerDto) {
+    public Players(TrivPlayersDto playerDto) {
         this.id = playerDto.getId();
         update(playerDto);
     }
@@ -159,43 +156,43 @@ public class TrivPlayers implements Serializable {
         this.version = plaVersion;
     }
 
-    public List<TrivAchievements> getAchievementsList() {
+    public List<Achievements> getAchievementsList() {
         return achievementsList;
     }
 
-    public void setAchievementsList(List<TrivAchievements> achievementsList) {
+    public void setAchievementsList(List<Achievements> achievementsList) {
         this.achievementsList = achievementsList;
     }
 
-    public List<TrivPlayersCategoriesGame> getPlayersCategoriesGameList() {
+    public List<PlayersCategoriesGame> getPlayersCategoriesGameList() {
         return playersCategoriesGameList;
     }
 
-    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> playersCategoriesGameList) {
+    public void setPlayersCategoriesGameList(List<PlayersCategoriesGame> playersCategoriesGameList) {
         this.playersCategoriesGameList = playersCategoriesGameList;
     }
 
-    public List<TrivPlayersGame> getPlayersGameList() {
+    public List<PlayersGame> getPlayersGameList() {
         return playersGameList;
     }
 
-    public void setPlayersGameList(List<TrivPlayersGame> playersGameList) {
+    public void setPlayersGameList(List<PlayersGame> playersGameList) {
         this.playersGameList = playersGameList;
     }
 
-    public List<TrivPlayersWildcardGame> getPlayersWildcardGameList() {
+    public List<PlayersWildcardGame> getPlayersWildcardGameList() {
         return playersWildcardGameList;
     }
 
-    public void setPlayersWildcardGameList(List<TrivPlayersWildcardGame> playersWildcardGameList) {
+    public void setPlayersWildcardGameList(List<PlayersWildcardGame> playersWildcardGameList) {
         this.playersWildcardGameList = playersWildcardGameList;
     }
 
-    public List<TrivQuestionsCategories> getQuestionsCategoriesList() {
+    public List<QuestionsCategories> getQuestionsCategoriesList() {
         return questionsCategoriesList;
     }
 
-    public void setQuestionsCategoriesList(List<TrivQuestionsCategories> questionsCategoriesList) {
+    public void setQuestionsCategoriesList(List<QuestionsCategories> questionsCategoriesList) {
         this.questionsCategoriesList = questionsCategoriesList;
     }
 
@@ -209,10 +206,10 @@ public class TrivPlayers implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrivPlayers)) {
+        if (!(object instanceof Players)) {
             return false;
         }
-        TrivPlayers other = (TrivPlayers) object;
+        Players other = (Players) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

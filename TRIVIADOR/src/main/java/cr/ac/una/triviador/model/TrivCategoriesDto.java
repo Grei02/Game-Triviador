@@ -11,9 +11,9 @@ public class TrivCategoriesDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private SimpleStringProperty id;
-    private SimpleStringProperty name;
-    private SimpleStringProperty nameimage;
+    public SimpleStringProperty id;
+    public SimpleStringProperty name;
+    public SimpleStringProperty nameimage;
     private Long version;
 //    private List<TrivQuestionsDto> questionsDtoList;
 //    private List<TrivPlayersCategoriesGameDto> playersCategoriesGameDtoList;
@@ -25,7 +25,7 @@ public class TrivCategoriesDto implements Serializable {
         this.nameimage = new SimpleStringProperty("");
     }
 
-    public TrivCategoriesDto(TrivCategories categories) {
+    public TrivCategoriesDto(Categories categories) {
         this();
         this.id.set(categories.getId().toString());
         this.name.set(categories.getName());

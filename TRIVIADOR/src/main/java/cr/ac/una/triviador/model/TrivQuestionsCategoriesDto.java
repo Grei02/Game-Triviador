@@ -8,12 +8,13 @@ import javafx.beans.property.SimpleStringProperty;
 public class TrivQuestionsCategoriesDto implements Serializable  {
 
     private static final long serialVersionUID = 1L;
-    private SimpleStringProperty id;
-    private SimpleStringProperty countanswer;
-    private SimpleStringProperty counthit;
+    
+    public SimpleStringProperty id;
+    public SimpleStringProperty countanswer;
+    public SimpleStringProperty counthit;
     private Long version;
-    private TrivCategoriesDto categoryDto;
-    private TrivPlayersDto playerDto;
+    public TrivCategoriesDto categoryDto;
+    public TrivPlayersDto playerDto;
 
     public TrivQuestionsCategoriesDto() {
         this.id = new SimpleStringProperty("");
@@ -21,7 +22,7 @@ public class TrivQuestionsCategoriesDto implements Serializable  {
         this.counthit = new SimpleStringProperty("");
     }
 
-    public TrivQuestionsCategoriesDto(TrivQuestionsCategories questionsCategories) {
+    public TrivQuestionsCategoriesDto(QuestionsCategories questionsCategories) {
         this();
         this.id.set(questionsCategories.getId().toString());
         this.countanswer.set(questionsCategories.getCountanswer().toString());

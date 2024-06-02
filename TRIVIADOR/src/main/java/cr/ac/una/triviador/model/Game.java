@@ -18,6 +18,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import java.math.BigInteger;
 
 /**
  *
@@ -25,18 +26,20 @@ import jakarta.persistence.Version;
  */
 @Entity
 @Table(name = "TRIV_GAME", catalog = "", schema = "TRI")
-@NamedQueries({ /* @NamedQuery(name = "TrivGame.findAll", query = "SELECT t FROM TrivGame t"),
-    @NamedQuery(name = "TrivGame.findByGamId", query = "SELECT t FROM TrivGame t WHERE t.id = :id"),
-    @NamedQuery(name = "TrivGame.findByGamName", query = "SELECT t FROM TrivGame t WHERE t.name = :name"),
-    @NamedQuery(name = "TrivGame.findByGamTime", query = "SELECT t FROM TrivGame t WHERE t.time = :time"),
-    @NamedQuery(name = "TrivGame.findByGamIsTime", query = "SELECT t FROM TrivGame t WHERE t.isTime = :isTime"),
-    @NamedQuery(name = "TrivGame.findByGamDifficulty", query = "SELECT t FROM TrivGame t WHERE t.difficulty = :difficulty"),
-    @NamedQuery(name = "TrivGame.findByGamNumberplayer", query = "SELECT t FROM TrivGame t WHERE t.numberplayer = :numberplayer"),
-    @NamedQuery(name = "TrivGame.findByGamIsDuel", query = "SELECT t FROM TrivGame t WHERE t.isDuel = :isDuel"),
-    @NamedQuery(name = "TrivGame.findByGamTurn", query = "SELECT t FROM TrivGame t WHERE t.turn = :turn"),
-    @NamedQuery(name = "TrivGame.findByGamCounterround", query = "SELECT t FROM TrivGame t WHERE t.counterround = :counterround"),
-    @NamedQuery(name = "TrivGame.findByGamVersion", query = "SELECT t FROM TrivGame t WHERE t.version = :version")*/})
-public class TrivGame implements Serializable {
+@NamedQueries({ /* @NamedQuery(name = "Game.findAll", query = "SELECT t FROM Game t"),
+    @NamedQuery(name = "Game.findByGamId", query = "SELECT t FROM Game t WHERE t.id = :id"),
+    @NamedQuery(name = "Game.findByGamName", query = "SELECT t FROM Game t WHERE t.name = :name"),
+    @NamedQuery(name = "Game.findByGamTime", query = "SELECT t FROM Game t WHERE t.time = :time"),
+    @NamedQuery(name = "Game.findByGamIsTime", query = "SELECT t FROM Game t WHERE t.isTime = :isTime"),
+    @NamedQuery(name = "Game.findByGamDifficulty", query = "SELECT t FROM Game t WHERE t.difficulty = :difficulty"),
+    @NamedQuery(name = "Game.findByGamNumberplayer", query = "SELECT t FROM Game t WHERE t.numberplayer = :numberplayer"),
+    @NamedQuery(name = "Game.findByGamIsDuel", query = "SELECT t FROM Game t WHERE t.isDuel = :isDuel"),
+    @NamedQuery(name = "Game.findByGamTurn", query = "SELECT t FROM Game t WHERE t.turn = :turn"),
+    @NamedQuery(name = "Game.findByGamCounterround", query = "SELECT t FROM Game t WHERE t.counterround = :counterround"),
+    @NamedQuery(name = "Game.findByGamVersion", query = "SELECT t FROM Game t WHERE t.version = :version")*/})
+public class Game implements Serializable {
+
+
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -49,8 +52,6 @@ public class TrivGame implements Serializable {
     @Basic(optional = false)
     @Column(name = "GAM_NAME")
     private String name;
-    @Column(name = "GAM_TIME")
-    private Long time;
     @Basic(optional = false)
     @Column(name = "GAM_IS_TIME")
     private String isTime;
@@ -58,39 +59,41 @@ public class TrivGame implements Serializable {
     @Column(name = "GAM_DIFFICULTY")
     private String difficulty;
     @Basic(optional = false)
-    @Column(name = "GAM_NUMBERPLAYER")
-    private Long numberplayer;
-    @Basic(optional = false)
     @Column(name = "GAM_IS_DUEL")
     private String isDuel;
+     @Column(name = "GAM_TIME")
+    private Long time;
+    @Basic(optional = false)
+    @Column(name = "GAM_NUMBERPLAYER")
+    private Long numberplayer;
     @Basic(optional = false)
     @Column(name = "GAM_TURN")
     private Long turn;
     @Column(name = "GAM_COUNTERROUND")
     private Long counterround;
-    @Version
+    @Basic(optional = false)
     @Column(name = "GAM_VERSION")
     private Long version;
     @JoinTable(name = "TRIV_GAME_QUESTIONS", joinColumns = {
         @JoinColumn(name = "GXQ_GAM_ID", referencedColumnName = "GAM_ID")}, inverseJoinColumns = {
         @JoinColumn(name = "GXQ_QUE_ID", referencedColumnName = "QUE_ID")})
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<TrivQuestions> questionsList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxcxgGamId", fetch = FetchType.LAZY)
-    private List<TrivPlayersCategoriesGame> playersCategoriesGameList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxgGamId", fetch = FetchType.LAZY)
-    private List<TrivPlayersGame> playersGameList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxwxgGamId", fetch = FetchType.LAZY)
-    private List<TrivPlayersWildcardGame> playersWildcardGameList;
+    private List<Questions> questionsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "game", fetch = FetchType.LAZY)
+    private List<PlayersCategoriesGame> playersCategoriesGameList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "game", fetch = FetchType.LAZY)
+    private List<PlayersGame> playersGameList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "game", fetch = FetchType.LAZY)
+    private List<PlayersWildcardGame> playersWildcardGameList;
 
-    public TrivGame() {
+    public Game() {
     }
 
-    public TrivGame(Long id) {
+    public Game(Long id) {
         this.id = id;
     }
 
-    public TrivGame(TrivGameDto gameDto) {
+    public Game(TrivGameDto gameDto) {
         this.id = gameDto.getId();
         update(gameDto);
     }
@@ -188,35 +191,35 @@ public class TrivGame implements Serializable {
         this.version = version;
     }
 
-    public List<TrivQuestions> getQuestionsList() {
+    public List<Questions> getQuestionsList() {
         return questionsList;
     }
 
-    public void setQuestionsList(List<TrivQuestions> questionsList) {
+    public void setQuestionsList(List<Questions> questionsList) {
         this.questionsList = questionsList;
     }
 
-    public List<TrivPlayersCategoriesGame> getPlayersCategoriesGameList() {
+    public List<PlayersCategoriesGame> getPlayersCategoriesGameList() {
         return playersCategoriesGameList;
     }
 
-    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> playersCategoriesGameList) {
+    public void setPlayersCategoriesGameList(List<PlayersCategoriesGame> playersCategoriesGameList) {
         this.playersCategoriesGameList = playersCategoriesGameList;
     }
 
-    public List<TrivPlayersGame> getPlayersGameList() {
+    public List<PlayersGame> getPlayersGameList() {
         return playersGameList;
     }
 
-    public void setPlayersGameList(List<TrivPlayersGame> playersGameList) {
+    public void setPlayersGameList(List<PlayersGame> playersGameList) {
         this.playersGameList = playersGameList;
     }
 
-    public List<TrivPlayersWildcardGame> getPlayersWildcardGameList() {
+    public List<PlayersWildcardGame> getPlayersWildcardGameList() {
         return playersWildcardGameList;
     }
 
-    public void setPlayersWildcardGameList(List<TrivPlayersWildcardGame> playersWildcardGameList) {
+    public void setPlayersWildcardGameList(List<PlayersWildcardGame> playersWildcardGameList) {
         this.playersWildcardGameList = playersWildcardGameList;
     }
 
@@ -229,10 +232,10 @@ public class TrivGame implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof TrivGame)) {
+        if (!(object instanceof Game)) {
             return false;
         }
-        TrivGame other = (TrivGame) object;
+        Game other = (Game) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

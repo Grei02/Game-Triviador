@@ -17,6 +17,7 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 /**
  *
@@ -25,12 +26,12 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "TRIV_CATEGORIES", catalog = "", schema = "TRI")
 @NamedQueries({
-    /*@NamedQuery(name = "TrivCategories.findAll", query = "SELECT t FROM TrivCategories t"),
-    @NamedQuery(name = "TrivCategories.findByCatId", query = "SELECT t FROM TrivCategories t WHERE t.catId = :catId"),
-    @NamedQuery(name = "TrivCategories.findByCatName", query = "SELECT t FROM TrivCategories t WHERE t.name = :name"),
-    @NamedQuery(name = "TrivCategories.findByCatNameimage", query = "SELECT t FROM TrivCategories t WHERE t.nameimage = :nameimage"),
-    @NamedQuery(name = "TrivCategories.findByCatVersion", query = "SELECT t FROM TrivCategories t WHERE t.version = :version")*/})
-public class TrivCategories implements Serializable {
+    /*@NamedQuery(name = "Categories.findAll", query = "SELECT t FROM Categories t"),
+    @NamedQuery(name = "Categories.findByCatId", query = "SELECT t FROM Categories t WHERE t.catId = :catId"),
+    @NamedQuery(name = "Categories.findByCatName", query = "SELECT t FROM Categories t WHERE t.name = :name"),
+    @NamedQuery(name = "Categories.findByCatNameimage", query = "SELECT t FROM Categories t WHERE t.nameimage = :nameimage"),
+    @NamedQuery(name = "Categories.findByCatVersion", query = "SELECT t FROM Categories t WHERE t.version = :version")*/})
+public class Categories implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -45,24 +46,24 @@ public class TrivCategories implements Serializable {
     private String name;
     @Column(name = "CAT_NAMEIMAGE")
     private String nameimage;
-    @Basic(optional = false)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    private List<Questions> questionsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category", fetch = FetchType.LAZY)
+    private List<PlayersCategoriesGame> playersCategoriesGameList;
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    private List<QuestionsCategories> questionsCategoriesList;
+    @Version
     @Column(name = "CAT_VERSION")
     private Long version;
-    @OneToMany(mappedBy = "catId", fetch = FetchType.LAZY)
-    private List<TrivQuestions> questionsList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pxcxgCatId", fetch = FetchType.LAZY)
-    private List<TrivPlayersCategoriesGame> playersCategoriesGameList;
-    @OneToMany(mappedBy = "qcatCatId", fetch = FetchType.LAZY)
-    private List<TrivQuestionsCategories> questionsCategoriesList;
 
-    public TrivCategories() {
+    public Categories() {
     }
 
-    public TrivCategories(Long id) {
+    public Categories(Long id) {
         this.id = id;
     }
 
-    public TrivCategories(TrivCategoriesDto categoriesDto) {
+    public Categories(TrivCategoriesDto categoriesDto) {
         this.id = categoriesDto.getId();
         update(categoriesDto);
     }
@@ -105,27 +106,27 @@ public class TrivCategories implements Serializable {
         this.version = version;
     }
 
-    public List<TrivQuestions> getQuestionsList() {
+    public List<Questions> getQuestionsList() {
         return questionsList;
     }
 
-    public void setQuestionsList(List<TrivQuestions> questionsList) {
+    public void setQuestionsList(List<Questions> questionsList) {
         this.questionsList = questionsList;
     }
 
-    public List<TrivPlayersCategoriesGame> getPlayersCategoriesGameList() {
+    public List<PlayersCategoriesGame> getPlayersCategoriesGameList() {
         return playersCategoriesGameList;
     }
 
-    public void setPlayersCategoriesGameList(List<TrivPlayersCategoriesGame> playersCategoriesGameList) {
+    public void setPlayersCategoriesGameList(List<PlayersCategoriesGame> playersCategoriesGameList) {
         this.playersCategoriesGameList = playersCategoriesGameList;
     }
 
-    public List<TrivQuestionsCategories> getQuestionsCategoriesList() {
+    public List<QuestionsCategories> getQuestionsCategoriesList() {
         return questionsCategoriesList;
     }
 
-    public void setQuestionsCategoriesList(List<TrivQuestionsCategories> questionsCategoriesList) {
+    public void setQuestionsCategoriesList(List<QuestionsCategories> questionsCategoriesList) {
         this.questionsCategoriesList = questionsCategoriesList;
     }
 
@@ -139,10 +140,10 @@ public class TrivCategories implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrivCategories)) {
+        if (!(object instanceof Categories)) {
             return false;
         }
-        TrivCategories other = (TrivCategories) object;
+        Categories other = (Categories) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -152,6 +153,5 @@ public class TrivCategories implements Serializable {
     @Override
     public String toString() {
         return "cr.ac.una.triviador.model.TrivCategories[ id=" + id + " ]";
-    }
-    
+    }  
 }

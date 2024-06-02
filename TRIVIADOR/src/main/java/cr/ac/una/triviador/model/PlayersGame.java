@@ -14,18 +14,19 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "TRIV_PLAYERS_GAME", catalog = "", schema = "TRI")
-@NamedQueries({ /*@NamedQuery(name = "TrivPlayersGame.findAll", query = "SELECT t FROM TrivPlayersGame t"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgId", query = "SELECT t FROM TrivPlayersGame t WHERE t.id = :id"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgNameworker", query = "SELECT t FROM TrivPlayersGame t WHERE t.nameworker = :nameworker"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgPosboard", query = "SELECT t FROM TrivPlayersGame t WHERE t.posboard = :posboard"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgCounterconsecutivequestion", query = "SELECT t FROM TrivPlayersGame t WHERE t.counterconsecutivequestion = :counterconsecutivequestion"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgNumberturn", query = "SELECT t FROM TrivPlayersGame t WHERE t.numberturn = :numberturn"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgIsCurrent", query = "SELECT t FROM TrivPlayersGame t WHERE t.isCurrent = :isCurrent"),
-    @NamedQuery(name = "TrivPlayersGame.findByPxgVersion", query = "SELECT t FROM TrivPlayersGame t WHERE t.version = :version")*/})
-public class TrivPlayersGame implements Serializable {
+@NamedQueries({ /*@NamedQuery(name = "PlayersGame.findAll", query = "SELECT t FROM PlayersGame t"),
+    @NamedQuery(name = "PlayersGame.findByPxgId", query = "SELECT t FROM PlayersGame t WHERE t.id = :id"),
+    @NamedQuery(name = "PlayersGame.findByPxgNameworker", query = "SELECT t FROM PlayersGame t WHERE t.nameworker = :nameworker"),
+    @NamedQuery(name = "PlayersGame.findByPxgPosboard", query = "SELECT t FROM PlayersGame t WHERE t.posboard = :posboard"),
+    @NamedQuery(name = "PlayersGame.findByPxgCounterconsecutivequestion", query = "SELECT t FROM PlayersGame t WHERE t.counterconsecutivequestion = :counterconsecutivequestion"),
+    @NamedQuery(name = "PlayersGame.findByPxgNumberturn", query = "SELECT t FROM PlayersGame t WHERE t.numberturn = :numberturn"),
+    @NamedQuery(name = "PlayersGame.findByPxgIsCurrent", query = "SELECT t FROM PlayersGame t WHERE t.isCurrent = :isCurrent"),
+    @NamedQuery(name = "PlayersGame.findByPxgVersion", query = "SELECT t FROM PlayersGame t WHERE t.version = :version")*/})
+public class PlayersGame implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -38,33 +39,33 @@ public class TrivPlayersGame implements Serializable {
     @Column(name = "PXG_NAMEWORKER")
     private String nameworker;
     @Basic(optional = false)
+    @Column(name = "PXG_IS_CURRENT")
+    private String isCurrent;
+    @JoinColumn(name = "PXG_GAM_ID", referencedColumnName = "GAM_ID")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Game game;
+    @JoinColumn(name = "PXG_PLA_ID", referencedColumnName = "PLA_ID")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Players player;
+    @Basic(optional = false)
     @Column(name = "PXG_POSBOARD")
     private Long posboard;
     @Column(name = "PXG_COUNTERCONSECUTIVEQUESTION")
     private Long counterconsecutivequestion;
     @Column(name = "PXG_NUMBERTURN")
     private Long numberturn;
-    @Basic(optional = false)
-    @Column(name = "PXG_IS_CURRENT")
-    private String isCurrent;
     @Version
     @Column(name = "PXG_VERSION")
     private Long version;
-    @JoinColumn(name = "PXG_GAM_ID", referencedColumnName = "GAM_ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivGame game;
-    @JoinColumn(name = "PXG_PLA_ID", referencedColumnName = "PLA_ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivPlayers player;
 
-    public TrivPlayersGame() {
+    public PlayersGame() {
     }
 
-    public TrivPlayersGame(Long id) {
+    public PlayersGame(Long id) {
         this.id = id;
     }
 
-    public TrivPlayersGame(TrivPlayersGameDto playersGameDto) {
+    public PlayersGame(TrivPlayersGameDto playersGameDto) {
         this.id = playersGameDto.getId();
         update(playersGameDto);
     }
@@ -131,19 +132,19 @@ public class TrivPlayersGame implements Serializable {
         this.version = version;
     }
 
-    public TrivGame getGamId() {
+    public Game getGamId() {
         return game;
     }
 
-    public void setGame(TrivGame game) {
+    public void setGame(Game game) {
         this.game = game;
     }
 
-    public TrivPlayers getPlayer() {
+    public Players getPlayer() {
         return player;
     }
 
-    public void setPlayer(TrivPlayers player) {
+    public void setPlayer(Players player) {
         this.player = player;
     }
 
@@ -157,10 +158,10 @@ public class TrivPlayersGame implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrivPlayersGame)) {
+        if (!(object instanceof PlayersGame)) {
             return false;
         }
-        TrivPlayersGame other = (TrivPlayersGame) object;
+        PlayersGame other = (PlayersGame) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -171,5 +172,4 @@ public class TrivPlayersGame implements Serializable {
     public String toString() {
         return "cr.ac.una.triviador.model.TrivPlayersGame[ id=" + id + " ]";
     }
-
 }

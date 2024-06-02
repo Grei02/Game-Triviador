@@ -25,10 +25,10 @@ import jakarta.persistence.Version;
 @Entity
 @Table(name = "TRIV_PLAYERS_CATEGORIES_GAME", catalog = "", schema = "TRI")
 @NamedQueries({
-    /*@NamedQuery(name = "TrivPlayersCategoriesGame.findAll", query = "SELECT t FROM TrivPlayersCategoriesGame t"),
-    @NamedQuery(name = "TrivPlayersCategoriesGame.findByPxcxgId", query = "SELECT t FROM TrivPlayersCategoriesGame t WHERE t.pxcxgId = :pxcxgId"),
-    @NamedQuery(name = "TrivPlayersCategoriesGame.findByPxcxgVersion", query = "SELECT t FROM TrivPlayersCategoriesGame t WHERE t.pxcxgVersion = :pxcxgVersion")*/})
-public class TrivPlayersCategoriesGame implements Serializable {
+    /*@NamedQuery(name = "PlayersCategoriesGame.findAll", query = "SELECT t FROM PlayersCategoriesGame t"),
+    @NamedQuery(name = "PlayersCategoriesGame.findByPxcxgId", query = "SELECT t FROM PlayersCategoriesGame t WHERE t.pxcxgId = :pxcxgId"),
+    @NamedQuery(name = "PlayersCategoriesGame.findByPxcxgVersion", query = "SELECT t FROM PlayersCategoriesGame t WHERE t.pxcxgVersion = :pxcxgVersion")*/})
+public class PlayersCategoriesGame implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -38,23 +38,23 @@ public class TrivPlayersCategoriesGame implements Serializable {
     @Basic(optional = false)
     @Column(name = "PXCXG_ID")
     private Long id;
-    @Version
-    @Column(name=  "PXCXG_VERSION")
-    private Long version;
     @JoinColumn(name = "PXCXG_CAT_ID", referencedColumnName = "CAT_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivCategories categories;
+    private Categories category;
     @JoinColumn(name = "PXCXG_GAM_ID", referencedColumnName = "GAM_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivGame game;
+    private Game game;
     @JoinColumn(name = "PXCXG_PLA_ID", referencedColumnName = "PLA_ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivPlayers player;
+    private Players player;
+    @Version
+    @Column(name = "PXCXG_VERSION")
+    private Long version;
 
-    public TrivPlayersCategoriesGame() {
+    public PlayersCategoriesGame() {
     }
 
-    public TrivPlayersCategoriesGame(TrivPlayersCategoriesGameDto playersCategoriesGameDto) {
+    public PlayersCategoriesGame(TrivPlayersCategoriesGameDto playersCategoriesGameDto) {
         this.id = playersCategoriesGameDto.getId();
         update(playersCategoriesGameDto);
     }
@@ -79,27 +79,27 @@ public class TrivPlayersCategoriesGame implements Serializable {
         this.version = version;
     }
 
-    public TrivCategories getCategories() {
-        return categories;
+    public Categories getCategory() {
+        return category;
     }
 
-    public void setCategories(TrivCategories categories) {
-        this.categories = categories;
+    public void setCategory(Categories category) {
+        this.category = category;
     }
 
-    public TrivGame getGame() {
+    public Game getGame() {
         return game;
     }
 
-    public void setGame(TrivGame game) {
+    public void setGame(Game game) {
         this.game = game;
     }
 
-    public TrivPlayers getPlayer() {
+    public Players getPlayer() {
         return player;
     }
 
-    public void setPlayer(TrivPlayers player) {
+    public void setPlayer(Players player) {
         this.player = player;
     }
 
@@ -113,10 +113,10 @@ public class TrivPlayersCategoriesGame implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrivPlayersCategoriesGame)) {
+        if (!(object instanceof PlayersCategoriesGame)) {
             return false;
         }
-        TrivPlayersCategoriesGame other = (TrivPlayersCategoriesGame) object;
+        PlayersCategoriesGame other = (PlayersCategoriesGame) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -127,5 +127,4 @@ public class TrivPlayersCategoriesGame implements Serializable {
     public String toString() {
         return "cr.ac.una.triviador.model.TrivPlayersCategoriesGame[ id=" + id + " ]";
     }
-    
 }

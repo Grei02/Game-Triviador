@@ -13,13 +13,13 @@ public class TrivQuestionsDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private SimpleStringProperty id;
-    private SimpleStringProperty questions;
-    private SimpleBooleanProperty isEnabled;
+    public SimpleStringProperty id;
+    public SimpleStringProperty questions;
+    public SimpleBooleanProperty isEnabled;
     private Long version;
-    //oprivate List<TrivGameDto> gameDtoList;
-    private TrivCategoriesDto categoryDto;
-    private List<TrivAnswersDto> answersDtoList;
+    //public List<TrivGameDto> gameDtoList;
+    public TrivCategoriesDto categoryDto;
+    public List<TrivAnswersDto> answersDtoList;
 
     public TrivQuestionsDto() {
         this.id = new SimpleStringProperty("");
@@ -27,7 +27,7 @@ public class TrivQuestionsDto implements Serializable {
         this.isEnabled = new SimpleBooleanProperty(true);
     }
 
-    public TrivQuestionsDto(TrivQuestions question) {
+    public TrivQuestionsDto(Questions question) {
         this();
         this.id.set(question.getId().toString());
         this.questions.set(question.getQuestions());
@@ -103,7 +103,7 @@ public class TrivQuestionsDto implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof TrivQuestions)) {
+        if (!(object instanceof Questions)) {
             return false;
         }
         TrivQuestionsDto other = (TrivQuestionsDto) object;

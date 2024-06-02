@@ -14,14 +14,15 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "TRIV_PLAYERS_WILDCARD_GAME", catalog = "", schema = "TRI")
-@NamedQueries({ /*@NamedQuery(name = "TrivPlayersWildcardGame.findAll", query = "SELECT t FROM TrivPlayersWildcardGame t"),
-    @NamedQuery(name = "TrivPlayersWildcardGame.findByPxwxgId", query = "SELECT t FROM TrivPlayersWildcardGame t WHERE t.id = :id"),
-    @NamedQuery(name = "TrivPlayersWildcardGame.findByPxwxgIsUsed", query = "SELECT t FROM TrivPlayersWildcardGame t WHERE t.isUsed = :isUsed"),
-    @NamedQuery(name = "TrivPlayersWildcardGame.findByPxwxgVersion", query = "SELECT t FROM TrivPlayersWildcardGame t WHERE t.version = :version")*/})
-public class TrivPlayersWildcardGame implements Serializable {
+@NamedQueries({ /*@NamedQuery(name = "PlayersWildcardGame.findAll", query = "SELECT t FROM PlayersWildcardGame t"),
+    @NamedQuery(name = "PlayersWildcardGame.findByPxwxgId", query = "SELECT t FROM PlayersWildcardGame t WHERE t.id = :id"),
+    @NamedQuery(name = "PlayersWildcardGame.findByPxwxgIsUsed", query = "SELECT t FROM PlayersWildcardGame t WHERE t.isUsed = :isUsed"),
+    @NamedQuery(name = "PlayersWildcardGame.findByPxwxgVersion", query = "SELECT t FROM PlayersWildcardGame t WHERE t.version = :version")*/})
+public class PlayersWildcardGame implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -34,27 +35,27 @@ public class TrivPlayersWildcardGame implements Serializable {
     @Basic(optional = false)
     @Column(name = "PXWXG_IS_USED")
     private String isUsed;
+    @JoinColumn(name = "PXWXG_GAM_ID", referencedColumnName = "GAM_ID")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Game game;
+    @JoinColumn(name = "PXWXG_PLA_ID", referencedColumnName = "PLA_ID")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Players player;
+    @JoinColumn(name = "PXWXG_WILD_ID", referencedColumnName = "WILD_ID")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Wildcard wildcard;
     @Version
     @Column(name = "PXWXG_VERSION")
     private Long version;
-    @JoinColumn(name = "PXWXG_GAM_ID", referencedColumnName = "GAM_ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivGame game;
-    @JoinColumn(name = "PXWXG_PLA_ID", referencedColumnName = "PLA_ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivPlayers player;
-    @JoinColumn(name = "PXWXG_WILD_ID", referencedColumnName = "WILD_ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TrivWildcard wildcard;
 
-    public TrivPlayersWildcardGame() {
+    public PlayersWildcardGame() {
     }
 
-    public TrivPlayersWildcardGame(Long id) {
+    public PlayersWildcardGame(Long id) {
         this.id = id;
     }
 
-    public TrivPlayersWildcardGame(TrivPlayersWildcardGameDto playersWildcardGameDto) {
+    public PlayersWildcardGame(TrivPlayersWildcardGameDto playersWildcardGameDto) {
         this.id = playersWildcardGameDto.getId();
         update(playersWildcardGameDto);
     }
@@ -88,27 +89,27 @@ public class TrivPlayersWildcardGame implements Serializable {
         this.version = version;
     }
 
-    public TrivGame getGame() {
+    public Game getGame() {
         return game;
     }
 
-    public void setGame(TrivGame game) {
+    public void setGame(Game game) {
         this.game = game;
     }
 
-    public TrivPlayers getPlayer() {
+    public Players getPlayer() {
         return player;
     }
 
-    public void setPlayer(TrivPlayers player) {
+    public void setPlayer(Players player) {
         this.player = player;
     }
 
-    public TrivWildcard getWildcard() {
+    public Wildcard getWildcard() {
         return wildcard;
     }
 
-    public void setWildcard(TrivWildcard wildcard) {
+    public void setWildcard(Wildcard wildcard) {
         this.wildcard = wildcard;
     }
 
@@ -122,10 +123,10 @@ public class TrivPlayersWildcardGame implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrivPlayersWildcardGame)) {
+        if (!(object instanceof PlayersWildcardGame)) {
             return false;
         }
-        TrivPlayersWildcardGame other = (TrivPlayersWildcardGame) object;
+        PlayersWildcardGame other = (PlayersWildcardGame) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

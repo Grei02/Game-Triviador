@@ -18,12 +18,12 @@ public class TrivAnswersDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private SimpleStringProperty id;
+    public SimpleStringProperty id;
     private Long version;
-    private SimpleStringProperty answers;
-    private SimpleBooleanProperty isCorrect;
-    private SimpleStringProperty selectednumber;
-    private TrivQuestionsDto questionsDto;
+    public SimpleStringProperty answers;
+    public SimpleBooleanProperty isCorrect;
+    public SimpleStringProperty selectednumber;
+    public TrivQuestionsDto questionsDto;
 
     public TrivAnswersDto() {
         this.id = new SimpleStringProperty("");
@@ -32,7 +32,7 @@ public class TrivAnswersDto implements Serializable {
         this.selectednumber=new SimpleStringProperty("");
     }
 
-    public TrivAnswersDto(TrivAnswers trivAnswers) {
+    public TrivAnswersDto(Answers trivAnswers) {
         this();
         this.id.set(trivAnswers.getId().toString());
         this.answers.set(trivAnswers.getAnswers());

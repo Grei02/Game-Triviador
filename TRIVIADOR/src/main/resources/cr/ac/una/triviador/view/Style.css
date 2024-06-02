@@ -226,7 +226,7 @@ Virtual Flow
   -thumb-color: #00ACC1; /* Color del thumb */
   -thumb-hover-color: #007BFF; /* Color del thumb al pasar el ratón */
 }
-//SEPARTOR
+/*SEPARTOR*/
 #separator {
   width: 100%;
   height: 5px;

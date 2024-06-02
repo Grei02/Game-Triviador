@@ -7,15 +7,15 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class TrivPlayersGameDto implements Serializable {
 
-    private SimpleStringProperty id;
-    private SimpleStringProperty nameworker;
-    private SimpleStringProperty posboard;
-    private SimpleStringProperty counterconsecutivequestion;
-    private SimpleStringProperty numberturn;
-    private SimpleBooleanProperty isCurrent;
+    public SimpleStringProperty id;
+    public SimpleStringProperty nameworker;
+    public SimpleStringProperty posboard;
+    public SimpleStringProperty counterconsecutivequestion;
+    public SimpleStringProperty numberturn;
+    public SimpleBooleanProperty isCurrent;
     private Long version;
-    private TrivGameDto gameDto;
-    private TrivPlayersDto playerDto;
+    public TrivGameDto gameDto;
+    public TrivPlayersDto playerDto;
 
     public TrivPlayersGameDto() {
         this.id = new SimpleStringProperty("");
@@ -26,7 +26,7 @@ public class TrivPlayersGameDto implements Serializable {
         this.isCurrent = new SimpleBooleanProperty(false);
     }
 
-    public TrivPlayersGameDto(TrivPlayersGame playersGame) {
+    public TrivPlayersGameDto(PlayersGame playersGame) {
         this();
         this.id.set(playersGame.getId().toString());
         this.nameworker.set(playersGame.getNameworker());
