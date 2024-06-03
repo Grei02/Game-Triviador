@@ -85,9 +85,9 @@ public class PlayerRegistrationController extends Controller implements Initiali
                     unbindPlayer();
                     this.playerDto=(TrivPlayersDto) answer.getResultado("Jugador");
                     bindPlayer(false);
-                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Empleado", getStage(), "Empleado Guardado");
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Jugador", getStage(), "Jugador Guardado");
                 }else{
-                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Empleado", getStage(), answer.getMensaje());
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Jugador", getStage(), answer.getMensaje());
                 }
             }
         } catch (Exception ex) {

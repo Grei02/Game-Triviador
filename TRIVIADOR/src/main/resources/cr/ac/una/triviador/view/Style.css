@@ -1,6 +1,6 @@
-/*.jfx-panelfondo{
+.jfx-panelfondo{
     -fx-background-color:#099176;
-}*/
+}
 
 .jfx-contenedor-principal{
      -fx-background-color:#00ffff;
@@ -136,6 +136,14 @@
 
 #imgSalir:hover{
      -fx-image: url("../resources/salirHover.png");
+}
+
+#imgRuleta{
+     -fx-image: url("../resources/ruleta.png");
+}
+
+#imgGirar{
+     -fx-image: url("../resources/btnGirar.png");
 }
 
 .jfx-titulo-label{

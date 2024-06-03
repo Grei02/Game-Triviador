@@ -1,5 +1,6 @@
  package cr.ac.una.triviador.Controller;
 
+import cr.ac.una.triviador.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -43,7 +44,7 @@ public class CreateGameController extends Controller implements Initializable {
 
     @FXML
     void onActionBtnPlayerRegistration(ActionEvent event) {
-
+          FlowController.getInstance().goViewInStage("PlayerRegistrationView", getStage());
     }
 
     @FXML

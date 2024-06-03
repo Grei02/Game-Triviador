@@ -16,7 +16,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FlowController.getInstance().InitializeFlow(stage, null);
-         FlowController.getInstance().goViewInWindow("principalView");
+         //FlowController.getInstance().goViewInWindow("principalView");
+           FlowController.getInstance().goViewInWindow("gameView");
     }
 
     public static void main(String[] args) {
