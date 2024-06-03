@@ -1,5 +1,6 @@
 module module {
     opens cr.ac.una.triviador.Controller to javafx.fxml;
+    opens cr.ac.una.triviador.model to eclipselink;
     exports cr.ac.una.triviador.Controller;
     exports cr.ac.una.triviador;
     
