@@ -19,7 +19,7 @@ module module {
     requires mfx.effects;
     requires mfx.resources;
     requires com.oracle.database.jdbc;
-    requires eclipselink;
+   // requires eclipselink;
     requires jakarta.persistence;
     requires jakarta.xml.bind;
     requires com.sun.tools.xjc;

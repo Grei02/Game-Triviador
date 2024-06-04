@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.una.triviador.util;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-/**
- *
- * @author ccarranza
- */
 public class EntityManagerHelper {
 
     private static final EntityManagerHelper SINGLENTON = new EntityManagerHelper();

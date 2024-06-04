@@ -24,9 +24,12 @@ import java.util.ResourceBundle;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+import static javafx.util.Duration.seconds;
 
 public class GameViewController extends Controller implements Initializable {
-
+    private double totalRotationAngleRouletteImage = 0;
+    private static final Duration ROTATION_DURATION = Duration.ofSeconds(2);
+    
     @FXML
     private ImageView imgRuleta;
     @FXML
@@ -51,10 +54,8 @@ public class GameViewController extends Controller implements Initializable {
 
     private void rouletteMechanism() {
         Random rand = new Random();
-        RotateTransition rotateTransition = new RotateTransition();
-        rotateTransition.setNode(imgRuleta);
+        RotateTransition rotateTransition = new RotateTransition(seconds(2.5),imgRuleta); 
         Integer AngleRouletteImage = rand.nextInt(1080) + 360;
-        //  rotateTransition.setDuration(Duration.ofSeconds(2)); // Duración de la animación
         rotateTransition.setByAngle(AngleRouletteImage); // Ángulo de rotación
         rotateTransition.setCycleCount(1); // Número de veces que se repite la animación
         rotateTransition.setAutoReverse(false); // No revertir la animación
@@ -62,7 +63,7 @@ public class GameViewController extends Controller implements Initializable {
         rotateTransition.play();
         identifyCategoryAngle();
     }
-
+ 
     private void identifyCategoryAngle() {
         double angle = 360 / 7;
         System.out.println("total:" + TotalRotationAngleRouletteImage);
@@ -70,7 +71,6 @@ public class GameViewController extends Controller implements Initializable {
         while (auxTotalRotationAngleRouletteImage >= 360) {
             auxTotalRotationAngleRouletteImage -= 360;
         }
-
         if ((auxTotalRotationAngleRouletteImage >= 0) && (auxTotalRotationAngleRouletteImage <= angle)) {
             System.out.println("Historia");
         } else if (auxTotalRotationAngleRouletteImage <= (angle * 2)) {
