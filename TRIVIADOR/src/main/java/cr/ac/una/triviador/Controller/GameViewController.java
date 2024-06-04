@@ -29,13 +29,13 @@ import static javafx.util.Duration.seconds;
 public class GameViewController extends Controller implements Initializable {
     private double totalRotationAngleRouletteImage = 0;
     private static final Duration ROTATION_DURATION = Duration.ofSeconds(2);
+    private Integer TotalRotationAngleRouletteImage = 0;
+    private boolean isRuletaGirando=false;
     
     @FXML
     private ImageView imgRuleta;
     @FXML
     private ImageView imgGirar;
-
-    private Integer TotalRotationAngleRouletteImage = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -49,7 +49,10 @@ public class GameViewController extends Controller implements Initializable {
 
     @FXML
     private void onMouseClickedGirar(MouseEvent event) {
+      if (!isRuletaGirando) { // Agrega una bandera para evitar múltiples clics
+        isRuletaGirando = true; // Define esta variable en tu clase (boolean isRuletaGirando = false;)
         rouletteMechanism();
+    }
     }
 
     private void rouletteMechanism() {
@@ -62,6 +65,7 @@ public class GameViewController extends Controller implements Initializable {
         TotalRotationAngleRouletteImage += AngleRouletteImage;
         rotateTransition.play();
         identifyCategoryAngle();
+         isRuletaGirando = false; 
     }
  
     private void identifyCategoryAngle() {
