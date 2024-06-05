@@ -111,6 +111,7 @@ public class PlayerRegistrationController extends Controller implements Initiali
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         txtName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
+        this.playerDto = new TrivPlayersDto();
     }
 
     @Override

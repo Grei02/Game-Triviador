@@ -24,8 +24,8 @@ import java.math.BigInteger;
 @Entity
 @Table(name = "TRIV_PLAYERS", catalog = "", schema = "TRI")
 @NamedQueries({
-    @NamedQuery(name = "TrivPlayers.findAll", query = "SELECT t FROM TrivPlayers t"),
-    @NamedQuery(name = "TrivPlayers.findByPlaName", query = "SELECT t FROM TrivPlayers t WHERE t.name = :name"),
+    @NamedQuery(name = "TrivPlayers.findAll", query = "SELECT t FROM Players t"),
+    @NamedQuery(name = "TrivPlayers.findByPlaName", query = "SELECT t FROM Players t WHERE t.name = :name"),
     /*@NamedQuery(name = "Players.findByPlaId", query = "SELECT t FROM Players t WHERE t.plaId = :plaId"),
     @NamedQuery(name = "Players.findByPlaDescription", query = "SELECT t FROM Players t WHERE t.description = :description"),
     @NamedQuery(name = "Players.findByPlaCountergamewin", query = "SELECT t FROM Players t WHERE t.plaCountergamewin = :plaCountergamewin"),
