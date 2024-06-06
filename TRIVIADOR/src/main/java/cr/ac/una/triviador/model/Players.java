@@ -24,10 +24,10 @@ import java.math.BigInteger;
 @Entity
 @Table(name = "TRIV_PLAYERS", catalog = "", schema = "TRI")
 @NamedQueries({
-    @NamedQuery(name = "TrivPlayers.findAll", query = "SELECT t FROM Players t"),
-    @NamedQuery(name = "TrivPlayers.findByPlaName", query = "SELECT t FROM Players t WHERE t.name = :name"),
-    /*@NamedQuery(name = "Players.findByPlaId", query = "SELECT t FROM Players t WHERE t.plaId = :plaId"),
-    @NamedQuery(name = "Players.findByPlaDescription", query = "SELECT t FROM Players t WHERE t.description = :description"),
+    @NamedQuery(name = "Players.findAll", query = "SELECT t FROM Players t"),
+    @NamedQuery(name = "Players.findByPlaName", query = "SELECT t FROM Players t WHERE t.name = :name"),
+    @NamedQuery(name = "Players.findByPlaId", query = "SELECT t FROM Players t WHERE t.id = :id"),
+    /*@NamedQuery(name = "Players.findByPlaDescription", query = "SELECT t FROM Players t WHERE t.description = :description"),
     @NamedQuery(name = "Players.findByPlaCountergamewin", query = "SELECT t FROM Players t WHERE t.plaCountergamewin = :plaCountergamewin"),
     @NamedQuery(name = "Players.findByPlaCountergamelose", query = "SELECT t FROM Players t WHERE t.plaCountergamelose = :plaCountergamelose"),
     @NamedQuery(name = "Players.findByPlaCounterconsecutivequestion", query = "SELECT t FROM Players t WHERE t.plaCounterconsecutivequestion = :plaCounterconsecutivequestion"),
@@ -117,27 +117,36 @@ public class Players implements Serializable {
     }
 
     public Long getCountergamewin() {
-        return countergamewin;
+        if(countergamewin!=null){
+            return countergamewin;
+        }
+        return 0L;
     }
 
-    public void setCountergamewin(Long plaCountergamewin) {
-        this.countergamewin = plaCountergamewin;
+    public void setCountergamewin(Long countergamewin) {
+        this.countergamewin = countergamewin;
     }
 
     public Long getCountergamelose() {
-        return countergamelose;
+        if (countergamewin != null) {
+            return countergamewin;
+        }
+        return 0L;
     }
 
-    public void setCountergamelose(Long plaCountergamelose) {
-        this.countergamelose = plaCountergamelose;
+    public void setCountergamelose(Long countergamelose) {
+        this.countergamelose = countergamelose;
     }
 
     public Long getCounterconsecutivequestion() {
-        return counterconsecutivequestion;
+        if (counterconsecutivequestion != null) {
+            return counterconsecutivequestion;
+        }
+        return 0L;
     }
 
-    public void setCounterconsecutivequestion(Long Counterconsecutivequestion) {
-        this.counterconsecutivequestion = Counterconsecutivequestion;
+    public void setCounterconsecutivequestion(Long counterconsecutivequestion) {
+        this.counterconsecutivequestion = counterconsecutivequestion;
     }
 
     public String getFavoritecategory() {

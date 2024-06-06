@@ -60,7 +60,7 @@ public class PlayerRegistrationController extends Controller implements Initiali
 
     @FXML
     void onActionBtnEliminate(ActionEvent event) {
-        
+
     }
 
     @FXML
@@ -71,7 +71,7 @@ public class PlayerRegistrationController extends Controller implements Initiali
     @FXML
     void onActionTxtName(ActionEvent event) {
 
-    } 
+    }
 
     private void savePlayer() {
         try {
@@ -79,14 +79,15 @@ public class PlayerRegistrationController extends Controller implements Initiali
             if (name.isBlank()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Hay espacios que no pueden estar vacios", getStage(), name);
             } else {
+                playerDto.setName(name);
                 playersService playerService = new playersService();
-                Respuesta answer= playerService.savePlayer(this.playerDto);
-                if(answer.getEstado()){
+                Respuesta answer = playerService.savePlayer(this.playerDto);
+                if (answer.getEstado()) {
                     unbindPlayer();
-                    this.playerDto=(TrivPlayersDto) answer.getResultado("Jugador");
-                    bindPlayer(false);
+                    this.playerDto = (TrivPlayersDto) answer.getResultado("Jugador");
+                    bindPlayer();
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Jugador", getStage(), "Jugador Guardado");
-                }else{
+                } else {
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Jugador", getStage(), answer.getMensaje());
                 }
             }
@@ -96,22 +97,26 @@ public class PlayerRegistrationController extends Controller implements Initiali
         }
     }
 
-    private void bindPlayer(Boolean newPlayer) {
+    private void newPlayer() {
+        playerDto = new TrivPlayersDto();
+        unbindPlayer();
+        bindPlayer();
+        txtName.clear();
+        txtName.requestFocus();
+    }
+
+    private void bindPlayer() {
         txtName.textProperty().bindBidirectional(playerDto.name);
     }
 
     private void unbindPlayer() {
         txtName.textProperty().unbindBidirectional(playerDto.name);
     }
-    
-    private void cleanNewPlayer(){
-        
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         txtName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
-        this.playerDto = new TrivPlayersDto();
+        newPlayer();
     }
 
     @Override

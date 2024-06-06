@@ -13,10 +13,6 @@ public class playersService {
 
     private EntityManager em = EntityManagerHelper.getInstance().getManager();
     private EntityTransaction et;
-    
-//    public Respuesta loadPlayers(){
-//        
-//    }
 
     public Respuesta savePlayer(TrivPlayersDto playerDto) {
         try {
@@ -42,6 +38,6 @@ public class playersService {
             et.rollback(); // lo de vuelve como estaba antes del begin si no he hecho commit
             Logger.getLogger(playersService.class.getName()).log(Level.SEVERE, "Error al guardar el jugador", ex);
             return new Respuesta(false, "Error guardando al jugador.", "Jugador " + ex.getMessage());
-        }
+        }    
     }
 }

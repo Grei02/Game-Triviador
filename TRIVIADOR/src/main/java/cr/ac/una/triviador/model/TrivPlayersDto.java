@@ -4,6 +4,7 @@ package cr.ac.una.triviador.model;
 import java.io.Serializable;
 import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 
 public class TrivPlayersDto implements Serializable {
 
@@ -30,9 +31,13 @@ public class TrivPlayersDto implements Serializable {
         this.countergamelose = new SimpleStringProperty("");
         this.counterconsecutivequestion = new SimpleStringProperty("");
         this.favoritecategory = new SimpleStringProperty("");
+        this.achievementDtoList=FXCollections.observableArrayList();
+        this.playerCategoryGameDtoList=FXCollections.observableArrayList();
+        this.playerWildcardGameDtoList=FXCollections.observableArrayList();
+        this.questionCategoryDtoList=FXCollections.observableArrayList();
     }
-    
-        public TrivPlayersDto(Players players) {
+
+    public TrivPlayersDto(Players players) {
         this();
         this.id.set(players.getId().toString());
         this.name.set(players.getName());
@@ -72,7 +77,7 @@ public class TrivPlayersDto implements Serializable {
     }
 
     public Long getCountergamewin() {
-                if(this.countergamewin.get()!=null & !this.countergamewin.get().isBlank()){
+          if (this.countergamewin.get() != null & !this.countergamewin.get().isBlank()) {
             return Long.valueOf(countergamewin.get());
         }
         return null;
