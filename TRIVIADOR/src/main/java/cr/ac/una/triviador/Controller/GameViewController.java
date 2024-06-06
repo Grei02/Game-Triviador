@@ -20,7 +20,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -28,30 +27,23 @@ import static javafx.util.Duration.seconds;
 
 public class GameViewController extends Controller implements Initializable {
 
-    private double totalRotationAngleRouletteImage = 0;
     private static final Duration ROTATION_DURATION = Duration.ofSeconds(2);
 
+    private Integer TotalRotationAngleRouletteImage = 0;
+    private boolean isRuletaGirando=false;
+    
     @FXML
     private ImageView imgRuleta;
     @FXML
     private ImageView imgGirar;
 
-    private Integer TotalRotationAngleRouletteImage = 0;
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-    }
-
-    @Override
-    public void initialize() {
-
-    }
-
     @FXML
     private void onMouseClickedGirar(MouseEvent event) {
+      if (!isRuletaGirando) { // Agrega una bandera para evitar múltiples clics
+        isRuletaGirando = true; // Define esta variable en tu clase (boolean isRuletaGirando = false;)
         rouletteMechanism();
         identifyCategoryAngle(); 
+    }
     }
 
     private void rouletteMechanism() {
@@ -63,6 +55,9 @@ public class GameViewController extends Controller implements Initializable {
         rotateTransition.setAutoReverse(false); // No revertir la animación
         TotalRotationAngleRouletteImage += AngleRouletteImage;
         rotateTransition.play();
+        identifyCategoryAngle();
+         isRuletaGirando = false; 
+
     }
 
     private void identifyCategoryAngle() {
@@ -87,5 +82,15 @@ public class GameViewController extends Controller implements Initializable {
             System.out.println("Deporte");
         }
         System.out.println("total:" + TotalRotationAngleRouletteImage);
+    }
+    
+       @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+    }
+
+    @Override
+    public void initialize() {
+
     }
 }
