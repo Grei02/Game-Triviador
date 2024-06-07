@@ -21,11 +21,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
+import javafx.stage.Window;
 
 public class PlayerRegistrationController extends Controller implements Initializable {
 
     private TrivPlayersDto playerDto;
-    ObservableList<TrivPlayersDto> playerDtolist;
+    private ObservableList<TrivPlayersDto> playerDtolist=FXCollections.observableArrayList();
 
     @FXML
     private MFXButton btnAdd;
@@ -59,40 +60,62 @@ public class PlayerRegistrationController extends Controller implements Initiali
 
     @FXML
     void onActionBtnCancel(ActionEvent event) {
-
+        txtName.clear();
+        enableButtonsChangePlayerName(false);
     }
 
     @FXML
     void onActionBtnChangeName(ActionEvent event) {
-        enableButtonsChangePlayerName(true);
+        playerDto = tabRegistered.getSelectionModel().getSelectedItem();
+        if (playerDto != null) {
+            enableButtonsChangePlayerName(true);
+            txtName.setText(playerDto.getName());
+            tabRegistered.getSelectionModel().clearSelection();
+        } else {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Cambiar Nombre", getStage(), "No se ha seleccionado ningún jugador");
+        }
     }
 
     @FXML
     void onActionBtnEliminate(ActionEvent event) {
-
+        try {
+            Window window = btnEliminate.getScene().getWindow();
+            playerDto = tabRegistered.getSelectionModel().getSelectedItem();
+            if (playerDto != null) {
+                if (new Mensaje().showConfirmation("Eliminar Jugador", window, "¿Estás seguro de que deseas eliminar al jugador "+playerDto.getName()+" ?")) {
+                    playersService playerService = new playersService();
+                    Respuesta answer = playerService.deletePlayer(this.playerDto);
+                    if (answer.getEstado()) {
+                        newPlayer();
+                        new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Eliminar Jugador", getStage(), "Jugador Eliminado");
+                        loadPlayerTable();
+                        tabRegistered.getSelectionModel().clearSelection();
+                    } else {
+                        new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar Jugador", getStage(), answer.getMensaje());
+                    }
+                }
+            } else {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar Jugador", getStage(), "No se ha seleccionado ningún jugador");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(playersService.class.getName()).log(Level.SEVERE, "Error Eliminar el jugador ", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar Jugador", getStage(), "Ocurrio un error al Eliminar el jugador.");
+        }
     }
 
     @FXML
     void onActionBtnSave(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionTxtName(ActionEvent event) {
-
-    }
-
-    private void getChosenPlayerName() {
-        playerDto = tabRegistered.getSelectionModel().getSelectedItem();
-        txtName.setText(playerDto.getName());
-
+        savePlayer();
+        txtName.clear();
+        tabRegistered.getSelectionModel().clearSelection();
+        enableButtonsChangePlayerName(false);
     }
 
     private void savePlayer() {
         try {
             String name = txtName.getText();
             if (name.isBlank()) {
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Hay espacios que no pueden estar vacios", getStage(), name);
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar Jugador", getStage(), "Se encuentra un espacio vacio");
             } else {
                 playerDto.setName(name);
                 playersService playerService = new playersService();
@@ -133,11 +156,15 @@ public class PlayerRegistrationController extends Controller implements Initiali
     }
 
     private void bindPlayer() {
-        txtName.textProperty().bindBidirectional(playerDto.name);
+        if (playerDto != null) {
+            txtName.textProperty().bindBidirectional(playerDto.name);
+        }
     }
 
     private void unbindPlayer() {
-        txtName.textProperty().unbindBidirectional(playerDto.name);
+        if (playerDto != null) {
+            txtName.textProperty().unbindBidirectional(playerDto.name);
+        }
     }
 
     private void enableButtonsChangePlayerName(Boolean enable) {

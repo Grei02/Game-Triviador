@@ -43,24 +43,49 @@ public class playersService {
             et.begin();
             Players player;
             if (playerDto.getId() != null && playerDto.getId() > 0) {
-                player=em.find(Players.class, playerDto.getId());
-                if(player==null){
+                player = em.find(Players.class, playerDto.getId());
+                if (player == null) {
                     return new Respuesta(false, "No se encontro ningun jugador a guardar", "guardarJugador NoResultException");
                 }
                 player.update(playerDto);
-                player=em.merge(player);
-            }
-            else{
-                player=new Players(playerDto);
+                player = em.merge(player);
+            } else {
+                player = new Players(playerDto);
                 em.persist(player);
             }
             et.commit();
             return new Respuesta(true, " ", " ", "Jugador", new TrivPlayersDto(player));
-        }
+        } 
         catch (Exception ex) {
-            et.rollback(); // lo de vuelve como estaba antes del begin si no he hecho commit
+            if (et != null && et.isActive()) {
+                et.rollback();// lo de vuelve como estaba antes del begin si no he hecho commit
+            }
+//            et.rollback(); 
             Logger.getLogger(playersService.class.getName()).log(Level.SEVERE, "Error al guardar el jugador", ex);
             return new Respuesta(false, "Error guardando al jugador.", "Jugador " + ex.getMessage());
         }    
+    }
+    
+    public Respuesta deletePlayer(TrivPlayersDto playerDto) {
+        try {
+            et = em.getTransaction();
+            et.begin();
+            Players player;
+            if (playerDto.getId() != null && playerDto.getId() > 0) {
+                player = em.find(Players.class, playerDto.getId());
+                if (player == null) {
+                    return new Respuesta(false, "No se encontro ningun jugador a eliminar", "deletePlayer NoResultException");
+                }
+                em.remove(player);
+            } else {
+                return new Respuesta(false, "No se encontró el jugador a eliminar", "deletePlayer NoResultException");
+            }
+            et.commit();
+            return new Respuesta(true, " ", " ", "Jugador", new TrivPlayersDto(player));
+        } catch (Exception ex) {
+            et.rollback(); // lo de vuelve como estaba antes del begin si no he hecho commit
+            Logger.getLogger(playersService.class.getName()).log(Level.SEVERE, "Error al eliminar el jugador", ex);
+            return new Respuesta(false, "Error al eliminar el jugador.", "Jugador " + ex.getMessage());
+        }
     }
 }
