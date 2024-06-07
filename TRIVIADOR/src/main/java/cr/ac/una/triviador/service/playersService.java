@@ -6,6 +6,11 @@ import cr.ac.una.triviador.util.EntityManagerHelper;
 import cr.ac.una.triviador.util.Respuesta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.NonUniqueResultException;
+import jakarta.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,6 +18,24 @@ public class playersService {
 
     private EntityManager em = EntityManagerHelper.getInstance().getManager();
     private EntityTransaction et;
+    
+    public Respuesta loadAllPlayer() {
+        try {
+            Query queryPlayers = em.createNamedQuery("Players.findAll");
+            List<Players> playersList = queryPlayers.getResultList();
+            List<TrivPlayersDto> playersDtoList = new ArrayList<>();
+            for (Players players: playersList){
+                playersDtoList.add(new TrivPlayersDto(players));
+            }
+            return new Respuesta(true, " ", " ", "ListaJugadores", playersDtoList);
+        }
+        catch (NoResultException ex) {
+            return new Respuesta(false, "No existe jugadores con las credenciales ingresadas.", "NoResultException/loadAllPlayer");
+        }catch (Exception ex) {
+            Logger.getLogger(playersService.class.getName()).log(Level.SEVERE, "Error obteniendo los jugadores", ex);
+            return new Respuesta(false, "Error obtener jugadores.", "loadAllPlayer" + ex.getMessage());
+        }
+    }
 
     public Respuesta savePlayer(TrivPlayersDto playerDto) {
         try {

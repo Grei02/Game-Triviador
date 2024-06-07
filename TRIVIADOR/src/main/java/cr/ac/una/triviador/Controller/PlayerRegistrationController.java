@@ -9,19 +9,24 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
 
 public class PlayerRegistrationController extends Controller implements Initializable {
 
     private TrivPlayersDto playerDto;
-
+    ObservableList <TrivPlayersDto> playerDtolist; 
+    
     @FXML
     private MFXButton btnAdd;
 
@@ -42,10 +47,14 @@ public class PlayerRegistrationController extends Controller implements Initiali
 
     @FXML
     private MFXTextField txtName;
+    @FXML
+    private TableColumn<TrivPlayersDto, String> colNamePlayers;
 
     @FXML
     void onActionBtnAdd(ActionEvent event) {
         savePlayer();
+        txtName.clear();
+        loadPlayerTable();
     }
 
     @FXML
@@ -87,6 +96,7 @@ public class PlayerRegistrationController extends Controller implements Initiali
                     this.playerDto = (TrivPlayersDto) answer.getResultado("Jugador");
                     bindPlayer();
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Jugador", getStage(), "Jugador Guardado");
+                    txtName.clear();
                 } else {
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Jugador", getStage(), answer.getMensaje());
                 }
@@ -94,6 +104,17 @@ public class PlayerRegistrationController extends Controller implements Initiali
         } catch (Exception ex) {
             Logger.getLogger(playersService.class.getName()).log(Level.SEVERE, "Error guardar el jugador ", ex);
             new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar Jugador", getStage(), "Ocurrio un error al guardar el jugador.");
+        }
+    }
+    
+    private void loadPlayerTable(){
+        playersService playerService=new playersService();
+        Respuesta answer = playerService.loadAllPlayer();
+        if(answer.getEstado()){
+            playerDtolist = FXCollections.observableArrayList((List<TrivPlayersDto>)answer.getResultado("ListaJugadores"));
+            tabRegistered.getItems().clear();
+            tabRegistered.getItems().addAll(playerDtolist);
+            tabRegistered.refresh();
         }
     }
 
@@ -117,6 +138,8 @@ public class PlayerRegistrationController extends Controller implements Initiali
     public void initialize(URL url, ResourceBundle rb) {
         txtName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
         newPlayer();
+        colNamePlayers.setCellValueFactory(cd->cd.getValue().name);
+        loadPlayerTable();
     }
 
     @Override
