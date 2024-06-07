@@ -25,8 +25,8 @@ import javafx.scene.control.TableColumn;
 public class PlayerRegistrationController extends Controller implements Initializable {
 
     private TrivPlayersDto playerDto;
-    ObservableList <TrivPlayersDto> playerDtolist; 
-    
+    ObservableList<TrivPlayersDto> playerDtolist;
+
     @FXML
     private MFXButton btnAdd;
 
@@ -64,7 +64,7 @@ public class PlayerRegistrationController extends Controller implements Initiali
 
     @FXML
     void onActionBtnChangeName(ActionEvent event) {
-
+        enableButtonsChangePlayerName(true);
     }
 
     @FXML
@@ -79,6 +79,12 @@ public class PlayerRegistrationController extends Controller implements Initiali
 
     @FXML
     void onActionTxtName(ActionEvent event) {
+
+    }
+
+    private void getChosenPlayerName() {
+        playerDto = tabRegistered.getSelectionModel().getSelectedItem();
+        txtName.setText(playerDto.getName());
 
     }
 
@@ -106,12 +112,12 @@ public class PlayerRegistrationController extends Controller implements Initiali
             new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar Jugador", getStage(), "Ocurrio un error al guardar el jugador.");
         }
     }
-    
-    private void loadPlayerTable(){
-        playersService playerService=new playersService();
+
+    private void loadPlayerTable() {
+        playersService playerService = new playersService();
         Respuesta answer = playerService.loadAllPlayer();
-        if(answer.getEstado()){
-            playerDtolist = FXCollections.observableArrayList((List<TrivPlayersDto>)answer.getResultado("ListaJugadores"));
+        if (answer.getEstado()) {
+            playerDtolist = FXCollections.observableArrayList((List<TrivPlayersDto>) answer.getResultado("ListaJugadores"));
             tabRegistered.getItems().clear();
             tabRegistered.getItems().addAll(playerDtolist);
             tabRegistered.refresh();
@@ -134,17 +140,37 @@ public class PlayerRegistrationController extends Controller implements Initiali
         txtName.textProperty().unbindBidirectional(playerDto.name);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    private void enableButtonsChangePlayerName(Boolean enable) {
+        //enable=true
+        btnCancel.setDisable(!enable);//deshabilitado
+        btnSave.setDisable(!enable);//deshabilitado
+
+        btnEliminate.setDisable(enable);//deshabilitado
+        btnChangeName.setDisable(enable);//deshabilitado
+        btnAdd.setDisable(enable);//deshabilitado
+        btnAdd.setVisible(!enable);//no visible
+        btnAdd.setManaged(!enable);//no consume espacio
+//        button.setManaged(false); // Deshabilitar la administración del botón por su contenedor
+//        button.setVisible(false); // Oculta el botón
+//        button.setDisable(true); // Desactiva el botón
+    }
+    
+    private void initializeView() {
         txtName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
         newPlayer();
-        colNamePlayers.setCellValueFactory(cd->cd.getValue().name);
+        colNamePlayers.setCellValueFactory(cd -> cd.getValue().name);
         loadPlayerTable();
+        enableButtonsChangePlayerName(false);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        initializeView();
     }
 
     @Override
     public void initialize() {
-
+        initializeView();
     }
 
 }
