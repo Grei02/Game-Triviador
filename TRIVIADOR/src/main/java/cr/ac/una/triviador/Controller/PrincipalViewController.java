@@ -66,5 +66,6 @@ public class PrincipalViewController extends Controller implements Initializable
 
     @FXML
     private void onAxtionItemManageQuestions(ActionEvent event) {
+         FlowController.getInstance().goViewInStage("manageQuestionsView", getStage());
     }
 }
