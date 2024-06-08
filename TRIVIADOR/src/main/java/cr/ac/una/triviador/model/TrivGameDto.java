@@ -131,7 +131,7 @@ public class TrivGameDto implements Serializable {
         if(this.counterround.get()!=null & !this.counterround.get().isBlank()){
             return Long.valueOf(counterround.get());
         }
-        return null;s
+        return null;
     }
 
     public void setCounterround(Long counterround) {
