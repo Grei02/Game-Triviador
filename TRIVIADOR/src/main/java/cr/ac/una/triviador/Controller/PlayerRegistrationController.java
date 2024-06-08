@@ -117,7 +117,6 @@ public class PlayerRegistrationController extends Controller implements Initiali
             if (name.isBlank()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar Jugador", getStage(), "Se encuentra un espacio vacio");
             } else {
-                playerDto.setName(name);
                 playersService playerService = new playersService();
                 Respuesta answer = playerService.savePlayer(this.playerDto);
                 if (answer.getEstado()) {
@@ -169,8 +168,8 @@ public class PlayerRegistrationController extends Controller implements Initiali
 
     private void enableButtonsChangePlayerName(Boolean enable) {
         //enable=true
-        btnCancel.setDisable(!enable);//deshabilitado
-        btnSave.setDisable(!enable);//deshabilitado
+        btnCancel.setDisable(!enable);//habilitado
+        btnSave.setDisable(!enable);//habilitado
 
         btnEliminate.setDisable(enable);//deshabilitado
         btnChangeName.setDisable(enable);//deshabilitado

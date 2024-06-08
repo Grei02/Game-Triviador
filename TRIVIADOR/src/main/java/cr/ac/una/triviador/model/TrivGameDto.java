@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package cr.ac.una.triviador.model;
 
 import java.io.Serializable;
@@ -134,7 +131,7 @@ public class TrivGameDto implements Serializable {
         if(this.counterround.get()!=null & !this.counterround.get().isBlank()){
             return Long.valueOf(counterround.get());
         }
-        return null;
+        return null;s
     }
 
     public void setCounterround(Long counterround) {
