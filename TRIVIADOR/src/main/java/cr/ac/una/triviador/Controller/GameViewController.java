@@ -23,6 +23,9 @@ import java.util.ResourceBundle;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import static javafx.util.Duration.seconds;
 
 public class GameViewController extends Controller implements Initializable {
@@ -36,6 +39,8 @@ public class GameViewController extends Controller implements Initializable {
     private ImageView imgRuleta;
     @FXML
     private ImageView imgGirar;
+    @FXML
+    private Canvas canvasTrapezoids;
 
     @FXML
     private void onMouseClickedGirar(MouseEvent event) {
@@ -57,7 +62,6 @@ public class GameViewController extends Controller implements Initializable {
         rotateTransition.play();
         identifyCategoryAngle();
          isRuletaGirando = false; 
-
     }
 
     private void identifyCategoryAngle() {
@@ -83,10 +87,54 @@ public class GameViewController extends Controller implements Initializable {
         }
         System.out.println("total:" + TotalRotationAngleRouletteImage);
     }
-    
+    private void drawTrapezoids() {
+        GraphicsContext gc = canvasTrapezoids.getGraphicsContext2D();
+        gc.clearRect(0, 0, canvasTrapezoids.getWidth(), canvasTrapezoids.getHeight());
+
+        double centerX = canvasTrapezoids.getWidth() / 2;
+        double centerY = canvasTrapezoids.getHeight() / 2;
+        double mainCircleRadius = 150;
+
+        // Dibujar el círculo principal
+        gc.setFill(Color.LIGHTGRAY);
+        gc.fillOval(centerX - mainCircleRadius, centerY - mainCircleRadius, 2 * mainCircleRadius, 2 * mainCircleRadius);
+
+        // Dibujar trapecios alrededor del círculo
+        double innerRadius = mainCircleRadius;
+        double outerRadius = mainCircleRadius + 50;
+        int numTrapezoids = 16;
+        double angleStep = 2 * Math.PI / numTrapezoids;
+        Color[] colors = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW};
+
+        for (int i = 0; i < numTrapezoids; i++) {
+            double angle1 = i * angleStep;
+            double angle2 = (i + 1) * angleStep;
+
+            double x1Inner = centerX + innerRadius * Math.cos(angle1);
+            double y1Inner = centerY + innerRadius * Math.sin(angle1);
+            double x2Inner = centerX + innerRadius * Math.cos(angle2);
+            double y2Inner = centerY + innerRadius * Math.sin(angle2);
+
+            double x1Outer = centerX + outerRadius * Math.cos(angle1);
+            double y1Outer = centerY + outerRadius * Math.sin(angle1);
+            double x2Outer = centerX + outerRadius * Math.cos(angle2);
+            double y2Outer = centerY + outerRadius * Math.sin(angle2);
+
+            gc.setFill(colors[i / (numTrapezoids / 4)]);
+            gc.beginPath();
+            gc.moveTo(x1Inner, y1Inner);
+            gc.lineTo(x2Inner, y2Inner);
+            gc.lineTo(x2Outer, y2Outer);
+            gc.lineTo(x1Outer, y1Outer);
+            gc.closePath();
+            gc.fill();
+            gc.setStroke(Color.BLACK);
+            gc.stroke();
+        }
+    }
        @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+drawTrapezoids() ;  
     }
 
     @Override
