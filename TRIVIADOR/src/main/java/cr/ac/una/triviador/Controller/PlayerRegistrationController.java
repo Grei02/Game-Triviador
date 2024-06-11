@@ -2,6 +2,7 @@ package cr.ac.una.triviador.Controller;
 
 import cr.ac.una.triviador.model.TrivPlayersDto;
 import cr.ac.una.triviador.service.playersService;
+import cr.ac.una.triviador.util.FlowController;
 import cr.ac.una.triviador.util.Formato;
 import cr.ac.una.triviador.util.Mensaje;
 import cr.ac.una.triviador.util.Respuesta;
@@ -21,6 +22,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 
 public class PlayerRegistrationController extends Controller implements Initializable {
@@ -50,6 +53,8 @@ public class PlayerRegistrationController extends Controller implements Initiali
     private MFXTextField txtName;
     @FXML
     private TableColumn<TrivPlayersDto, String> colNamePlayers;
+    @FXML
+    private ImageView imgSalir;
 
     @FXML
     void onActionBtnAdd(ActionEvent event) {
@@ -197,6 +202,11 @@ public class PlayerRegistrationController extends Controller implements Initiali
     @Override
     public void initialize() {
         initializeView();
+    }
+
+    @FXML
+    private void onMouseClickedSalir(MouseEvent event) {
+     FlowController.getInstance().goViewInStage("principalView", getStage());
     }
 
 }

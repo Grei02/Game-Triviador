@@ -59,8 +59,8 @@
             </HBox>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
                <children>
-                  <MFXButton fx:id="btnStartGame" onAction="#onActionBtnStartGame" text="Iniciar Partida" />
                   <MFXButton fx:id="btnReturnBeginning" onAction="#onActionBtnReturnBeginning" text="Volver al inicio" HBox.hgrow="ALWAYS" />
+                  <MFXButton fx:id="btnStartGame" onAction="#onActionBtnStartGame" text="Iniciar Partida" />
                </children>
             </HBox>
          </children>

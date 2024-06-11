@@ -1,37 +1,22 @@
 package cr.ac.una.triviador.Controller;
 
-import java.net.URL;
 import java.time.Duration;
-import java.util.ResourceBundle;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.animation.RotateTransition;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.animation.RotateTransition;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import static javafx.util.Duration.seconds;
 
 public class GameViewController extends Controller implements Initializable {
-
-    private static final Duration ROTATION_DURATION = Duration.ofSeconds(2);
-
+    
     private Integer TotalRotationAngleRouletteImage = 0;
     private boolean isRuletaGirando=false;
     
@@ -41,11 +26,14 @@ public class GameViewController extends Controller implements Initializable {
     private ImageView imgGirar;
     @FXML
     private Canvas canvasTrapezoids;
+    @FXML
+    private ImageView imgCategoria;
 
     @FXML
     private void onMouseClickedGirar(MouseEvent event) {
       if (!isRuletaGirando) { // Agrega una bandera para evitar múltiples clics
         isRuletaGirando = true; // Define esta variable en tu clase (boolean isRuletaGirando = false;)
+        imgCategoria.setVisible(false);
         rouletteMechanism();
         identifyCategoryAngle(); 
     }
@@ -65,6 +53,7 @@ public class GameViewController extends Controller implements Initializable {
     }
 
     private void identifyCategoryAngle() {
+         Image categoryImage = null;
         System.out.println("total:" + TotalRotationAngleRouletteImage);
         Integer auxTotalRotationAngleRouletteImage = TotalRotationAngleRouletteImage;
         while (auxTotalRotationAngleRouletteImage >= 360) {
@@ -72,41 +61,47 @@ public class GameViewController extends Controller implements Initializable {
         }
         if ((auxTotalRotationAngleRouletteImage >= 0) && (auxTotalRotationAngleRouletteImage <= 360 / 7)) {
             System.out.println("Historia");
+             categoryImage = new Image("../resources/historiaFrente.png");
         } else if (auxTotalRotationAngleRouletteImage <= ((360 / 7) * 2)) {
             System.out.println("Ciencia");
+            categoryImage = new Image("../resources/cienciaFrente.png");
         } else if (auxTotalRotationAngleRouletteImage <= ((360 / 7) * 3)) {
             System.out.println("Geografia");
+            categoryImage = new Image("../resources/geografiaFrente.png");
         } else if (auxTotalRotationAngleRouletteImage <= ((360 / 7) * 4)) {
             System.out.println("Corona");
         } else if (auxTotalRotationAngleRouletteImage <= ((360 / 7) * 5)) {
             System.out.println("Entretenimiento");
+            categoryImage = new Image("../resources/entretenimientoFrente.png");
         } else if (auxTotalRotationAngleRouletteImage <= ((360 / 7) * 6)) {
             System.out.println("Arte");
+            categoryImage = new Image("../resources/arteFrente.png");
         } else if (auxTotalRotationAngleRouletteImage <= 360) {
             System.out.println("Deporte");
+            categoryImage = new Image("../resources/deporteFrente.png");
         }
         System.out.println("total:" + TotalRotationAngleRouletteImage);
+        imgCategoria.setImage(categoryImage);
+        imgCategoria.setVisible(true); // Mostrar la imagen de la categoría
     }
-    private void drawTrapezoids() {
+    
+   private void drawTrapezoids(int numberOfPlayers) {
         GraphicsContext gc = canvasTrapezoids.getGraphicsContext2D();
-        gc.clearRect(0, 0, canvasTrapezoids.getWidth(), canvasTrapezoids.getHeight());
-
         double centerX = canvasTrapezoids.getWidth() / 2;
         double centerY = canvasTrapezoids.getHeight() / 2;
         double mainCircleRadius = 150;
 
-        // Dibujar el círculo principal
         gc.setFill(Color.LIGHTGRAY);
         gc.fillOval(centerX - mainCircleRadius, centerY - mainCircleRadius, 2 * mainCircleRadius, 2 * mainCircleRadius);
 
-        // Dibujar trapecios alrededor del círculo
         double innerRadius = mainCircleRadius;
         double outerRadius = mainCircleRadius + 50;
-        int numTrapezoids = 16;
-        double angleStep = 2 * Math.PI / numTrapezoids;
-        Color[] colors = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW};
+        int casillasPorJugador = 4;
+        int totalCasillas = numberOfPlayers * casillasPorJugador;
+        double angleStep = 2 * Math.PI / totalCasillas;
+        Color[] playerColors = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.ORANGE, Color.PURPLE};
 
-        for (int i = 0; i < numTrapezoids; i++) {
+        for (int i = 0; i < totalCasillas; i++) {
             double angle1 = i * angleStep;
             double angle2 = (i + 1) * angleStep;
 
@@ -120,7 +115,7 @@ public class GameViewController extends Controller implements Initializable {
             double x2Outer = centerX + outerRadius * Math.cos(angle2);
             double y2Outer = centerY + outerRadius * Math.sin(angle2);
 
-            gc.setFill(colors[i / (numTrapezoids / 4)]);
+            gc.setFill(playerColors[i / casillasPorJugador]);
             gc.beginPath();
             gc.moveTo(x1Inner, y1Inner);
             gc.lineTo(x2Inner, y2Inner);
@@ -132,13 +127,14 @@ public class GameViewController extends Controller implements Initializable {
             gc.stroke();
         }
     }
+   
        @Override
     public void initialize(URL url, ResourceBundle rb) {
-drawTrapezoids() ;  
+   int numberOfPlayers = 5; // Cambiar según el número de jugadores (2-6)
+        drawTrapezoids(numberOfPlayers);
     }
 
     @Override
     public void initialize() {
-
     }
 }

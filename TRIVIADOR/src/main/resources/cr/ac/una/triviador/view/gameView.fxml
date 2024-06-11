@@ -8,6 +8,7 @@
    <children>
       <Canvas fx:id="canvasTrapezoids" height="414.0" layoutX="146.0" layoutY="71.0" width="459.0" AnchorPane.bottomAnchor="115.06635284423828" AnchorPane.leftAnchor="146.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="71.0" />
       <ImageView fx:id="imgRuleta" fitHeight="316.0" fitWidth="312.0" layoutX="222.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="164.0" AnchorPane.leftAnchor="222.0" AnchorPane.rightAnchor="222.0" AnchorPane.topAnchor="120.0" />
+      <ImageView fx:id="imgCategoria" fitHeight="407.0" fitWidth="342.0" layoutX="205.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imgGirar" fitHeight="74.0" fitWidth="64.0" layoutX="345.0" layoutY="243.0" onMouseClicked="#onMouseClickedGirar" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="287.0" AnchorPane.leftAnchor="345.0" AnchorPane.rightAnchor="341.0" AnchorPane.topAnchor="243.0" />
    </children>
 </AnchorPane>

@@ -53,7 +53,6 @@ public class PrincipalViewController extends Controller implements Initializable
 
     @FXML
     private void onActionItemHowToPlay(ActionEvent event) {
-        
     }
 
     @FXML

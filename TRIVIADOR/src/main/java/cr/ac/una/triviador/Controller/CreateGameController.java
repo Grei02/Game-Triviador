@@ -106,6 +106,7 @@ public class CreateGameController extends Controller implements Initializable {
                         this.gameDto = (TrivGameDto) respuesta.getResultado("Partida");
                         bindGame();
                         new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Iniciar Partida", getStage(), "Partida Iniciada");
+                        FlowController.getInstance().goViewInStage("gameView", getStage());
                     } else {
                         new Mensaje().showModal(Alert.AlertType.ERROR, "Iniciar Partida", getStage(), respuesta.getMensaje());
                     }
