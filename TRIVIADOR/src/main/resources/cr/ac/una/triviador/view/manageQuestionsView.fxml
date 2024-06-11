@@ -20,10 +20,10 @@
             <HBox alignment="CENTER" spacing="5.0">
                <children>
                   <MFXFilterComboBox fx:id="cmbFilterType" floatingText="Tipo de filtro" onAction="#onActonCmbFilterType" prefHeight="47.0" prefWidth="518.0" />
-                  <MFXButton fx:id="btnSearch" text="Buscar" />
+                  <MFXButton fx:id="btnSearch" onAction="#onActionBtnSearch" text="Buscar" />
                </children>
             </HBox>
-            <MFXFilterComboBox fx:id="cmbCategories" floatingText="Categorias" prefHeight="47.0" prefWidth="516.0" />
+            <MFXFilterComboBox fx:id="cmbCategories" floatingText="Categorias" onAction="#onActionCmbCategories" prefHeight="47.0" prefWidth="516.0" />
             <MFXTextField fx:id="txtSearchText" floatingText="Texto para busqueda" prefHeight="49.0" prefWidth="517.0" />
             <MFXLegacyTableView fx:id="tbvQuestion" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="219.0" prefWidth="575.0" styleClass="mfx-table-row-cell" VBox.vgrow="ALWAYS">
                <columnResizePolicy>

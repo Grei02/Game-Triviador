@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -21,11 +22,15 @@ import java.math.BigInteger;
 
 @Entity
 @Table(name = "TRIV_QUESTIONS", catalog = "", schema = "TRI")
-@NamedQueries({ /* @NamedQuery(name = "Questions.findAll", query = "SELECT t FROM Questions t"),
-    @NamedQuery(name = "Questions.findByQueId", query = "SELECT t FROM Questions t WHERE t.id = :id"),
-    @NamedQuery(name = "Questions.findByQueQuestions", query = "SELECT t FROM Questions t WHERE t.questions = :questions"),
+@NamedQueries({
+    @NamedQuery(name = "Questions.findAll", query = "SELECT t FROM Questions t"),
+    @NamedQuery(name = "Questions.findByQueQuestions", query = "SELECT t FROM Questions t WHERE t.questions LIKE :questions"),
     @NamedQuery(name = "Questions.findByQueIsEnabled", query = "SELECT t FROM Questions t WHERE t.isEnabled = :isEnabled"),
-    @NamedQuery(name = "Questions.findByQueVersion", query = "SELECT t FROM Questions t WHERE t.queVersion = :queVersion")*/})
+    @NamedQuery(name = "Questions.findByCategoryName", query = "SELECT q FROM Questions q WHERE q.category.name = :name")
+/*@NamedQuery(name = "Questions.findByQueId", query = "SELECT t FROM Questions t WHERE t.id = :id"),
+        @NamedQuery(name = "Questions.findByQueQuestions", query = "SELECT t FROM Questions t WHERE t.questions = :questions"),
+    @NamedQuery(name = "Questions.findByQueVersion", query = "SELECT t FROM Questions t WHERE t.queVersion = :queVersion")*/
+})
 public class Questions implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,12 +64,12 @@ public class Questions implements Serializable {
     public Questions(Long id) {
         this.id = id;
     }
-    
-    public Questions (TrivQuestionsDto questionsDto) {
+
+    public Questions(TrivQuestionsDto questionsDto) {
         this.id = questionsDto.getId();
         update(questionsDto);
     }
-    
+
     public void update(TrivQuestionsDto questionsDto) {
         this.questions = questionsDto.getQuestions();
         this.isEnabled = questionsDto.getIsEnabled();
@@ -136,7 +141,7 @@ public class Questions implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        
+
         if (!(object instanceof Questions)) {
             return false;
         }

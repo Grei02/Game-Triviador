@@ -21,7 +21,7 @@ public class playersService {
     
     public Respuesta loadAllPlayer() {
         try {
-            Query queryPlayers = em.createNamedQuery("Players.findAll");
+            Query queryPlayers = em.createNamedQuery("Players.findAll",Players.class);
             List<Players> playersList = queryPlayers.getResultList();
             List<TrivPlayersDto> playersDtoList = new ArrayList<>();
             for (Players players: playersList){
