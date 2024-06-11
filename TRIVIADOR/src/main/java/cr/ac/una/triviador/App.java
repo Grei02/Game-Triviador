@@ -18,8 +18,8 @@ public class App extends Application {
         FlowController.getInstance().InitializeFlow(stage, null);
         //FlowController.getInstance().goViewInWindow("principalView");
         // FlowController.getInstance().goViewInWindow("PlayerRegistrationView");
-        FlowController.getInstance().goViewInWindow("gameView");
-       
+        //FlowController.getInstance().goViewInWindow("gameView");
+       FlowController.getInstance().goViewInWindow("manageQuestionsView");
     }
 
     public static void main(String[] args) {
