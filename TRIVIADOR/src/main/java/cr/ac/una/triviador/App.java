@@ -19,9 +19,9 @@ public class App extends Application {
         //FlowController.getInstance().goViewInWindow("principalView");
         // FlowController.getInstance().goViewInWindow("PlayerRegistrationView");
         //FlowController.getInstance().goViewInWindow("gameView");
-       FlowController.getInstance().goViewInWindow("manageQuestionsView");
+         FlowController.getInstance().goViewInWindow("manageQuestionsView");
         //FlowController.getInstance().goViewInWindow("PlayerRegistrationView");
-        FlowController.getInstance().goViewInWindow("gameView");
+        //FlowController.getInstance().goViewInWindow("gameView");
     }
 
     public static void main(String[] args) {

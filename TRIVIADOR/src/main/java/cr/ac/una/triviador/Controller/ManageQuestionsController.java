@@ -13,6 +13,8 @@ import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,7 +66,7 @@ public class ManageQuestionsController extends Controller implements Initializab
     private void onActionBtnSearch(ActionEvent event) {
         if (cmbFilterType.getValue().equals("Texto de pregunta")) {
             if (!txtSearchText.getText().isBlank()) {
-               callServiceType();
+                callServiceType();
             } else {
                 new Mensaje().show(Alert.AlertType.ERROR, "Texto vacio", "Has dejado un espacio vacio, por favor revisar");
             }
@@ -72,9 +74,29 @@ public class ManageQuestionsController extends Controller implements Initializab
             callServiceType();
         }
     }
-    
+
+    @FXML
+    void onActionBtnCreateQuestion(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionBtnModify(ActionEvent event) {
+        try {
+            questionDto = tbvQuestion.getSelectionModel().getSelectedItem();
+            if (questionDto != null) {
+                //meter lo de llevar a otra ventana
+            } else {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar Jugador", getStage(), "No se ha seleccionado ningún jugador");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(playersService.class.getName()).log(Level.SEVERE, "Error Eliminar el jugador ", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar Jugador", getStage(), "Ocurrio un error al Eliminar el jugador.");
+        }
+    }
+
     //aqui metemos por parametro de la respuesta del service y el nombre de la respuesta para poder cargar la tabla con las preguntas que nos de el service
-    private void loadQuestionTable(Respuesta answer,String answerName) {
+    private void loadQuestionTable(Respuesta answer, String answerName) {
         if (answer.getEstado()) {
             questionDtoList = FXCollections.observableArrayList((List<TrivQuestionsDto>) answer.getResultado(answerName));
             tbvQuestion.getItems().clear();
@@ -82,7 +104,7 @@ public class ManageQuestionsController extends Controller implements Initializab
             tbvQuestion.refresh();
         }
     }
-    
+
     //aqui inicializamos todos los componentes como: tablas,combo box y componente que esten activos,visibles y habilitados
     private void initializeComponent() {
         cmbFilterType.getItems().addAll("Categorias", "Texto de pregunta", "Preguntas activas", "Preguntas inactivas", "Todas");

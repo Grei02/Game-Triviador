@@ -213,7 +213,7 @@ Table Rows
   -fx-background-color: #E0F7FA; /* Fondo celeste claro */
 }
 
-.mfx-table-row:selected {
+.mfx-table-row:selected{
   -fx-background-color: #80DEEA; /* Fondo celeste más oscuro al seleccionar */
 }
 
