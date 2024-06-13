@@ -53,37 +53,37 @@ public class GameViewController extends Controller implements Initializable {
     }
 
     private void identifyCategoryAngle() {
-         Image categoryImage = null;
+        Image categoryImage = null;
         System.out.println("total:" + TotalRotationAngleRouletteImage);
-        Integer auxTotalRotationAngleRouletteImage = TotalRotationAngleRouletteImage;
-        while (auxTotalRotationAngleRouletteImage >= 360) {
-            auxTotalRotationAngleRouletteImage -= 360;
-        }
+        Integer auxTotalRotationAngleRouletteImage = TotalRotationAngleRouletteImage % 360;
+
         if ((auxTotalRotationAngleRouletteImage >= 0) && (auxTotalRotationAngleRouletteImage <= 360 / 7)) {
             System.out.println("Historia");
-             categoryImage = new Image("../resources/historiaFrente.png");
+            categoryImage = new Image(getClass().getResource("/cr/ac/una/triviador/resources/historiaFrente.png").toExternalForm());
         } else if (auxTotalRotationAngleRouletteImage <= ((360 / 7) * 2)) {
             System.out.println("Ciencia");
-            categoryImage = new Image("../resources/cienciaFrente.png");
+            categoryImage = new Image(getClass().getResource("/cr/ac/una/triviador/resources/cienciaFrente.png").toExternalForm());
         } else if (auxTotalRotationAngleRouletteImage <= ((360 / 7) * 3)) {
             System.out.println("Geografia");
-            categoryImage = new Image("../resources/geografiaFrente.png");
+            categoryImage = new Image(getClass().getResource("/cr/ac/una/triviador/resources/geografiaFrente.png").toExternalForm());
         } else if (auxTotalRotationAngleRouletteImage <= ((360 / 7) * 4)) {
             System.out.println("Corona");
+            // No hay imagen para "Corona"
         } else if (auxTotalRotationAngleRouletteImage <= ((360 / 7) * 5)) {
             System.out.println("Entretenimiento");
-            categoryImage = new Image("../resources/entretenimientoFrente.png");
+            categoryImage = new Image(getClass().getResource("/cr/ac/una/triviador/resources/entretenimientoFrente.png").toExternalForm());
         } else if (auxTotalRotationAngleRouletteImage <= ((360 / 7) * 6)) {
             System.out.println("Arte");
-            categoryImage = new Image("../resources/arteFrente.png");
+            categoryImage = new Image(getClass().getResource("/cr/ac/una/triviador/resources/arteFrente.png").toExternalForm());
         } else if (auxTotalRotationAngleRouletteImage <= 360) {
             System.out.println("Deporte");
-            categoryImage = new Image("../resources/deporteFrente.png");
+            categoryImage = new Image(getClass().getResource("/cr/ac/una/triviador/resources/deporteFrente.png").toExternalForm());
         }
-        System.out.println("total:" + TotalRotationAngleRouletteImage);
+
         imgCategoria.setImage(categoryImage);
-        imgCategoria.setVisible(true); // Mostrar la imagen de la categoría
+        imgCategoria.setVisible(true);
     }
+
     
    private void drawTrapezoids(int numberOfPlayers) {
         GraphicsContext gc = canvasTrapezoids.getGraphicsContext2D();
