@@ -19,8 +19,8 @@ public class App extends Application {
         //FlowController.getInstance().goViewInWindow("principalView");
         // FlowController.getInstance().goViewInWindow("PlayerRegistrationView");
         //FlowController.getInstance().goViewInWindow("gameView");
-         FlowController.getInstance().goViewInWindow("manageQuestionsView");
-        //FlowController.getInstance().goViewInWindow("PlayerRegistrationView");
+        FlowController.getInstance().goViewInWindow("manageQuestionsView");
+        //FlowController.getInstance().goViewInWindow("QuestionMaintenanceView");
         //FlowController.getInstance().goViewInWindow("gameView");
     }
 

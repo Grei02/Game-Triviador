@@ -4,6 +4,7 @@ import cr.ac.una.triviador.model.TrivPlayersDto;
 import cr.ac.una.triviador.model.TrivQuestionsDto;
 import cr.ac.una.triviador.service.playersService;
 import cr.ac.una.triviador.service.questionService;
+import cr.ac.una.triviador.util.AppContext;
 import cr.ac.una.triviador.util.Mensaje;
 import cr.ac.una.triviador.util.Respuesta;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -85,7 +86,7 @@ public class ManageQuestionsController extends Controller implements Initializab
         try {
             questionDto = tbvQuestion.getSelectionModel().getSelectedItem();
             if (questionDto != null) {
-                //meter lo de llevar a otra ventana
+                AppContext.getInstance().set("idPregunta",questionDto.getId());
             } else {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar Jugador", getStage(), "No se ha seleccionado ningún jugador");
             }
@@ -108,7 +109,7 @@ public class ManageQuestionsController extends Controller implements Initializab
     //aqui inicializamos todos los componentes como: tablas,combo box y componente que esten activos,visibles y habilitados
     private void initializeComponent() {
         cmbFilterType.getItems().addAll("Categorias", "Texto de pregunta", "Preguntas activas", "Preguntas inactivas", "Todas");
-        cmbCategories.getItems().addAll("Geografia", "Historia ", "Arte", "Ciencia", "Entretenimiento", "Deportes");
+        cmbCategories.getItems().addAll("Geografia", "Historia", "Arte", "Ciencia", "Entretenimiento", "Deportes");
         typesActiveSearchComponents();
         btnSearch.setDisable(true);
         colQuestion.setCellValueFactory(cd -> cd.getValue().questions);
@@ -137,7 +138,6 @@ public class ManageQuestionsController extends Controller implements Initializab
                 answer = questionService.getQuestionText(txtSearchText.getText());
                 loadQuestionTable(answer, "PreguntasPorTexto");
             }
-            //se llama el cargar tabla
         }
     }
 

@@ -1,4 +1,3 @@
-
 package cr.ac.una.triviador.Controller;
 
 import cr.ac.una.triviador.model.TrivCategoriesDto;
@@ -13,8 +12,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-public class QuestionMaintenanceController implements Initializable {
-
+public class QuestionMaintenanceController extends Controller implements Initializable {
+    
+    TrivQuestionsDto questionsDto;
+    
     @FXML
     private MFXTextField txtQuestion;
     @FXML
@@ -37,23 +38,39 @@ public class QuestionMaintenanceController implements Initializable {
     private MFXButton btnSaveQuestion;
     @FXML
     private MFXButton btnDeleteQuestion;
+    
+        @FXML
+    private void onActionBtnCancel(ActionEvent event) {
+        
+    }
 
+    @FXML
+    private void onActionBtnSaveQuestion(ActionEvent event) {
+        
+    }
 
+    @FXML
+    private void onActionBtnDeleteQuestion(ActionEvent event) {
+        
+    }
+    
+     private void bindEmpleado(){
+         txtQuestion.textProperty().bindBidirectional(questionsDto.questions);
+         txtAnswer1.textProperty().bindBidirectional(questionsDto.questions);
+     }
+    
+    private void initializeComponents(){
+        
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
     }    
 
-    @FXML
-    private void onActionBtnCancel(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnSaveQuestion(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnDeleteQuestion(ActionEvent event) {
+    @Override
+    public void initialize() {
+        
     }
     
 }

@@ -26,9 +26,9 @@ import java.math.BigInteger;
     @NamedQuery(name = "Questions.findAll", query = "SELECT t FROM Questions t"),
     @NamedQuery(name = "Questions.findByQueQuestions", query = "SELECT t FROM Questions t WHERE t.questions LIKE :questions"),
     @NamedQuery(name = "Questions.findByQueIsEnabled", query = "SELECT t FROM Questions t WHERE t.isEnabled = :isEnabled"),
-    @NamedQuery(name = "Questions.findByCategoryName", query = "SELECT q FROM Questions q WHERE q.category.name = :name")
-/*@NamedQuery(name = "Questions.findByQueId", query = "SELECT t FROM Questions t WHERE t.id = :id"),
-        @NamedQuery(name = "Questions.findByQueQuestions", query = "SELECT t FROM Questions t WHERE t.questions = :questions"),
+    @NamedQuery(name = "Questions.findByCategoryName", query = "SELECT q FROM Questions q WHERE q.category.name = :name"),
+    @NamedQuery(name = "Questions.findByQueId", query = "SELECT t FROM Questions t WHERE t.id = :id"),
+        /*@NamedQuery(name = "Questions.findByQueQuestions", query = "SELECT t FROM Questions t WHERE t.questions = :questions"),
     @NamedQuery(name = "Questions.findByQueVersion", query = "SELECT t FROM Questions t WHERE t.queVersion = :queVersion")*/
 })
 public class Questions implements Serializable {
