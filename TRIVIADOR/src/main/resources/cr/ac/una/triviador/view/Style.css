@@ -146,6 +146,35 @@
      -fx-image: url("../resources/btnGirar.png");
 }
 
+.imgHowtoPlay1 {
+    -fx-background-image: url("../resources/triviador.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.imgHowtoPlay2 {
+    -fx-background-image: url("../resources/desafia_a_tus_amigos.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.imgHowtoPlay3 {
+    -fx-background-image: url("../resources/modalidades.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.imgHowtoPlay4 {
+    -fx-background-image: url("../resources/ayudas.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+
 .jfx-titulo-label{
     -fx-font-size:24.0px;
     -fx-padding: 5 0 5 0;

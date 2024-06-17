@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.triviador.Controller.HowToPlayController">
+   <children>
+      <TabPane prefHeight="379.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="¿Que es triviador?">
+            <content>
+              <AnchorPane fx:id="imgTriviador" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="imgHowtoPlay1">
+                     <children>
+                        <ImageView fitHeight="342.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" styleClass="imgHowtoPlay1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Desafia a tus amigos ">
+              <content>
+                <AnchorPane fx:id="imgTriviador2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="imgHowtoPlay2">
+                     <children>
+                        <ImageView fitHeight="482.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" styleClass="imgHowtoPlay2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="Modalidades">
+            <content>
+              <AnchorPane fx:id="imgModalidages" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="imgHowtoPlay3">
+                     <children>
+                        <ImageView fitHeight="355.0" fitWidth="591.0" pickOnBounds="true" preserveRatio="true" styleClass="imgHowtoPlay3" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Ayudas">
+               <content>
+                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="348.0" prefWidth="600.0" styleClass="imgHowtoPlay4">
+                     <children>
+                        <ImageView fitHeight="349.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" styleClass="imgHowtoPlay4" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
+               </content></Tab>
+        </tabs>
+      </TabPane>
+      <HBox layoutX="9.0" layoutY="381.0" prefHeight="42.0" prefWidth="584.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="358.0">
+         <children>
+            <ImageView fx:id="imgSalir" fitHeight="38.0" fitWidth="43.0" onMouseClicked="#onMouseClickedSalir" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@../../../../USUARIO%20PZ%20UNA/Documents/NetBeansProjects/UnaPlanilla/src/main/resources/cr/ac/una/unaplanilla/view/Style.css" />
+      <URL value="@Style.css" />
+   </stylesheets>
+</AnchorPane>
